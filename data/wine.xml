@@ -1,0 +1,166 @@
+<wines>
+  <wine id="e99be012-969f-40d8-bbbf-2635522d80f6">
+    <name>BLOCK NINE</name>
+    <year>2009</year>
+    <grapes>Pinot Noir</grapes>
+    <country>USA</country>
+    <region>California</region>
+    <description>With hints of ginger and spice, this wine makes an
+            excellent complement to light appetizer and dessert fare for a
+            holiday gathering.</description>
+    <picture>block_nine.jpg</picture>
+  </wine>
+  <wine id="0f3b922a-aa72-4b74-afd4-26bdfbd0fdde">
+    <name>BODEGA LURTON</name>
+    <year>2011</year>
+    <grapes>Pinot Gris</grapes>
+    <country>Argentina</country>
+    <region>Mendoza</region>
+    <description>Solid notes of black currant blended with a light citrus make this wine an easy pour for varied palates.</description>
+    <picture>bodega_lurton.jpg</picture>
+  </wine>
+  <wine id="1b08f290-5428-4f6b-8d82-e44900ff7659">
+    <name>CHATEAU DE SAINT COSME</name>
+    <year>2009</year>
+    <grapes>Grenache / Syrah</grapes>
+    <country>France</country>
+    <region>Southern Rhone / Gigondas</region>
+    <description>The aromas of fruit and spice give one a hint of the
+            light drinkability of this lovely wine, which makes an excellent
+            complement to fish dishes.</description>
+    <picture>saint_cosme.jpg</picture>
+  </wine>
+  <wine id="b09c83f6-407c-4a0d-988c-eb95737f94d9">
+    <name>CHATEAU LE DOYENNE</name>
+    <year>2005</year>
+    <grapes>Merlot</grapes>
+    <country>France</country>
+    <region>Bordeaux</region>
+    <description>Though dense and chewy, this wine does not overpower with
+            its finely balanced depth and structure. It is a truly luxurious
+            experience for the
+            senses.</description>
+    <picture>le_doyenne.jpg</picture>
+  </wine>
+  <wine id="e3b35053-a644-4f8b-9094-0c2e26e84498">
+    <name>DOMAINE DU BOUSCAT</name>
+    <year>2009</year>
+    <grapes>Merlot</grapes>
+    <country>France</country>
+    <region>Bordeaux</region>
+    <description>The light golden color of this wine belies the bright
+            flavor it holds. A true summer wine, it begs for a picnic lunch in a
+            sun-soaked vineyard.</description>
+    <picture>bouscat.jpg</picture>
+  </wine>
+  <wine id="7000e620-f632-4b7f-bc73-f91a3bf8a07f">
+    <name>DOMAINE SERENE</name>
+    <year>2007</year>
+    <grapes>Pinot Noir</grapes>
+    <country>USA</country>
+    <region>Oregon</region>
+    <description>Though subtle in its complexities, this wine is sure to
+            please a wide range of enthusiasts. Notes of pomegranate will delight
+            as the nutty finish completes the picture of a fine sipping
+            experience.</description>
+    <picture>domaine_serene.jpg</picture>
+  </wine>
+  <wine id="13cf6cdc-9c33-4a9c-a340-e8303c88d42e" changed="2012-10-20T18:29:56.289+03:00">
+    <name>LAN RIOJA CRIANZA</name>
+    <year>1957</year>
+    <grapes>Tempranillo</grapes>
+    <country>Spain</country>
+    <region>Rioja</region>
+    <description>A resurgence of interest in boutique vineyards has opened the door for this excellent foray into the dessert wine market. Light and bouncy, with a hint of black truffle, this wine will not fail to
+            tickle the taste buds.</description>
+    <picture>lan_rioja.jpg</picture>
+  </wine>
+  <wine id="8531a8b9-887f-4317-a740-c7647d747289">
+    <name>LES MORIZOTTES</name>
+    <year>2009</year>
+    <grapes>Chardonnay</grapes>
+    <country>France</country>
+    <region>Burgundy</region>
+    <description>Breaking the mold of the classics, this offering will
+            surprise and undoubtedly get tongues wagging with the hints of coffee
+            and tobacco in
+            perfect alignment with more traditional notes. Breaking the mold of the
+            classics, this offering will surprise and
+            undoubtedly get tongues wagging with the hints of coffee and tobacco in
+            perfect alignment with more traditional notes. Sure to please the late-night
+            crowd with the slight jolt of adrenaline it brings.</description>
+    <picture>morizottes.jpg</picture>
+  </wine>
+  <wine id="4b568cbd-4931-4915-a1fc-b780945c9d77">
+    <name>MARGERUM SYBARITE</name>
+    <year>2010</year>
+    <grapes>Sauvignon Blanc</grapes>
+    <country>USA</country>
+    <region>California Central Cosat</region>
+    <description>The cache of a fine Cabernet in ones wine cellar can now be replaced with a childishly playful wine bubbling over with tempting tastes of  black cherry and licorice. This is a taste sure to transport you back in time.</description>
+    <picture>margerum.jpg</picture>
+  </wine>
+  <wine id="02b28bd5-465d-42f6-a9e3-d221ddf1f8fa">
+    <name>OWEN ROE "EX UMBRIS"</name>
+    <year>2009</year>
+    <grapes>Syrah</grapes>
+    <country>USA</country>
+    <region>Washington</region>
+    <description>A one-two punch of black pepper and jalapeno will send
+            your senses reeling, as the orange essence snaps you back to reality.
+            Don't miss
+            this award-winning taste sensation.</description>
+    <picture>ex_umbris.jpg</picture>
+  </wine>
+  <wine id="0a0377a9-1802-4668-809f-7f236067e51f">
+    <name>REX HILL</name>
+    <year>2009</year>
+    <grapes>Pinot Noir</grapes>
+    <country>USA</country>
+    <region>Oregon</region>
+    <description>One cannot doubt that this will be the wine served at the
+            Hollywood award shows, because it has undeniable star power. Be the
+            first to catch
+            the debut that everyone will be talking about tomorrow.</description>
+    <picture>rex_hill.jpg</picture>
+  </wine>
+  <wine id="678c8b81-6d84-41bb-9134-b13f13ffb004">
+    <name>VITICCIO CLASSICO RISERVA2</name>
+    <year>2222</year>
+    <grapes>Sangiovese Merlot2</grapes>
+    <country>Italy2</country>
+    <region>Tuscany2</region>
+    <description>Though soft and rounded in texture, the body of this wine
+is full and rich and oh-so-appealing. This delivery is even more impressive when one takes note of the tender tannins that leave the taste buds wholly satisfied.2</description>
+    <picture>viticcio.jpg</picture>
+  </wine>
+  <wine id="c98bda59-e398-4746-9a5b-2e4b587c0333">
+    <foo>true</foo>
+    <name>andy</name>
+    <grapes>yes</grapes>
+    <country>uk</country>
+    <region>kent</region>
+    <year>1957</year>
+    <description>notes notes</description>
+  </wine>
+  <wine id="9cc86f5c-7fac-4231-8a53-3ce34514c8d7" changed="2012-10-21T15:36:04.316+03:00">
+    <foo>true</foo>
+    <name>banana</name>
+    <grapes>peach</grapes>
+    <country>uk</country>
+    <region>north</region>
+    <year>2010</year>
+  </wine>
+  <wine id="d4a828dd-c1d5-4899-b7de-fdd1f605a7ea" changed="2012-10-20T22:27:45.616+03:00">
+    <name>a1</name>
+    <grapes>bbbb</grapes>
+    <country>sssff</country>
+  </wine>
+  <wine id="d1e062c7-ec5a-4f35-a1eb-8b9984cc2f55" changed="2012-10-21T16:12:46.341+03:00">
+    <country>France</country>
+    <name>1aaa</name>
+    <grapes>apricot</grapes>
+    <description>some nice text</description>
+    <region>ssss</region>
+  </wine>
+</wines>
