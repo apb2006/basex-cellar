@@ -24,7 +24,7 @@ function wines() {
     return <wine>
        <id>{$wine/@id/fn:string()}</id>
        <created>{$wine/@created/fn:string()}</created>
-       {($wine/name,$wine/year,$wine/grapes)}
+       {($wine/name,$wine/year,$wine/grapes,$wine/picture)}
        </wine>}
   </json>
 };
