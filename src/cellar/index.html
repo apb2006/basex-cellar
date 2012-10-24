@@ -25,22 +25,21 @@
 <body>
 	<ng:include src="'partials/navbar.html'"></ng:include>
 	 <div id="loading">Busy...</div>
-	 <div id="flash"/>
-<div class="alert alert-error" ng-show="flash.get().length" style="margin:2px 10px;">
- <button type="button" class="close" data-dismiss="alert">×</button>
-    <b>Alert!</b><br />
-    {{flash.get()}}
-  </div>
-	
+	 <div id="flash">
+		<div class="alert alert-error" ng-show="flash.get().length" style="margin:2px 10px;">
+		 <button type="button" class="close" data-dismiss="alert">×</button>
+		    <b>Alert!</b><br />
+		    {{flash.get()}}
+		 </div>
+	 </div>
 	<div class="container-fluid">
-     <ng:view></ng:view>
-		
-
-		</div>
+       <ng:view></ng:view>
 	</div>
+
 	<script src="/lib/angular/1.0.2/angular.min.js" ng:autobind></script>
     <script src="lib/busy.js"></script>
 	<script src="lib/time.js"></script>
+	<script src="lib/flash.js"></script>
 	<script src="js/app.js"></script>
 	<script src="js/services.js"></script>
 	<script src="js/directives.js"></script>

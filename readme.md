@@ -4,6 +4,6 @@ The original Wine Cellar application is documented [here](http://coenraets.org/b
 
 It has been updated to Angular 1.0.2, and some new features have been implemented.
 
-This is sample CRUD application built with Angular.js.
+This is sample CRUD application built with Angular.js. The BaseX RESTXQ implementation is used for the back end. 
 
 

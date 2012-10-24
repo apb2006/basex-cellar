@@ -2,19 +2,26 @@
 /* http://docs.angularjs.org/#!angular.service */
 
 // Declare app level module which depends on filters, and services
-var Cellar=angular.module('cellar', [ 'cellar.services', 'cellar.directives','SharedServices','time' ]).config(
+var Cellar=angular.module('cellar', [ 'cellar.services', 'cellar.directives',
+                                      'SharedServices','time','Notification' ]).config(
 		[ '$routeProvider', function($routeProvider) {
 
 			$routeProvider.when('/wines', {
-				templateUrl : 'partials/welcome.html'
+				templateUrl : 'partials/wine-thumbs.html',
+				controller: WineListCtrl	
 			})
 			// any route that doesn't match an available wine will result in an
 			// empty form, which can be used to add a new wine
 			.when('/wines/:wineId', {
 				templateUrl : 'partials/wine-details.html',
 				controller : WineDetailCtrl
-			}).when('/thumbs', {
-				templateUrl : 'partials/wine-thumbs.html'
+			}).when('/list', {
+				templateUrl : 'partials/wine-list.html',
+				controller : WineListCtrl
+			}).when('/welcome', {
+				templateUrl : 'partials/welcome.html'			
+			}).when('/resources', {
+				templateUrl : 'partials/resources.html'		
 			}).otherwise({
 				redirectTo : '/wines'
 			});
