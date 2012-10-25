@@ -1,8 +1,9 @@
 <div id="features" class="row" ng:init="setWindowTitle('Thumbnails')">
+        <label>Sort by:</label><select><option>created</option><option>name</option></select>
 		<ul class="thumbnails"  style="margin-left:20px">
 			<li class="span3" ng-repeat="wine in wines">
 			<a href="#/wines/{{ wine.id }}" class="thumbnail plain">
-			    <img ng:src="pics/{{ wine.picture }}" height="150" width="125" alt="">
+			    <img ng:src="pics/{{ wine.picture |default }}" height="150" width="125" alt="">
 			    <h5>{{ wine.name }}</h5>
 			    <p>{{ wine.year }} {{ wine.grapes }}<br/>
 			    <i class="icon-globe"></i>  region ,  country </p>

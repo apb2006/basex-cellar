@@ -18,6 +18,8 @@ var Cellar=angular.module('cellar', [ 'cellar.services', 'cellar.directives',
 			}).when('/list', {
 				templateUrl : 'partials/wine-list.html',
 				controller : WineListCtrl
+			}).when('/admin', {
+				templateUrl : 'partials/admin.html'
 			}).when('/welcome', {
 				templateUrl : 'partials/welcome.html'			
 			}).when('/resources', {
@@ -26,6 +28,10 @@ var Cellar=angular.module('cellar', [ 'cellar.services', 'cellar.directives',
 				redirectTo : '/wines'
 			});
 		}]);
+// picture filter, use generic if not set		
+Cellar.filter('default', function() {
+	return function(pic) {return pic ? pic : 'generic.jpg';}
+});		
 /* no hashbang within URLs for browers that support HTML5 history
 Cellar.config(['$locationProvider', function($location) {
   $location.html5Mode(true); 
@@ -33,12 +39,17 @@ Cellar.config(['$locationProvider', function($location) {
 */		
 // http://www.bennadel.com/blog/2424-Setting-Prototype-Properties-Using-Inherited-Scope-Methods-In-AngularJS.htm
 // Define our root-level controller for the application.
-Cellar.controller("AppController", function($scope,flash) {
+Cellar.controller("AppController", function($scope,$location, $window,flash) {
 
+     // http://stackoverflow.com/questions/10713708/tracking-google-analytics-page-views-with-angular-js
+	  $scope.$on('$viewContentLoaded', function(event) {
+		$window._gaq.push(['_trackPageview', $location.path()]);
+	  });
 	// Set up the default programmtic window title. Once
 	// the app runs, this will overwrite the value that
 	// is currently set in the HTML.
-	$scope.windowTitle = "Angular RESTXQ Cellar";
+	var appname="RESTXQ Angular Cellar"
+	$scope.windowTitle = appname;
 
 	// This App Controller is the only controller that
 	// has access to the Title element. As such, we need
@@ -52,7 +63,7 @@ Cellar.controller("AppController", function($scope,flash) {
 		// is invoked on a "sub-classed" $scope instance,
 		// it will affect this scope higher up in the
 		// prototype chain.
-		$scope.windowTitle = title;
+		$scope.windowTitle = title+ " " + appname;
 
 	};
 	  $scope.msgInput = "The Tomatoes Exploded!";
@@ -65,6 +76,7 @@ Cellar.factory("flash", function($rootScope) {
 	  var queue = [], currentMessage = '';
 	  
 	  $rootScope.$on('$routeChangeSuccess', function() {
+	    console.log("routeChangeSuccess: ",queue.length)
 	    if (queue.length > 0) 
 	      currentMessage = queue.shift();
 	    else
@@ -73,9 +85,11 @@ Cellar.factory("flash", function($rootScope) {
 	  
 	  return {
 	    set: function(message) {
+		  console.log("flash set")
 	      queue.push(message);
 	    },
 	    get: function(message) {
+		console.log("flash get")
 	      return currentMessage;
 	    }
 	  };
