@@ -3,27 +3,36 @@
 
 // Declare app level module which depends on filters, and services
 var Cellar=angular.module('cellar', [ 'cellar.services', 'cellar.directives',
-                                      'SharedServices','time','Notification' ]).config(
+                                     'http-auth-interceptor','SharedServices',
+                                      ,'time','Notification' ]).config(
 		[ '$routeProvider', function($routeProvider) {
 
 			$routeProvider.when('/wines', {
-				templateUrl : 'partials/wine-thumbs.html',
+				templateUrl : 'partials/wine-thumbs.xml',
 				controller: WineListCtrl	
 			})
 			// any route that doesn't match an available wine will result in an
 			// empty form, which can be used to add a new wine
 			.when('/wines/:wineId', {
-				templateUrl : 'partials/wine-details.html',
+				templateUrl : 'partials/wine-details.xml',
 				controller : WineDetailCtrl
 			}).when('/list', {
-				templateUrl : 'partials/wine-list.html',
+				templateUrl : 'partials/wine-list.xml',
 				controller : WineListCtrl
-			}).when('/admin', {
-				templateUrl : 'partials/admin.html'
+			}).when('/users', {
+				templateUrl : 'partials/users.xml',controller: UserCtrl
 			}).when('/welcome', {
-				templateUrl : 'partials/welcome.html'			
+				templateUrl : 'partials/welcome.xml'			
 			}).when('/resources', {
-				templateUrl : 'partials/resources.html'		
+				templateUrl : 'partials/resources.xml'	
+            }).when('/auth/login', {
+				templateUrl : 'auth/login.xml'
+            }).when('/auth/register', {
+				templateUrl : 'auth/register.xml'
+            }).when('/auth/changepassword', {
+				templateUrl : 'auth/changepassword.xml'
+            }).when('/auth/lostpassword', {
+				templateUrl : 'auth/lostpassword.xml'					
 			}).otherwise({
 				redirectTo : '/wines'
 			});
@@ -45,6 +54,13 @@ Cellar.controller("AppController", function($scope,$location, $window,flash) {
 	  $scope.$on('$viewContentLoaded', function(event) {
 		$window._gaq.push(['_trackPageview', $location.path()]);
 	  });
+	  // auth stuff
+	  $scope.$on('event:auth-loginRequired', function() {
+		  $location.path("/auth/login");
+        });
+       $scope.$on('event:auth-loginConfirmed', function() {
+          alert("logedin")
+        }); 
 	// Set up the default programmtic window title. Once
 	// the app runs, this will overwrite the value that
 	// is currently set in the HTML.
@@ -85,12 +101,31 @@ Cellar.factory("flash", function($rootScope) {
 	  
 	  return {
 	    set: function(message) {
-		  console.log("flash set")
+		 // console.log("flash set")
 	      queue.push(message);
 	    },
 	    get: function(message) {
-		console.log("flash get")
+		//console.log("flash get")
 	      return currentMessage;
 	    }
 	  };
 	});
+
+// https://github.com/jhulick/the-issues-angularjs-demo
+Cellar.factory('Auth', function() {
+	  Auth = {
+	    username: localStorage.username,
+	    login: function(username) {
+	      localStorage.username = username
+	      this.username = username
+	      this.loggedIn = true
+	    },
+	    logout: function() {
+	      localStorage.removeItem('username')
+	      delete this.username
+	      this.loggedIn = false
+	    }
+	  }
+	  Auth.loggedIn = !!Auth.username
+	  return Auth
+	})

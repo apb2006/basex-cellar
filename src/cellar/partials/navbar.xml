@@ -4,7 +4,7 @@
 			<a class="btn btn-navbar" data-toggle="collapse"
 				data-target=".nav-collapse"> <span class="icon-bar"></span> <span
 				class="icon-bar"></span> <span class="icon-bar"></span>
-			</a> <a href="." class="brand" title="Version 0.0.3"> <img
+			</a> <a href="#/wines" class="brand" title="Version 0.1.1"> <img
 				src="wine.png" /> Angular Cellar
 			</a>
 
@@ -21,7 +21,7 @@
                         data-toggle="dropdown"> Admin <b class="caret"></b>
                     </a>
                         <ul class="dropdown-menu">
-                            <li><a href="#/admin"><i class="icon-info-sign"></i> Admin</a></li>
+                            <li><a href="#/users"><i class="icon-info-sign"></i> Users</a></li>
                             
                         </ul></li>
 					<li class="dropdown"><a href="#" class="dropdown-toggle"

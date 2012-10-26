@@ -21,4 +21,21 @@ angular.module('cellar.services', ['ngResource']).
 			}
 
 		}
+	}]).
+	 factory('User', ['$resource', '$http', '$rootScope', function($resource, $http, $rootScope){
+        return {
+        	//the resource provider interacting with the BaseX backend
+	        api: 
+				$resource('../restxq/cellar/api/users/:userId', {}, {
+			        update: {method:'PUT'}
+				}),
+			
+			/*
+			* A generic function that can be called to emit an event on one ctrl that can be handled by another ctrl.
+			*/
+			broadcastChange: function(){
+				$rootScope.$broadcast('userevent');
+			}
+
+		}
 	}])

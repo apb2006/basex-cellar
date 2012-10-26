@@ -21,7 +21,7 @@ body {
 .navbar-search .search-query:focus, .navbar-search .search-query.focused {
     padding-left: 30px;
 }
-
+.ng-cloak { display: none; }
 a.plain:link
 { color: #333; text-decoration: none }
 a.plain:active

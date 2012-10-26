@@ -5,7 +5,9 @@
 :)
 
 module namespace cellar = 'apb.cellar.rest';
-declare default function namespace 'apb.cellar.rest'; 
+declare default function namespace 'apb.cellar.rest';
+import module namespace web = 'apb.web.utils2' at "webutils.xqm";
+
 declare namespace rest = 'http://exquery.org/ns/restxq';
 
 declare variable $cellar:wines:=db:open("cellar","wine.xml")/wines; 
@@ -29,6 +31,24 @@ function wines() {
   </json>
 };
 
+(:~
+: return users auth required
+:)
+declare
+%rest:GET %rest:path("cellar/api/users")  
+%output:method("json")
+function users() {
+   web:http-auth("Whizz apb auth",())
+};
+
+(:~
+: login
+:)
+declare
+%rest:GET %rest:path("cellar/auth/login")  
+function login() {
+   "login"
+};
 
 (:~
 : add a wine
@@ -43,7 +63,7 @@ updating function add-wine($body) {
     let $new:=<wine id="{$id}" created="{fn:current-dateTime()}">{$items }</wine>
     return ( insert node $new into $cellar:wines ,
             db:output(
-			  (http-created($cellar:baseuri || $id,<json objects="json">{$new/*}</json>))
+			  (web:http-created($cellar:baseuri || $id,<json objects="json">{$new/*}</json>))
 			  )
             )
 };
@@ -75,7 +95,7 @@ function get-wine($id) {
                     {$wine/*}
                 </json>
 			else 
-				status(404,"Not found: " || $id)	
+				web:status(404,"Not found: " || $id)	
 };
 
 (:~
@@ -95,9 +115,9 @@ updating function put-wine($id,$body) {
            return              
                if($items/changed=$old/@changed/fn:string() or fn:not($old/@changed))
                then (replace node $old with $new, db:output($body))
-               else db:output( status(403,"data changed"))
+               else db:output( web:status(403,"data changed"))
          else 
-			db:output(status(404,"Not found: " || $id))
+			db:output(web:status(404,"Not found: " || $id))
 };
 
 (:~
@@ -113,27 +133,7 @@ updating function delete-wine($id) {
                         <deleted>true</deleted>
                         </json>
               return (delete node  $wine,db:output($w))
-         else db:output(status(404,"Not found: " || $id))
-};
-
-declare function status($code,$reason){
-   <rest:response>            
-       <http:response status="{$code}" reason="{$reason}"/>
-   </rest:response>
-};
-
-(:~
-: REST created http://restpatterns.org/HTTP_Status_Codes/201_-_Created
-:)
-declare function http-created($location,$response){
-   (
-   <rest:response>            
-       <http:response status="201" >
-	       <http:header name="Location" value="{$location}"/>
-	   </http:response>
-   </rest:response>,
-   $response
-   )
+         else db:output(web:status(404,"Not found: " || $id))
 };
 
 (:~

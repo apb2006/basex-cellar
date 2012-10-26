@@ -1,8 +1,8 @@
-<form name="myForm" ng:init="setWindowTitle('Add or edit a wine')">
+<form xmlns:ng="http://angularjs.org" name="myForm" ng:init="setWindowTitle('Add or edit a wine')">
 	<div class="row-fluid">
 		<div class="span4">
            <label>Name:</label> <input type="text" id="nameInput"
-				ng:model="wine.name" required autofocus="autofocus" /> <label>Grapes:</label>
+				ng:model="wine.name" required="required" autofocus="autofocus" /> <label>Grapes:</label>
 			<input type="text" id="grapesInput" ng:model="wine.grapes" /> <label>Country:</label>
 			<input type="text" id="countryInput" list="countryData"
 				ng:model="wine.country" />
@@ -32,11 +32,11 @@
 	<div class="row-fluid">
 		<div class="span4">
 			<label>Id:</label> <input id="idInput" type="text" ng:model="wine.id"
-				disabled />
+				disabled="disabled" />
 		</div>
 		<div class="span4">
 			<label>Last updated:</label> <input id="idInput" type="text"
-				ng:model="wine.changed" disabled />
+				ng:model="wine.changed" disabled="disabled" />
 		</div>
 	</div>
 	<div class="form-actions">

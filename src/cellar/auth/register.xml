@@ -1,0 +1,33 @@
+<div>
+	<form method="post" action="auth/register" class="well form-horizontal"
+	 oninput="up2.setCustomValidity(up2.value != password.value ? 'Passwords do not match.' : '')">
+		<fieldset>
+			<legend>Register</legend>
+			<div class="control-group">
+				<label class="control-label" for="username">Choose a user name:</label>
+				<div class="controls">
+					<input id="username" name="username" type="text" class="input" 
+					required="required"  autofocus="autofocus"
+						placeholder="Username" />
+				</div>
+			</div>
+			<div class="control-group">
+				<label class="control-label" for="password">Password:</label>
+				<div class="controls">
+					<input id="password" name="password" type="password" class="input"
+						placeholder="Password" required="required" />
+				</div>
+			</div>
+			<div class="control-group">
+				<label class="control-label" for="password2">Confirm Password:</label>
+				<div class="controls">
+					<input id="password2" name="up2" type="password" class="input"
+						placeholder="Password" required="required" />
+				</div>
+			</div>
+		</fieldset>
+		<div class="form-actions">
+			<button type="submit" class="btn btn-primary">Register</button>
+		</div>
+	</form>
+</div>

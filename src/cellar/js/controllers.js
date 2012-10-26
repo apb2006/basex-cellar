@@ -1,12 +1,17 @@
-function MenuCtrl($routeParams, $location, $scope) {
-
-    $scope.addWine = function () {
-        $location.path("/wines/add");
-    };
-
+function UserCtrl(User, $location, $scope) {
+    console.log("usercntl....................");
+    $scope.users = User.api.query();
 }
-MenuCtrl.$inject = ['$routeParams', '$location', '$scope'];
+UserCtrl.$inject = ['User', '$location', '$scope'];
 
+function LoginController( authService, $http,$scope) {
+    $scope.submit = function() {
+      $http.post('auth/login').success(function() {
+        authService.loginConfirmed();
+      });
+    }
+  }
+LoginController.$inject = ['authService', '$location', '$scope'];
 
 function WineListCtrl(Wine, $location, $scope) {
     $scope.wines = Wine.api.query();
@@ -43,7 +48,7 @@ function WineDetailCtrl(Wine, $routeParams, $location, $scope) {
             Wine.api.update({wineId:$scope.wine.id}, $scope.wine, function (res) {
                 $scope.flash.set('Wine ' + $scope.wine.name + ' updated');
                 Wine.broadcastChange();
-                $location.path("/thumbs");
+                $location.path("/welcome");
                 },
                 function(res){
                 	$scope.flash.set('Wine ' + $scope.wine.name + ' NOT updated: '+res.data);
