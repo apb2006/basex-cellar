@@ -1,0 +1,60 @@
+<div>
+<h3 >Cookie Law Compliance &amp; E-Privacy Directive</h3>
+                <p>
+                    This site uses some unobtrusive cookies to store information on your computer. Some cookies
+                    on this site are essential, and the site won't work as expected without them. These cookies are
+                    set when you submit a form, login or interact with the site by doing something that goes beyond
+                    clicking on simple links. We also use some non-essential cookies to anonymously track visitors
+                    or enhance your experience of the site.
+                </p>
+                <p><b>To comply with the e-Privacy Directive, we need to ask for your consent to set these cookies.</b></p>
+
+                <button onclick="agree()">I agree</button>
+                <button onclick="cancel()">No thanks</button>
+
+                <h2 style="margin-top:2em">More about cookies</h2>
+                <p>
+                    Cookies that may be used by this website are used either solely on a per session basis or to maintain
+                    login and other preferences. Cookies are not shared with any third parties.
+                </p>
+
+                <table border="1" cellspacing="0" cellpadding="4" style="margin:0 2em">
+                    <thead>
+                        <tr>
+                            <th scope="col">Cookie Name</th>
+                            <th scope="col">Description</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>allowCookies</td>
+                            <td>Cookie that confirms that you agree that this site can read/write cookies in your browser.</td>
+                        </tr>
+                        <tr>
+                            <td>
+                                __utma<br/>
+                                __utmb<br/>
+                                __utmc<br/>
+                                __utmz<br/>
+                            </td>
+                            <td>
+                            <p>Google Analytics: We use Google Analytics to monitor traffic levels, search queries and visits to this website.</p>
+                            <p>Google Analytics stores IP address anonymously on its servers in the US, and your IP address is not associated with any personally identifiable information.</p>
+                            <p>These cookies enable Google to determine whether you are a return visitor to the site, and to track the pages that you visit during your session.<br />
+                            </p>
+                            </td>
+                        </tr>
+                      
+                        <tr>
+                            <td>JSESSIONID</td>
+                            <td>
+                                <p>
+                                    This is a simple token used by Java applications to identify your unique session on the website.
+                                    Typically used to maintain the integrity of your session while transacting information with a website
+                                    (accessing secure areas, forms submissions etc)
+                                </p>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+</div>

@@ -1,6 +1,6 @@
 <div>
 	<h1>Angular Cellar resources</h1>
-	<p>Repository on github:<a href="https://github.com/apb2006/basex-cellar">basex-cellar</a></p>
+	<p>Github repository:<a href="https://github.com/apb2006/basex-cellar">basex-cellar</a></p>
 	<p>The following components are used in this application.</p>
 	<ul>
 		<li><a href="http://twitter.github.com/bootstrap/">Twitter-Bootstrap</a></li>

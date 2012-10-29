@@ -17,7 +17,7 @@ angular.module('cellar.services', ['ngResource']).
 			* The WineDetailCtrl emits it on each save, update or delete request, so that the WineListCtrl can react and update itself.	
 			*/
 			broadcastChange: function(){
-				$rootScope.$broadcast('handleBroadcast');
+				$rootScope.$broadcast('wine:change');
 			}
 
 		}

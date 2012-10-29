@@ -4,7 +4,7 @@
 // Declare app level module which depends on filters, and services
 var Cellar=angular.module('cellar', [ 'cellar.services', 'cellar.directives',
                                      'http-auth-interceptor','SharedServices',
-                                      ,'time','Notification' ]).config(
+                                     'cellar.auth','time']).config(
 		[ '$routeProvider', function($routeProvider) {
 
 			$routeProvider.when('/wines', {
@@ -25,15 +25,7 @@ var Cellar=angular.module('cellar', [ 'cellar.services', 'cellar.directives',
 				templateUrl : 'partials/welcome.xml'			
 			}).when('/resources', {
 				templateUrl : 'partials/resources.xml'	
-            }).when('/auth/login', {
-				templateUrl : 'auth/login.xml'
-            }).when('/auth/register', {
-				templateUrl : 'auth/register.xml'
-            }).when('/auth/changepassword', {
-				templateUrl : 'auth/changepassword.xml'
-            }).when('/auth/lostpassword', {
-				templateUrl : 'auth/lostpassword.xml'					
-			}).otherwise({
+            }).otherwise({
 				redirectTo : '/wines'
 			});
 		}]);
@@ -82,50 +74,32 @@ Cellar.controller("AppController", function($scope,$location, $window,flash) {
 		$scope.windowTitle = title+ " " + appname;
 
 	};
-	  $scope.msgInput = "The Tomatoes Exploded!";
-	  $scope.flash = flash;
+	 $scope.flash = flash;
 });
 
 
-// http://plnkr.co/edit/3n8m1X?p=preview
-Cellar.factory("flash", function($rootScope) {
-	  var queue = [], currentMessage = '';
-	  
-	  $rootScope.$on('$routeChangeSuccess', function() {
-	    console.log("routeChangeSuccess: ",queue.length)
-	    if (queue.length > 0) 
-	      currentMessage = queue.shift();
-	    else
-	      currentMessage = '';
+//http://plnkr.co/edit/3n8m1X?p=preview
+Cellar.factory("flash", function($rootScope,$location) {
+	  var queue = []
+      var lasturl=""  //routeChangeSuccess called twice???
+	  $rootScope.$on('$routeChangeSuccess', function($currentRoute, $previousRoute ) {
+	    //console.log("routeChangeSuccess: ",queue.length,$location.$$absUrl )
+		if(lasturl==$location.$$absUrl)return;
+		lasturl=$location.$$absUrl;
+		var ascope=angular.element("#alerts").scope()
+		ascope.clear();
+		for(var i = 0, len = queue.length; i < len; ++i){
+			var a=queue[i]
+			ascope.addAlert(a.type,a.msg);
+		}
+		queue = []
 	  });
 	  
 	  return {
-	    set: function(message) {
-		 // console.log("flash set")
-	      queue.push(message);
-	    },
-	    get: function(message) {
-		//console.log("flash get")
-	      return currentMessage;
+	    set: function(type,message) {
+		  console.log("flash set")
+	      queue.push({type:type,msg:message});
 	    }
 	  };
 	});
 
-// https://github.com/jhulick/the-issues-angularjs-demo
-Cellar.factory('Auth', function() {
-	  Auth = {
-	    username: localStorage.username,
-	    login: function(username) {
-	      localStorage.username = username
-	      this.username = username
-	      this.loggedIn = true
-	    },
-	    logout: function() {
-	      localStorage.removeItem('username')
-	      delete this.username
-	      this.loggedIn = false
-	    }
-	  }
-	  Auth.loggedIn = !!Auth.username
-	  return Auth
-	})

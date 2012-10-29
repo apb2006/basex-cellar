@@ -1,24 +1,22 @@
-<div ng:controller="LoginController">
-	<div>{$messages}</div>
-	<form ng-submit="submit()" class="well form-horizontal">
-
+<div xmlns:ng="http://angularjs.org"  ng:controller="AuthController">
+	<form  class="well form-horizontal">
 		<fieldset>
 			<legend>Sign in</legend>
 			<div class="control-group">
 				<label class="control-label" for="username">User name:</label>
 				<div class="controls">
 					<input id="username" name="username" type="text" class="input"
-						 required="required" autofocus="autofocus"/>
+						required="required" autofocus="autofocus" />
 				</div>
 			</div>
 			<div class="control-group">
 				<label class="control-label" for="password">Password:</label>
 				<div class="controls">
 					<input id="password" name="password" type="password" class="input"
-						 required="required" />
+						required="required" />
 				</div>
 			</div>
-			
+
 			<label class="checkbox">
 				<input name="rememberme" type="checkbox" />
 				Remember me (not implemented yet)
@@ -26,11 +24,11 @@
 
 		</fieldset>
 		<div class="form-actions">
-			<button type="submit" class="btn btn-primary">Log in</button>
+			<button ng:click="login()" class="btn btn-primary">Log in</button>
 			Or
 			<a href="#/auth/register">Register</a>
 		</div>
 		<a href="#/auth/lostpassword" class="pull-right">Forgotten your password?</a>
 	</form>
-	
+
 </div>

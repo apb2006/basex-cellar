@@ -1,5 +1,5 @@
-<div>
-	<form method="post" action="auth/register" class="well form-horizontal"
+<div xmlns:ng="http://angularjs.org"  ng:controller="AuthController">
+	<form  class="well form-horizontal"
 	 oninput="up2.setCustomValidity(up2.value != password.value ? 'Passwords do not match.' : '')">
 		<fieldset>
 			<legend>Register</legend>
@@ -27,7 +27,7 @@
 			</div>
 		</fieldset>
 		<div class="form-actions">
-			<button type="submit" class="btn btn-primary">Register</button>
+			<button  ng:click="register" class="btn btn-primary">Register</button>
 		</div>
 	</form>
 </div>

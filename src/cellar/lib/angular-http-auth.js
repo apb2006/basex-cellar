@@ -2,6 +2,7 @@
  * @license HTTP Auth Interceptor Module for AngularJS
  * (c) 2012 Witold Szczerba
  * License: MIT
+ * https://github.com/witoldsz/angular-http-auth
  */
 angular.module('http-auth-interceptor', [])
 

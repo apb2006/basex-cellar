@@ -22,6 +22,14 @@ body {
     padding-left: 30px;
 }
 .ng-cloak { display: none; }
+.winelist {
+	background-color:#f5deb3;
+	padding-left:20px;
+	padding-top:20px;
+}
+.winelist li {
+	background-color:white;
+}
 a.plain:link
 { color: #333; text-decoration: none }
 a.plain:active
@@ -136,14 +144,14 @@ input.ng-pristine + .input-help {
   background-position: 2px 6px;
 }
 
-/* Set submit button */
+/* Set submit button
 form .btn, form.ng-valid .btn[disabled] {
   display: none;
 }
 form.ng-invalid .btn[disabled], form.ng-valid .btn {
   display: inline-block;
 }
-
+ */
 
 
 .form-horizontal .control-label {

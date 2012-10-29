@@ -11,7 +11,7 @@ import module namespace web = 'apb.web.utils2' at "webutils.xqm";
 declare namespace rest = 'http://exquery.org/ns/restxq';
 
 declare variable $cellar:wines:=db:open("cellar","wine.xml")/wines; 
-declare variable $cellar:baseuri:="http://localhost:8984/restxq/cellar/api/wines/";
+declare variable $cellar:baseuri:="/restxq/cellar/api/wines/";
 
 (:~
 : return name and id for all wines as json
