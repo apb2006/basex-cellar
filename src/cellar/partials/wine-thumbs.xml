@@ -1,16 +1,33 @@
-<div id="features" class="row" ng:init="setWindowTitle('Thumbnails')" >
-        <label>Sort by:</label><select><option>created</option><option>name</option></select>
+<div id="features" class="row" data-ng-init="setWindowTitle('Thumbnails')" >
+	    <div class="navbar">
+		
+		      <form class="navbar-form pull-left">
+    Filter:<input type="text" class="span2" ng:model="query"/>
+	Sort:
+    </form>
+	
+	 <ul class="nav" data-ng-repeat="th in head" >
+		 <li>
+		<button  class="btn btn-small"
+		  data-ng-click="changeSorting(th.column)">
+		 {{th.head}}
+		 <i data-ng-class="selectedCls(th.column)"></i></button>
+		 </li>
+		 </ul>
+		</div>
 		<ul class="thumbnails winelist"  >
-			<li class="span3" ng-repeat="wine in wines">
+			<li class="span3" 
+			data-ng-repeat="wine in filteredWines = wines | orderBy:sort.column:sort.descending| filter:query">
 			<a href="#/wines/{{ wine.id }}" class="thumbnail plain">
-			    <img ng:src="pics/{{ wine.picture |default }}" height="150" width="125" alt="">
+			    <img data-ng-src="pics/{{ wine.picture |default }}" height="150" width="125" alt=""/>
 			    <h5>{{ wine.name }}</h5>
 			    <p>{{ wine.year }} {{ wine.grapes }}<br/>
-			    <i class="icon-globe"></i>  region ,  country </p>
+			    <i class="icon-globe"></i> {{ wine.region }}, {{ wine.country }} </p>
 			</a>		
 			</li>		
 		</ul>
 	<!--/span-->
+	<span title="Wrong when filtered!">{{filteredWines.length}} of {{wines.length}}</span>
 </div>
 
 

@@ -16,10 +16,39 @@ function FlashCtrl( $scope) {
 FlashCtrl.$inject = [ '$scope'];
 
 
-function WineListCtrl(Wine, $location, $scope) {
+function WineListCtrl(Wine, $location, $filter,$scope) {
     $scope.wines = Wine.api.query();
-    $scope.q="";	
+	$scope.filteredWines = [];
+    $scope.query="";
 	
+	// sorting..
+	 $scope.head = [
+        {head: "Name", column: "name"},
+        {head: "Created", column: "created"},
+        {head: "Year", column: "year"},
+		{head: "Updated", column: "changed"},
+		];
+	$scope.sort = {
+        column: 'name',
+        descending: false
+    };
+    $scope.selectedCls = function(column) {
+	    if(column == $scope.sort.column){
+			return $scope.sort.descending?"icon-arrow-up":"icon-arrow-down"
+		}else{
+			return "icon-"
+		}		 
+    };
+    
+    $scope.changeSorting = function(column) {
+        var sort = $scope.sort;
+        if (sort.column == column) {
+            sort.descending = !sort.descending;
+        } else {
+            sort.column = column;
+            sort.descending = false;
+        }
+    };
     $scope.submit = function() {
 		$scope.wines = Wine.api.query({q:$scope.q});
 		console.log("search");
@@ -32,7 +61,7 @@ function WineListCtrl(Wine, $location, $scope) {
     });   
 
 }
-WineListCtrl.$inject = ['Wine', '$location', '$scope'];
+WineListCtrl.$inject = ['Wine', '$location', '$filter','$scope'];
 
 
 function WineDetailCtrl(Wine, $routeParams, $location, $scope) {

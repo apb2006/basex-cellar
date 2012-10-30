@@ -36,6 +36,7 @@ angular.module('cellar.auth', [])
 
 function AuthController( Auth, $http,$scope) {
     $scope.login = function() {
+	   alert("login");
       $http.post('auth/login').success(function() {
         Auth.loginConfirmed();
       });

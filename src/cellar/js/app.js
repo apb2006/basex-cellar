@@ -71,7 +71,7 @@ Cellar.controller("AppController", function($scope,$location, $window,flash) {
 		// is invoked on a "sub-classed" $scope instance,
 		// it will affect this scope higher up in the
 		// prototype chain.
-		$scope.windowTitle = title+ " " + appname;
+		$scope.windowTitle = title+ " - " + appname;
 
 	};
 	 $scope.flash = flash;

@@ -6,9 +6,10 @@
 
 module namespace cellar = 'apb.cellar.rest';
 declare default function namespace 'apb.cellar.rest';
-import module namespace web = 'apb.web.utils2' at "webutils.xqm";
 
+import module namespace web = 'apb.web.utils2' at "webutils.xqm";
 declare namespace rest = 'http://exquery.org/ns/restxq';
+declare namespace random = 'http://basex.org/modules/random';
 
 declare variable $cellar:wines:=db:open("cellar","wine.xml")/wines; 
 declare variable $cellar:baseuri:="/restxq/cellar/api/wines/";
@@ -26,29 +27,16 @@ function wines() {
     return <wine>
        <id>{$wine/@id/fn:string()}</id>
        <created>{$wine/@created/fn:string()}</created>
-       {($wine/name,$wine/year,$wine/grapes,$wine/picture)}
+       {($wine/name,
+       $wine/year,
+       $wine/grapes,
+       $wine/region,
+       $wine/country,
+       $wine/picture)}
        </wine>}
   </json>
 };
 
-(:~
-: return users auth required
-:)
-declare
-%rest:GET %rest:path("cellar/api/users")  
-%output:method("json")
-function users() {
-   web:http-auth("Whizz apb auth",())
-};
-
-(:~
-: login
-:)
-declare
-%rest:GET %rest:path("cellar/auth/login")  
-function login() {
-   "login"
-};
 
 (:~
 : add a wine
@@ -140,5 +128,5 @@ updating function delete-wine($id) {
 : create a unique id.
 :)
 declare function generate-id() as xs:string{
-  random:uuid()
+  fn:replace(random:uuid(),"-","")
 };

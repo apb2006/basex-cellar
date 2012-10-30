@@ -1,0 +1,14 @@
+<users nextid="2">
+	<user id="0" name="guest">
+		<data>
+			<ace theme="dawn" />
+		</data>
+	</user>
+	<user id="1" name="admin">
+		<stats created="2012-08-06T22:29:37.643+01:00" last="2012-08-06T22:29:37.643+01:00" logins="0" />
+		<login password="oa2xJp0I39IG1DBdfa4Nzg==" role="admin" />
+		<data>
+			<ace theme="dawn" />
+		</data>
+	</user>
+</users>
