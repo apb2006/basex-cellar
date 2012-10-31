@@ -17,7 +17,14 @@ FlashCtrl.$inject = [ '$scope'];
 
 
 function WineListCtrl(Wine, $location, $filter,$scope) {
-    $scope.wines = Wine.api.query();
+    $scope.wines = Wine.api.query({},
+		    		function(){},
+			        function(res){
+		    			alert("Big problem: "+res.data);
+		    			console.log(res);
+				        flash("error","Bad news!!! ");
+				        $location.path("/");
+				     });
 	$scope.filteredWines = [];
     $scope.query="";
 	
@@ -50,7 +57,12 @@ function WineListCtrl(Wine, $location, $filter,$scope) {
         }
     };
     $scope.submit = function() {
-		$scope.wines = Wine.api.query({q:$scope.q});
+		$scope.wines = Wine.api.query({q:$scope.q},
+				function(){},
+		        function(res){
+		            flash("error","Item not found: ");
+		            $location.path("/wines");
+                 });
 		console.log("search");
 		$location.path("/wines");
 	};
@@ -122,3 +134,8 @@ function WineDetailCtrl(Wine, $routeParams, $location, $scope) {
     }
 }
 WineDetailCtrl.$inject = ['Wine', '$routeParams', '$location', '$scope'];
+
+function NavbarCtrl($scope){
+   $scope.loggedIn=false
+}
+NavbarCtrl.$inject = ['$scope'];

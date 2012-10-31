@@ -1,0 +1,27 @@
+<ng:switch on="loggedIn" xmlns:ng="http://angularjs.org">
+	<a ng-switch-when="true" class="btn dropdown-toggle" data-toggle="dropdown" href="#"  style="margin-top:3px">
+		<i class="icon-user"></i>
+                            {$user/@name/fn:string()}
+		<span class="caret"></span>
+	</a>
+	<ul ng-switch-when="true" class="dropdown-menu">
+		<li>
+			<a href="profile">Profile</a>
+		</li>                                                
+		<li>
+			<a href="auth/changepassword">Change password</a>
+		</li>
+		<li class="divider"></li>
+		<li>
+			<form method="post" action="auth/logout" style="margin:0 4px;">
+				<button type="submit" style="width:100%;text-align:left;" class="btn "><i class="icon-off"></i> Sign out</button>
+			</form>
+
+		</li>                            
+	</ul>
+
+	<div ng-switch-when="false" class="btn-group">
+		<a href="auth/login" class="btn btn-small">Sign in</a>
+		<a href="auth/register"  class="btn btn-success btn-small">Sign up</a>
+	</div>
+</ng:switch >

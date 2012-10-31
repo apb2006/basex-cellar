@@ -1,13 +1,13 @@
-<div class="navbar navbar-fixed-top " data-dropdown="dropdown">
+<div class="navbar navbar-fixed-top " data-dropdown="dropdown" data-ng-controller="NavbarCtrl">
 	<div class="navbar-inner">
 		<div class="container">
 			<a class="btn btn-navbar" data-toggle="collapse"
 				data-target=".nav-collapse"> <span class="icon-bar"></span> <span
 				class="icon-bar"></span> <span class="icon-bar"></span>
-			</a> <a href="." class="brand" title="Version 0.0.3"> <img
+			</a> <a href="#/" class="brand" title="Version 0.0.3"> <img
 				src="wine.png" /> Angular Cellar
 			</a>
-
+           
 			<div class="nav-collapse collapse">
 				<ul class="nav">
 					<li class="dropdown"><a href="#" class="dropdown-toggle"
@@ -39,11 +39,12 @@
 						name="q" />
 					<div class="icon-search"></div>
 				</form>
-				 
 				<div class=" pull-right" style="margin-top: 0px">
-						<span data-XX-my-current-time="?">time</span></div>
-				 
+						<ng-include src="'partials/usermenu.xml'"></ng-include>
+		        </div> 
+				
 			</div>
+			
 		</div>
 	</div>
 </div>
