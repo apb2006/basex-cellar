@@ -11,7 +11,6 @@ function FlashCtrl( $scope) {
 	$scope.clear = function() {
             $scope.alerts=[];
         };
-	console.log("Flashcntl....................",$scope.alerts);
 }
 FlashCtrl.$inject = [ '$scope'];
 
@@ -25,7 +24,6 @@ function WineListCtrl(Wine, $location, $filter,$scope) {
 				        flash("error","Bad news!!! ");
 				        $location.path("/");
 				     });
-	$scope.filteredWines = [];
     $scope.query="";
 	
 	// sorting..
@@ -35,10 +33,8 @@ function WineListCtrl(Wine, $location, $filter,$scope) {
         {head: "Year", column: "year"},
 		{head: "Updated", column: "changed"},
 		];
-	$scope.sort = {
-        column: 'name',
-        descending: false
-    };
+	$scope.sort = { column: 'name', descending: false};
+	
     $scope.selectedCls = function(column) {
 	    if(column == $scope.sort.column){
 			return $scope.sort.descending?"icon-arrow-up":"icon-arrow-down"
@@ -46,7 +42,9 @@ function WineListCtrl(Wine, $location, $filter,$scope) {
 			return "icon-"
 		}		 
     };
-    
+    $scope.activeCls = function(column) {
+	    return (column == $scope.sort.column)?"active":""
+    };
     $scope.changeSorting = function(column) {
         var sort = $scope.sort;
         if (sort.column == column) {
@@ -136,6 +134,7 @@ function WineDetailCtrl(Wine, $routeParams, $location, $scope) {
 WineDetailCtrl.$inject = ['Wine', '$routeParams', '$location', '$scope'];
 
 function NavbarCtrl($scope){
-   $scope.loggedIn=false
+   $scope.loggedIn=false;
+   $scope.username="A Guest";
 }
 NavbarCtrl.$inject = ['$scope'];

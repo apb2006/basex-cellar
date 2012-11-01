@@ -23,7 +23,9 @@
 
 <body  style="background-color:lavender;">
 	<ng:include src="'partials/navbar.xml'"></ng:include>
-	 <div id="loading">Busy...</div>
+	 <div id="loading" class="progress progress-striped active">  
+				<div class="bar" style="width: 100%;"> Please wait... </div>
+     </div>
 	 <div ng-controller="FlashCtrl" style="margin:0px 10px;" id="alerts">
       <div ng-repeat="alert in alerts">
           <div class="alert alert-{{alert.type}}"  >

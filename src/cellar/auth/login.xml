@@ -1,19 +1,19 @@
 <div xmlns:ng="http://angularjs.org"  ng:controller="AuthController">
-	<form  class="well form-horizontal">
+	<form  class="well form-horizontal span6">
 		<fieldset>
 			<legend>Sign in</legend>
 			<div class="control-group">
 				<label class="control-label" for="username">User name:</label>
 				<div class="controls">
-					<input id="username" name="username" type="text" class="input"
-						required="required" autofocus="autofocus" />
+					<input id="username" ng:model="auth.username" type="text" class="input"
+						required="required" autofocus="autofocus" autoselect="autoselect" />
 				</div>
 			</div>
 			<div class="control-group">
 				<label class="control-label" for="password">Password:</label>
 				<div class="controls">
-					<input id="password" name="password" type="password" class="input"
-						required="required" />
+					<input id="password" ng:model="auth.password" type="password" class="input"
+						required="required" autoselect="autoselect"/>
 				</div>
 			</div>
 

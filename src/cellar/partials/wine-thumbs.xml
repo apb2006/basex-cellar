@@ -1,19 +1,20 @@
 <div id="features" class="row" data-ng-init="setWindowTitle('Thumbnails')" >
 	    <div class="navbar">
-		
+		 
 		      <form class="navbar-form pull-left">
     Filter:<input type="text" class="span2" ng:model="query"/>
 	Sort:
     </form>
 	
-	 <ul class="nav" data-ng-repeat="th in head" >
-		 <li>
-		<button  class="btn btn-small"
-		  data-ng-click="changeSorting(th.column)">
+	 <ul class="nav " data-ng-repeat="th in head" >
+		 <li data-ng-class="activeCls(th.column)" >
+		<a data-ng-click="changeSorting(th.column)"  style="padding: 6px 15px;">
+		 <i data-ng-class="selectedCls(th.column)"></i>
 		 {{th.head}}
-		 <i data-ng-class="selectedCls(th.column)"></i></button>
+		 </a>
 		 </li>
 		 </ul>
+ 
 		</div>
 		<ul class="thumbnails winelist"  >
 			<li class="span3" 

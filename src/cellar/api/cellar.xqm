@@ -11,7 +11,7 @@ import module namespace web = 'apb.web.utils2' at "webutils.xqm";
 declare namespace rest = 'http://exquery.org/ns/restxq';
 declare namespace random = 'http://basex.org/modules/random';
 
-declare variable $cellar:wines:=db:open("cellar","wine.xml")/wines; 
+declare variable $cellar:wines:=db:open("cellar","wines.xml")/wines; 
 declare variable $cellar:baseuri:="/restxq/cellar/api/wines/";
 
 (:~

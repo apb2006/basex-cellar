@@ -1,5 +1,12 @@
 (:~ 
-: user /auth  application 
+: user db interface
+: <user id="1" name="admin">
+:    <stats created="2012-08-06T22:29:37.643+01:00" last="2012-11-01T22:17:35.959Z" logins="1"/>
+:    <login password="oa2xJp0I39IG1DBdfa4Nzg==" role="admin"/>
+:    <data>
+:      <ace theme="dawn"/>
+:    </data>
+:  </user>
 : @author andy bunce
 : @since jun 2012
 :)

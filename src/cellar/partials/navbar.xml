@@ -39,10 +39,11 @@
 						name="q" />
 					<div class="icon-search"></div>
 				</form>
-				<div class=" pull-right" style="margin-top: 0px">
-						<ng-include src="'partials/usermenu.xml'"></ng-include>
-		        </div> 
 				
+				<ng-include src="'partials/usermenu.xml'"></ng-include>
+				 <div  class="btn-group">
+               <a href="#/404" class="btn btn-small">State</a>
+				 </div>
 			</div>
 			
 		</div>

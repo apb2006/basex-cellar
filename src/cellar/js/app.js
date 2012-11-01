@@ -24,7 +24,9 @@ var Cellar=angular.module('cellar', [ 'cellar.services', 'cellar.directives',
 			}).when('/welcome', {
 				templateUrl : 'partials/welcome.xml'			
 			}).when('/resources', {
-				templateUrl : 'partials/resources.xml'	
+				templateUrl : 'partials/resources.xml'
+			}).when('/404', {
+				templateUrl : 'partials/404.xml'			
             }).otherwise({
 				redirectTo : '/wines'
 			});

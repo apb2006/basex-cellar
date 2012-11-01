@@ -34,12 +34,19 @@ angular.module('cellar.auth', [])
 	  return Auth
 	});
 
-function AuthController( Auth, $http,$scope) {
-    $scope.login = function() {
-	   alert("login");
-      $http.post('auth/login').success(function() {
-        Auth.loginConfirmed();
-      });
+function AuthController(authService, Auth, $http,$scope) {
+    $scope.auth={username:"",password:""};
+    $scope.login = function() {  
+      $http.post('../restxq/cellar/auth/login',$scope.auth).
+	  success(function() {
+	    alert("good")
+        authService.loginConfirmed();
+      })
+	  .error(function(data, status) {
+	        alert("bad")
+            $scope.data = data || "Request failed";
+            $scope.status = status;        
+        });
     }
   }
-AuthController.$inject = ['Auth', '$location', '$scope'];
+AuthController.$inject = ['authService','Auth', '$http', '$scope'];
