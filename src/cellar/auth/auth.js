@@ -39,7 +39,6 @@ function AuthController(authService, Auth, $http,$scope) {
     $scope.login = function() {  
       $http.post('../restxq/cellar/auth/login',$scope.auth).
 	  success(function() {
-	    alert("good")
         authService.loginConfirmed();
       })
 	  .error(function(data, status) {

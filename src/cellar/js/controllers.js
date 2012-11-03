@@ -1,6 +1,9 @@
 function UserCtrl(User, $location, $scope) {
     $scope.users = User.api.query();
-}
+    $scope.$on('event:auth-loginConfirmed', function() {
+  	  alert("hi");
+      });
+};
 UserCtrl.$inject = ['User', '$location', '$scope'];
 
 function FlashCtrl( $scope) {
@@ -133,8 +136,3 @@ function WineDetailCtrl(Wine, $routeParams, $location, $scope) {
 }
 WineDetailCtrl.$inject = ['Wine', '$routeParams', '$location', '$scope'];
 
-function NavbarCtrl($scope){
-   $scope.loggedIn=false;
-   $scope.username="A Guest";
-}
-NavbarCtrl.$inject = ['$scope'];

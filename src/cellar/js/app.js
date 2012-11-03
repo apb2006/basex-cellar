@@ -43,18 +43,24 @@ Cellar.config(['$locationProvider', function($location) {
 // http://www.bennadel.com/blog/2424-Setting-Prototype-Properties-Using-Inherited-Scope-Methods-In-AngularJS.htm
 // Define our root-level controller for the application.
 Cellar.controller("AppController", function($scope,$location, $window,flash) {
-
+      $scope.username="";
+      $scope.loggedIn=false
+      // auth stuff
+	  $scope.$on('event:auth-loginRequired', function() {
+		  $location.path("/auth/login");
+        });
+      $scope.$on('event:auth-loginConfirmed', function() {
+    	  $scope.username="unknown";
+          $scope.loggedIn=true;
+        });
+      $scope.isLoggedin=function(){
+    	  return  $scope.loggedIn
+      };
      // http://stackoverflow.com/questions/10713708/tracking-google-analytics-page-views-with-angular-js
 	  $scope.$on('$viewContentLoaded', function(event) {
 		$window._gaq.push(['_trackPageview', $location.path()]);
 	  });
-	  // auth stuff
-	  $scope.$on('event:auth-loginRequired', function() {
-		  $location.path("/auth/login");
-        });
-       $scope.$on('event:auth-loginConfirmed', function() {
-          alert("logedin")
-        }); 
+	 
 	// Set up the default programmtic window title. Once
 	// the app runs, this will overwrite the value that
 	// is currently set in the HTML.

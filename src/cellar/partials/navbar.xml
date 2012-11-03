@@ -1,4 +1,4 @@
-<div class="navbar navbar-fixed-top " data-dropdown="dropdown" data-ng-controller="NavbarCtrl">
+<div class="navbar navbar-fixed-top " data-dropdown="dropdown" data-ng-controller="AppController">
 	<div class="navbar-inner">
 		<div class="container">
 			<a class="btn btn-navbar" data-toggle="collapse"
@@ -41,9 +41,11 @@
 				</form>
 				
 				<ng-include src="'partials/usermenu.xml'"></ng-include>
+				<!--
 				 <div  class="btn-group">
                <a href="#/404" class="btn btn-small">State</a>
 				 </div>
+				   -->
 			</div>
 			
 		</div>
