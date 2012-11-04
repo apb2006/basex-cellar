@@ -13,12 +13,8 @@ import module namespace github = 'http://developer.github.com/v3/oauth/' at "oau
 import module namespace session ="http://basex.org/modules/session";
 declare namespace rest = 'http://exquery.org/ns/restxq';
 
-declare variable $auth:config:=
-                            fn:doc(fn:resolve-uri("../../WEB-INF/site-config.xml"))/config                           
-                            ;
+
 declare variable $auth:userdb:=db:open('cellar',"users.xml");							
-declare variable $auth:Client-Id:=$auth:config/github/Client-Id;
-declare variable $auth:Client-Secret:=$auth:config/github/Client-Secret;
                             
 (:~
 : return users auth required
@@ -78,6 +74,33 @@ declare
    <json  objects="json"><ok/></json>)
 };
 
+declare 
+%rest:path("cellar/auth/register") 
+%rest:POST("{$body}")  
+%output:method("json")
+updating function register-post($body)
+{
+    let $json:=$body/json
+    let $username as xs:string:=$json/username
+    return if(users:find-name($username,$json/password))
+    then 
+        let $t:= "The name '" || $username || "' is already registered, please choose different name."
+       
+        return db:output(
+                         <json object="json"><msg>{$t}</msg></json>
+                         )
+    else
+        let $t:=$username || " your registration was successful. " 
+                          
+        return (
+            users:create($auth:userdb,$username,$json/password),
+            
+            db:output((
+            session:set("uid", fn:string(users:next-id($auth:userdb))),
+            <json object="json"><msg>{$t}</msg></json>
+            ))
+    )
+};
 declare
 %rest:GET %rest:path("cellar/auth/session")
 %output:method("json")
@@ -85,15 +108,21 @@ function session(){
  <json  objects="json"><uid>{session:get("uid")}</uid></json>
 };
 
+declare
+%rest:GET %rest:path("cellar/auth/github")
+function github(){
+  github:github()
+};
+
 (:~
 : login
 : http://developer.github.com/v3/oauth/
 :)
 declare
-%rest:GET %rest:path("cellar/auth/github")
+%rest:GET %rest:path("cellar/auth/github/callback")
 %rest:form-param("code","{$code}")  
 %rest:form-param("state","{$state}")  
 function login($code,$state) {
-   let $g:= github:login($auth:Client-Id,$auth:Client-Secret,$code,"")
+   let $g:= github:login($code,"")
    return fn:trace($g,"result")
 };

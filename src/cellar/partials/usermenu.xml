@@ -1,28 +1,36 @@
 <div class=" pull-right" style="margin-top: 0px">
-    <div ng-show="!loggedIn" class="btn-group">
+	<div ng-show="!loggedIn" class="btn-group">
 		<a href="#/auth/login" class="btn btn-small">Sign in</a>
-		<a href="#/auth/register"  class="btn btn-success btn-small">Sign up</a>
+		<a href="#/auth/register" class="btn btn-success btn-small">Register</a>
 	</div>
-	<a ng-show="loggedIn" class="btn dropdown-toggle" data-toggle="dropdown" href="#"  style="margin-top:3px">
-		<i class="icon-user"></i>
-                            {{username}}
-		<span class="caret"></span>
-	</a>
-	<ul ng-show="loggedIn" class="dropdown-menu">
-		<li>
-			<a href="#/auth/profile">Profile</a>
-		</li>                                                
-		<li>
-			<a href="#/auth/changepassword">Change password</a>
-		</li>
-		<li class="divider"></li>
-		<li>
-			<form method="post" action="#/auth/logout" style="margin:0 4px;">
-				<button type="submit" style="width:100%;text-align:left;" class="btn "><i class="icon-off"></i> Sign out</button>
-			</form>
-
-		</li>                            
-	</ul>
-
+	<div ng-show="loggedIn" class="btn-group">
 	
-</div >
+			<a class="btn btn-small dropdown-toggle" data-toggle="dropdown" href="#">
+				<i class="icon-user"></i>
+				{{username}}
+				<span class="caret"></span>
+			</a>
+			<ul class="dropdown-menu">
+				<li>
+					<a href="#/auth/profile">Profile</a>
+				</li>
+				<li>
+					<a href="#/auth/changepassword">Change password</a>
+				</li>
+				<li class="divider"></li>
+				<li>
+					<form method="post" action="#/auth/logout" style="margin:0 4px;">
+						<button type="submit" style="width:100%;text-align:left;"
+							class="btn ">
+							<i class="icon-off"></i>
+							Sign out
+						</button>
+					</form>
+
+				</li>
+
+			</ul>
+
+	</div>
+
+</div>

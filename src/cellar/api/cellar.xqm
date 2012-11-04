@@ -97,8 +97,9 @@ updating function put-wine($id,$body) {
   let $old:=$cellar:wines/wine[@id=$id]
   return if($old) then
            let $items:=fn:trace($body/json,"put")
-           let $new:=  <wine id="{$old/@id}" changed="{fn:current-dateTime()}">
-                        {$items/* except $items/changed,$items/id} 
+           let $new:=  <wine id="{$old/@id}" created="{$old/@created}"
+                        changed="{fn:current-dateTime()}">
+                        {$items/* except $items/changed, $items/created,$items/id} 
                         </wine>
            return              
                if($items/changed=$old/@changed/fn:string() or fn:not($old/@changed))

@@ -27,7 +27,7 @@
 			</div>
 		</fieldset>
 		<div class="form-actions">
-			<button  ng:click="register" class="btn btn-primary">Register</button>
+			<button  ng:click="register()" class="btn btn-primary">Register</button>
 			Or
 			<a href="#/auth/login">Sign in</a>
 		</div>

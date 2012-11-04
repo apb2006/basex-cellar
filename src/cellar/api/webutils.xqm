@@ -42,3 +42,14 @@ declare function http-created($location,$response){
    )
 };
 
+(:~
+: redirect to ..
+:)
+declare function redirect($url as xs:string) 
+ {
+        <rest:response>         
+           <http:response status="303" >
+             <http:header name="Location" value="{$url}"/>
+           </http:response>                      
+       </rest:response>
+};

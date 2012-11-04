@@ -46,6 +46,17 @@ function AuthController(authService, Auth, $http,$scope) {
             $scope.data = data || "Request failed";
             $scope.status = status;        
         });
-    }
+    };
+    $scope.register = function() {  
+        $http.post('../restxq/cellar/auth/register',$scope.auth).
+  	  success(function() {
+          authService.loginConfirmed();
+        })
+  	  .error(function(data, status) {
+  	        alert("bad")
+              $scope.data = data || "Request failed";
+              $scope.status = status;        
+          });
+      }
   }
 AuthController.$inject = ['authService','Auth', '$http', '$scope'];

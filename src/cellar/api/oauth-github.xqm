@@ -5,9 +5,14 @@
 :)
 module namespace github = 'http://developer.github.com/v3/oauth/';
 declare default function namespace 'http://developer.github.com/v3/oauth/';
-
+declare namespace rest = 'http://exquery.org/ns/restxq';
 import module namespace http = 'http://expath.org/ns/http-client';
 
+declare variable $github:config:=
+                            fn:doc(fn:resolve-uri("../../WEB-INF/site-config.xml"))/config                           
+                            ;                         
+declare variable $github:Client-Id:=$github:config/github/Client-Id;
+declare variable $github:Client-Secret:=$github:config/github/Client-Secret;
 (:~
 : client_id
 :    Required string - The client ID you received from GitHub when you registered.
@@ -21,14 +26,12 @@ import module namespace http = 'http://expath.org/ns/http-client';
 :    Optional string 
 : http://developer.github.com/v3/oauth/
 :)
-declare function login($client_id as xs:string,
-                       $client_secret  as xs:string,
-                       $code  as xs:string,
+declare function login($code  as xs:string,
                        $redirect_uri  as xs:string){
-    let $p:=map{"client_id":=$client_id,
-                "client_secret" := $client_secret,
+    let $p:=map{"client_id":=$github:Client-Id,
+                "client_secret" := $github:Client-Secret,
                 "code":=$code,
-                "redirect_uri":=$redirect_uri}
+                "state":="fish"}
                 
     let $request :=
       <http:request href='https://github.com/login/oauth/access_token'
@@ -42,8 +45,19 @@ declare function login($client_id as xs:string,
     return http:send-request(<http:request method="get"/>,$href)
 };
 
+declare function github(){
+    let $url:="https://github.com/login/oauth/authorize" || 
+               "?client_id=" ||$github:Client-Id ||
+               "&amp;state=fish"
+    return   <rest:response>         
+               <http:response status="303" >
+                 <http:header name="Location" value="{$url}"/>
+               </http:response>                      
+           </rest:response>
+};
+
 declare function encode-params($map as map(*)){
-    let $s:=for $p in $map
+    let $s:=for $p in map:keys($map)
             return $p || "=" || fn:escape-html-uri(map:get($map,$p))
     return fn:string-join($s,"&amp;")
 }; 
