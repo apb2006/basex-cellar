@@ -30,6 +30,9 @@ body {
 .winelist li {
 	background-color:white;
 }
+.wine-name {
+	  height: 40px;
+}
 a.plain:link
 { color: #333; text-decoration: none }
 a.plain:active

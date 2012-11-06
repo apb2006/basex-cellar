@@ -1,13 +1,13 @@
 <div class=" pull-right" style="margin-top: 0px">
-	<div ng-show="!loggedIn" class="btn-group">
+	<div ng-show="!auth.isAuthenticated()" class="btn-group">
 		<a href="#/auth/login" class="btn btn-small">Sign in</a>
 		<a href="#/auth/register" class="btn btn-success btn-small">Register</a>
 	</div>
-	<div ng-show="loggedIn" class="btn-group">
+	<div ng-show="auth.isAuthenticated()" class="btn-group">
 	
 			<a class="btn btn-small dropdown-toggle" data-toggle="dropdown" href="#">
 				<i class="icon-user"></i>
-				{{username}}
+				{{auth.getName()}}
 				<span class="caret"></span>
 			</a>
 			<ul class="dropdown-menu">

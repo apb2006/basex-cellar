@@ -3,8 +3,8 @@
 
 // Declare app level module which depends on filters, and services
 var Cellar=angular.module('cellar', [ 'cellar.services', 'cellar.directives',
-                                     'http-auth-interceptor','SharedServices',
-                                     'cellar.auth','time']).config(
+                                     'SharedServices','cellar.auth']).
+config(
 		[ '$routeProvider', function($routeProvider) {
 
 			$routeProvider.when('/wines', {
@@ -30,7 +30,16 @@ var Cellar=angular.module('cellar', [ 'cellar.services', 'cellar.directives',
             }).otherwise({
 				redirectTo : '/wines'
 			});
-		}]);
+		}]).
+		run(function($rootScope, $location, Auth) {
+  return $rootScope.$on('$routeChangeStart', function(event,next, current) {
+    if (!Auth.isAuthenticated() && next.$route && next.$route.templateUrl == 'partials/users.xml') {
+	  Auth.setReturn($location.$$url);
+	  
+      return $location.path("/auth/login");
+    }
+  });
+});;
 // picture filter, use generic if not set		
 Cellar.filter('default', function() {
 	return function(pic) {return pic ? pic : 'generic.jpg';}
@@ -42,20 +51,10 @@ Cellar.config(['$locationProvider', function($location) {
 */		
 // http://www.bennadel.com/blog/2424-Setting-Prototype-Properties-Using-Inherited-Scope-Methods-In-AngularJS.htm
 // Define our root-level controller for the application.
-Cellar.controller("AppController", function($scope,$location, $window,flash) {
+Cellar.controller("AppController", function($scope,$location, $window,flash,Auth) {
       $scope.username="";
       $scope.loggedIn=false
-      // auth stuff
-	  $scope.$on('event:auth-loginRequired', function() {
-		  $location.path("/auth/login");
-        });
-      $scope.$on('event:auth-loginConfirmed', function() {
-    	  $scope.username="unknown";
-          $scope.loggedIn=true;
-        });
-      $scope.isLoggedin=function(){
-    	  return  $scope.loggedIn
-      };
+      $scope.auth=Auth;
      // http://stackoverflow.com/questions/10713708/tracking-google-analytics-page-views-with-angular-js
 	  $scope.$on('$viewContentLoaded', function(event) {
 		$window._gaq.push(['_trackPageview', $location.path()]);
@@ -90,17 +89,24 @@ Cellar.controller("AppController", function($scope,$location, $window,flash) {
 Cellar.factory("flash", function($rootScope,$location) {
 	  var queue = []
       var lasturl=""  //routeChangeSuccess called twice???
-	  $rootScope.$on('$routeChangeSuccess', function($currentRoute, $previousRoute ) {
-	    //console.log("routeChangeSuccess: ",queue.length,$location.$$absUrl )
-		if(lasturl==$location.$$absUrl)return;
-		lasturl=$location.$$absUrl;
-		var ascope=angular.element("#alerts").scope()
+	  var showFlash=function(){
+	    var ascope=angular.element("#alerts").scope()
 		ascope.clear();
 		for(var i = 0, len = queue.length; i < len; ++i){
 			var a=queue[i]
 			ascope.addAlert(a.type,a.msg);
 		}
 		queue = []
+	  };
+	  	$rootScope.$on('event:flash', function(event,msg) {
+		  queue.push(msg);
+		  $rootScope.$apply(showFlash);        
+        });
+	  $rootScope.$on('$routeChangeSuccess', function($currentRoute, $previousRoute ) {
+	    //console.log("routeChangeSuccess: ",queue.length,$location.$$absUrl )
+		if(lasturl==$location.$$absUrl)return;
+		lasturl=$location.$$absUrl;
+		showFlash();
 	  });
 	  
 	  return {

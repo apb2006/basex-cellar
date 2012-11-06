@@ -41,16 +41,17 @@ function users() {
 :)
 declare
 %rest:path("cellar/auth/login")
-%rest:POST("{$body}")  
+%rest:form-param("username", "{$username}" )
+%rest:form-param("password", "{$password}" )
 %output:method("json")
-updating function login-post($body)
+updating function login-post($username as xs:string,$password as xs:string)
 {
- let $json:=$body/json
- let $u:=users:check-password($auth:userdb,$json/username,$json/password)
+ let $u:=users:check-password($auth:userdb,$username,$password)
  return 
      if($u)
      then
 	    let $json:= <json  objects="json">
+		              <rc>0</rc>
 		              <id>{$u/@id/fn:string()}</id>
 					  <name>{$u/@name/fn:string()}</name>
 					  <role>{$u/login/@role/fn:string()}</role>
@@ -62,7 +63,7 @@ updating function login-post($body)
                 $json ))
 				)
      else
-	  db:output(web:status(422,"No good"))
+	  db:output(<json  objects="json"><rc>1</rc></json>)
 };
 
 declare
@@ -71,36 +72,36 @@ declare
 %output:method("json")
  function logout-post($body){
   (session:delete("uid"),
-   <json  objects="json"><ok/></json>)
+   <json  objects="json"><rc>0</rc></json>)
 };
 
 declare 
 %rest:path("cellar/auth/register") 
-%rest:POST("{$body}")  
+%rest:form-param("username", "{$username}" )
+%rest:form-param("password", "{$password}" )
 %output:method("json")
-updating function register-post($body)
+updating function register-post($username as xs:string,$password as xs:string)
 {
-    let $json:=$body/json
-    let $username as xs:string:=$json/username
-    return if(users:find-name($username,$json/password))
+    if(users:find-name($auth:userdb,$username))
     then 
         let $t:= "The name '" || $username || "' is already registered, please choose different name."
        
         return db:output(
-                         <json object="json"><msg>{$t}</msg></json>
+                         <json objects="json"><msg>{$t}</msg></json>
                          )
     else
         let $t:=$username || " your registration was successful. " 
                           
         return (
-            users:create($auth:userdb,$username,$json/password),
+            users:create($auth:userdb,$username,$password),
             
             db:output((
             session:set("uid", fn:string(users:next-id($auth:userdb))),
-            <json object="json"><msg>{$t}</msg></json>
+            <json objects="json"><msg>{$t}</msg></json>
             ))
     )
 };
+
 declare
 %rest:GET %rest:path("cellar/auth/session")
 %output:method("json")
@@ -111,7 +112,7 @@ function session(){
 declare
 %rest:GET %rest:path("cellar/auth/github")
 function github(){
-  github:github()
+  github:authorize()
 };
 
 (:~
@@ -123,6 +124,8 @@ declare
 %rest:form-param("code","{$code}")  
 %rest:form-param("state","{$state}")  
 function login($code,$state) {
-   let $g:= github:login($code,"")
-   return fn:trace($g,"result")
+   let $token:= github:login($code,"")
+   return if($token)
+          then github:user($token)
+          else <fail></fail>
 };

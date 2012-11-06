@@ -1,8 +1,13 @@
 function UserCtrl(User, $location, $scope) {
-    $scope.users = User.api.query();
-    $scope.$on('event:auth-loginConfirmed', function() {
-  	  alert("hi");
-      });
+    $scope.users = User.api.query({},
+		    		function(){},
+			        function(res){
+		    			alert("Big problem: "+res.data);
+		    			console.log(res);
+				        flash("error","Bad news!!! ");
+				        $location.path("/");
+				     })
+
 };
 UserCtrl.$inject = ['User', '$location', '$scope'];
 

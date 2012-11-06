@@ -13,7 +13,9 @@ declare variable $github:config:=
                             ;                         
 declare variable $github:Client-Id:=$github:config/github/Client-Id;
 declare variable $github:Client-Secret:=$github:config/github/Client-Secret;
+
 (:~
+: @return token
 : client_id
 :    Required string - The client ID you received from GitHub when you registered.
 : client_secret
@@ -32,20 +34,22 @@ declare function login($code  as xs:string,
                 "client_secret" := $github:Client-Secret,
                 "code":=$code,
                 "state":="fish"}
-                
+    let $ps:=fn:trace(encode-params($p),"params....: ")
+    let $href:= "https://github.com/login/oauth/access_token"          
     let $request :=
-      <http:request href='https://github.com/login/oauth/access_token'
-        method='post' >
+      <http:request method='post' >
          <http:header name="Accept" value="application/xml"/>
-         <http:body media-type='application/x-www-form-urlencoded'>{encode-params($p)}</http:body>
+         <http:body media-type='application/x-www-form-urlencoded'>{$ps}</http:body>
       </http:request>
-    let $r:= fn:trace( http:send-request($request),"github")
-    let $access_token:= $r[2]/Oauth/access_token/fn:string()
-    let $href:="https://api.github.com/user?" || encode-params(map{"access_token":=$access_token})
-    return http:send-request(<http:request method="get"/>,$href)
+    let $r:=  http:send-request($request,$href)
+    return $r[2]/OAuth/access_token/fn:string()
+
 };
 
-declare function github(){
+(:~
+: redirect to github authorize
+:)
+declare function authorize(){
     let $url:="https://github.com/login/oauth/authorize" || 
                "?client_id=" ||$github:Client-Id ||
                "&amp;state=fish"
@@ -56,8 +60,19 @@ declare function github(){
            </rest:response>
 };
 
-declare function encode-params($map as map(*)){
+(:~
+: user details
+: http://developer.github.com/v3/users/#get-the-authenticated-user
+:)
+declare function user($token as xs:string){
+   let $href:="https://api.github.com/user?" || encode-params(map{"access_token":=$token})
+   let $user:=http:send-request(<http:request method="get"/>,$href)
+   return $user[2]
+};
+
+declare function encode-params($map as map(*)) as xs:string
+{
     let $s:=for $p in map:keys($map)
-            return $p || "=" || fn:escape-html-uri(map:get($map,$p))
+            return $p || "=" || fn:encode-for-uri(fn:string(map:get($map,$p)))
     return fn:string-join($s,"&amp;")
 }; 
