@@ -1,32 +1,35 @@
-<div id="features" class="row" data-ng-init="setWindowTitle('Thumbnails')" >
-	    <div class="navbar">
+<div id="features" class="row" style="padding-left:20px;" data-ng-init="setWindowTitle('Thumbnails')" >
+
+		<div class="navbar clearfix">
 		 
 		      <form class="navbar-form pull-left">
     Filter:<input type="text" class="span2" ng:model="query"/>
 	Sort:
     </form>
 	
-	 <ul class="nav " data-ng-repeat="th in head" >
-		 <li data-ng-class="activeCls(th.column)" >
-		<a data-ng-click="changeSorting(th.column)"  style="padding: 6px 15px;">
-		 <i data-ng-class="selectedCls(th.column)"></i>
-		 {{th.head}}
-		 </a>
+	<ul class="nav " title="Click to sort">
+		 <li data-ng-class="activeCls(th.column)" data-ng-repeat="th in head">
+			<a data-ng-click="changeSorting(th.column)"  style="padding: 6px 4px;">
+			{{th.head}}
+			<i data-ng-class="selectedCls(th.column)"></i>	 
+			</a>
 		 </li>
-		 </ul>
+	</ul>
  
 		</div>
-		<ul class="thumbnails winelist"  >
+
+		<ul class=" thumbnails winelist"  >
 			<li class="span3" 
 			data-ng-repeat="wine in filteredWines = wines | orderBy:sort.column:sort.descending| filter:query">
 			<a href="#/wines/{{ wine.id }}" class="thumbnail plain">
-			    <img data-ng-src="pics/{{ wine.picture |default }}" height="150" width="125" alt=""/>
+			    <img data-ng-src="pics/{{ wine.picture |winePic }}" height="150" width="125" alt=""/>
 			    <h5 class="wine-name">{{ wine.name }}</h5>
 			    <p>{{ wine.year }} {{ wine.grapes }}<br/>
 			    <i class="icon-globe"></i> {{ wine.region }}, {{ wine.country }} </p>
 			</a>		
 			</li>		
 		</ul>
+
 	<!--/span-->
 	<span title="Wrong when filtered!">{{filteredWines.length}} of {{wines.length}}</span>
 </div>

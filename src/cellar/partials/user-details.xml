@@ -1,0 +1,4 @@
+<div data-ng-init="setWindowTitle('User')" >
+<h2>User detail</h2>
+
+</div>

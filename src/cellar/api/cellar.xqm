@@ -26,7 +26,8 @@ function wines() {
     order by fn:upper-case($wine/name)
     return <wine>
        <id>{$wine/@id/fn:string()}</id>
-       <created>{$wine/@created/fn:string()}</created>
+       <created>{$wine/meta/@created/fn:string()}</created>
+	   <modified>{$wine/meta/@modified/fn:string()}</modified>
        {($wine/name,
        $wine/year,
        $wine/grapes,
@@ -48,10 +49,11 @@ declare
 updating function add-wine($body) {
     let $items:= $body/json/*
 	let $id:=generate-id()
-    let $new:=<wine id="{$id}" created="{fn:current-dateTime()}">{$items }</wine>
+    let $new:=<wine id="{$id}"><meta created="{fn:current-dateTime()}"/>{$items }</wine>
     return ( insert node $new into $cellar:wines ,
             db:output(
-			  (web:http-created($cellar:baseuri || $id,<json objects="json">{$new/*}</json>))
+			  (web:http-created($cellar:baseuri || $id,
+			     <json objects="json">{$new/* except $new/meta}</json>))
 			  )
             )
 };
@@ -79,8 +81,8 @@ function get-wine($id) {
     return if($wine) then
 				<json  objects="json " numbers="year" >
                     <id>{$wine/@id/fn:string()}</id>
-                    <changed>{$wine/@changed/fn:string()}</changed>
-                    {$wine/*}
+                    <modified>{$wine/meta/@changed/fn:string()}</modified>
+                    {$wine/* except $wine/meta}
                 </json>
 			else 
 				web:status(404,"Not found: " || $id)	
@@ -97,12 +99,13 @@ updating function put-wine($id,$body) {
   let $old:=$cellar:wines/wine[@id=$id]
   return if($old) then
            let $items:=fn:trace($body/json,"put")
-           let $new:=  <wine id="{$old/@id}" created="{$old/@created}"
-                        changed="{fn:current-dateTime()}">
-                        {$items/* except $items/changed, $items/created,$items/id} 
+           let $new:=  <wine id="{$old/@id}">
+                        <meta created="{$old/meta/@created}"
+                        modified="{fn:current-dateTime()}"/>
+                        {$items/* except $items/modified, $items/created,$items/id} 
                         </wine>
            return              
-               if($items/changed=$old/@changed/fn:string() or fn:not($old/@changed))
+               if($items/modified=$old/meta/@changed/fn:string() or fn:not($old/meta/@changed))
                then (replace node $old with $new, db:output($body))
                else db:output( web:status(403,"data changed"))
          else 

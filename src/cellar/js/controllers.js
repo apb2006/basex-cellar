@@ -1,37 +1,29 @@
-function UserCtrl(User, $location, $scope) {
+function UserCtrl(Flash,User, $location, $scope) {
     $scope.users = User.api.query({},
 		    		function(){},
 			        function(res){
 		    			alert("Big problem: "+res.data);
 		    			console.log(res);
-				        flash("error","Bad news!!! ");
+				        Flash.add("error","Bad news!!! ");
 				        $location.path("/");
 				     })
 
 };
-UserCtrl.$inject = ['User', '$location', '$scope'];
-
-function FlashCtrl( $scope) {
-    $scope.alerts = [];
-	$scope.addAlert = function(type,msg) {
-            $scope.alerts.push({type:type,msg:msg});
-        };
-	$scope.clear = function() {
-            $scope.alerts=[];
-        };
-}
-FlashCtrl.$inject = [ '$scope'];
+UserCtrl.$inject = ['Flash','User', '$location', '$scope'];
 
 
-function WineListCtrl(Wine, $location, $filter,$scope) {
+
+function WineListCtrl(Flash,Wine, $location, $filter,$scope) {
+
     $scope.wines = Wine.api.query({},
 		    		function(){},
 			        function(res){
 		    			alert("Big problem: "+res.data);
 		    			console.log(res);
-				        flash("error","Bad news!!! ");
+				        Flash.add("error","Bad news!!! ");
 				        $location.path("/");
 				     });
+					
     $scope.query="";
 	
 	// sorting..
@@ -39,7 +31,7 @@ function WineListCtrl(Wine, $location, $filter,$scope) {
         {head: "Name", column: "name"},
         {head: "Created", column: "created"},
         {head: "Year", column: "year"},
-		{head: "Updated", column: "changed"},
+		{head: "Updated", column: "modified"},
 		];
 	$scope.sort = { column: 'name', descending: false};
 	
@@ -66,7 +58,7 @@ function WineListCtrl(Wine, $location, $filter,$scope) {
 		$scope.wines = Wine.api.query({q:$scope.q},
 				function(){},
 		        function(res){
-		            flash("error","Item not found: ");
+		            Flash.add("error","Item not found: ");
 		            $location.path("/wines");
                  });
 		console.log("search");
@@ -79,16 +71,14 @@ function WineListCtrl(Wine, $location, $filter,$scope) {
     });   
 
 }
-WineListCtrl.$inject = ['Wine', '$location', '$filter','$scope'];
+WineListCtrl.$inject = ['Flash','Wine', '$location', '$filter','$scope'];
 
 
-function WineDetailCtrl(Wine, $routeParams, $location, $scope) {
-	var flash=function(type,msg){
-		$scope.flash.set(type,msg);
-	};
+function WineDetailCtrl(Wine,Flash, $routeParams, $location, $scope) {
+	
     $scope.wine = Wine.api.get({wineId: $routeParams.wineId},function(){},
     		           function(res){
-    	                 flash("error","Item not found: "+$routeParams.wineId);
+    	                 Flash.add("error","Item not found: "+$routeParams.wineId);
     	                 $location.path("/wines");
     	                 });
    
@@ -99,12 +89,12 @@ function WineDetailCtrl(Wine, $routeParams, $location, $scope) {
     	else if ($scope.wine.id )
         {
             Wine.api.update({wineId:$scope.wine.id}, $scope.wine, function (res) {
-                flash("success",'Wine ' + $scope.wine.name + ' updated');
+                Flash.add("success",'Wine ' + $scope.wine.name + ' updated');
                 Wine.broadcastChange();
                 $location.path("/wines");
                 },
                 function(res){
-                	flash("error",'Wine ' + $scope.wine.name + ' NOT updated: '+res.data);
+                	Flash.add("error",'Wine ' + $scope.wine.name + ' NOT updated: '+res.data);
                 	//console.log(res);
                 }
             );
@@ -113,7 +103,7 @@ function WineDetailCtrl(Wine, $routeParams, $location, $scope) {
         else
         {      
             Wine.api.save({}, $scope.wine, function (res) {
-            	flash("success",'Wine ' + $scope.wine.name + ' created'); 
+            	Flash.add("success",'Wine ' + $scope.wine.name + ' created'); 
                 Wine.broadcastChange();
                 $location.path("/wines");
                 },
@@ -129,7 +119,7 @@ function WineDetailCtrl(Wine, $routeParams, $location, $scope) {
     		alert("please correct errors")
     	}else{ 
         Wine.api.delete({wineId:$scope.wine.id}, function(wine) {
-        	flash("success",'Wine ' + $scope.wine.name + ' deleted')
+        	Flash.add("success",'Wine ' + $scope.wine.name + ' deleted')
             
             Wine.broadcastChange();
             $location.path("/wines");
@@ -139,5 +129,5 @@ function WineDetailCtrl(Wine, $routeParams, $location, $scope) {
     	}
     }
 }
-WineDetailCtrl.$inject = ['Wine', '$routeParams', '$location', '$scope'];
+WineDetailCtrl.$inject = ['Wine', 'Flash','$routeParams', '$location', '$scope'];
 

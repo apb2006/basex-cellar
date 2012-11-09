@@ -1,8 +1,0 @@
-<div >
-<h2>Users</h2>
-<ul  >
-    <li ng-repeat="user in users">
-        {{ user.name }} - {{ user.id }}
-    </li>
-</ul>
-</div>

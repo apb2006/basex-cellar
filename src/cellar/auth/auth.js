@@ -4,10 +4,12 @@
  */
 angular.module('cellar.auth', [])
 .config(
-		[ '$routeProvider', function($routeProvider) {
+		[ '$routeProvider', function($routeProvider,Auth) {
 
 			$routeProvider.when('/auth/login', {
-				templateUrl : 'auth/login.xml'
+				templateUrl : 'auth/login.xml',controller:AuthController
+			}).when('/auth/logout', {
+            redirectTo: '/'  , resolve:AuthController.resolve
             }).when('/auth/register', {
 				templateUrl : 'auth/register.xml'
             }).when('/auth/changepassword', {
@@ -17,12 +19,26 @@ angular.module('cellar.auth', [])
             })
 		}])
 
-.factory('Auth', function() {
+.factory('Auth', ['Flash','$http','$rootScope',function(Flash,$http,$rootScope) {
   var _this = this;
   this.authenticated = false;
   this.name = null;
   this.role = null;
-  this.returnURL=null;
+  this.returnURL="/";
+  $http.get('../restxq/cellar/auth/session')
+  .success(function(data){
+     // Flash.show("info","Welcome to Angular cellar");
+	 if(data.rc==0){
+	     _this.name = data.name;
+		  _this.role = data.role;
+          _this.authenticated = true;
+	 }else{
+	  _this.authenticated = false;
+	 }
+  })
+  .error(function(data){
+  alert("Major problem at server: "+data)
+	});  
   return {
     isAuthenticated: function() {
       return _this.authenticated;
@@ -31,63 +47,67 @@ angular.module('cellar.auth', [])
       return _this.name;
     },
     login: function(auth, callback) {
-      return $.post('../restxq/cellar/auth/login', auth, (function(data) {
+      return $http.post('../restxq/cellar/auth/login', auth).success(function(data) {
         if (data.name) {
           _this.name = data.name;
 		  _this.role = data.role;
           _this.authenticated = true;
         }
         return callback(data.rc==0);
-      }), 'json');
+      }).error(function(data){
+	         Flash.show("error","Bad thing!: "+data);
+			 })
     },
 	register: function(auth, callback) {
-      return $.post('../restxq/cellar/auth/register', auth, (function(data) {
+      return $http.post('../restxq/cellar/auth/register', auth).success(function(data) {
         if (data.name) {
           _this.name = data.name;
 		  _this.role = data.role;
           _this.authenticated = true;
         }
-        return callback(data.rc==0);
-      }), 'json');
+          return callback(data.rc==0);
+      }).error(function(data){
+	         Flash.show("error","Bad thing!: "+data);
+			 })
     },
     logout: function(callback) {
+    	alert("logout")
       if (_this.authenticated) {
-        return $.post('../restxq/cellar/auth/logout', {}, (function(data) {
+        return $http.post('../restxq/cellar/auth/logout', {}).success(function(data) {
           if (data.rc==0) {
             _this.authenticated = false;
           }
           return callback(true);
-        }), 'json');
-      } else {
-        return callback(false);
-      }
-    },
+  
+      } )
+	  }else{
+		return callback(true);
+	}},
 	setReturn: function(url) {
 	_this.returnURL=url;
     },
 	getReturn: function() {
 	 return _this.returnURL;
     }
-}});
+}}]);
 
-function AuthController(Auth, $location,$scope,$rootScope) {
+function AuthController(Flash,Auth, $location,$scope,$rootScope) {
   $scope.auth={username:"",password:""};
   $scope.login = function() {
-     //alert("hh");
+     // alert("hh");
     return Auth.login($scope.auth, function(result) {
       if (!result) {
-	     $rootScope.$broadcast('event:flash',{type:"error",msg:"Authentication failed!"});
+	     Flash.show("error","Authentication failed!");
         return 
       } else {
 	    var url=Auth.getReturn();
-        return $scope.$apply(function() {
-          return $location.path(url);
-        });
+        return  $location.path(url);
+        ;
       }
     });
   };
     $scope.register = function() {
-     //alert("hh");
+     // alert("hh");
     return Auth.register($scope.auth, function(result) {
       if (!result) {
         return window.alert('Authentication failed!');
@@ -100,5 +120,10 @@ function AuthController(Auth, $location,$scope,$rootScope) {
     });
   };
 };
-AuthController.$inject = ['Auth','$location',  '$scope',"$rootScope"];
-
+AuthController.$inject = ['Flash','Auth','$location',  '$scope',"$rootScope"];
+AuthController.resolve={
+	    pages: function(){
+	    	alert("ff")
+	    	return Auth.logout()
+	    }
+	}

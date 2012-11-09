@@ -1,0 +1,417 @@
+<grapes>
+  <grape id="cf4ff8726b1141018d9396c18d80b2c6">
+    <meta created="2012-11-09T15:17:42.098Z"/>
+    <name>Aglianico</name>
+    <description> Ancient noble red grape of the Campagnia region of Italy, from which sturdy red wines are made.</description>
+  </grape>
+  <grape id="73496615ac9e42a1af56374dc1b7185f">
+    <meta created="2012-11-09T15:17:42.098Z"/>
+    <name>Albarino</name>
+    <description> (aka Alvarinho where grown in Portugal). White wine grape, used to create popular wine with pleasant citrus fruit aroma, widely grown in regions of N.W. Spain and also in northern Portugal. Thought by some to be a Riesling clone originating from the Alsace region of France. Portugal</description>
+  </grape>
+  <grape id="81241dcb0f0f4e04bf44283a9573b43d">
+    <meta created="2012-11-09T15:17:42.098Z"/>
+    <name>Ansonica</name>
+    <description> </description>
+  </grape>
+  <grape id="4ad504b0fb5a4475a40fc5d13ad7c48e">
+    <meta created="2012-11-09T15:17:42.098Z"/>
+    <name>Arinto</name>
+    <description> Moderately vigorous vine producing a white-wine grape. Widely grown in Portugal and used in the production of "vinho-verde" wines, along with others such as the Trajadura. Recommended rootstock is the 1103-P for good phylloxera and moderate nematode resistance, plus drought tolerance. Suitable for mildly chalky-soils.</description>
+  </grape>
+  <grape id="518805c2176b4a02bacf16290e9910cc">
+    <meta created="2012-11-09T15:17:42.098Z"/>
+    <name>Arneis</name>
+    <description> Arneis, in Italian, means "little difficult wine." It originated and is still mostly grown in southern Piedmont's Roeri Hills, which lie between the DOCG zones of Barolo and Barbaresco. Roero Arneis is the title of the DOC zone in these hills. Arneis can produce excellent wines with perfumy characteristics of apple, pear and even hints of licorice. The Arneis grape was almost extinct in Italy due of low yields, but has seen a resurgence in the past decade. It was originally planted, not for its wine-yielding, but rather to attract bees and other insects away from the more valuable Nebbiolo grapes of Barolo and Barbaresco.</description>
+  </grape>
+  <grape id="3bf331d2875349aabaa190adea79f6ad">
+    <meta created="2012-11-09T15:17:42.098Z"/>
+    <name>Barbera</name>
+    <description> Semi-classic grape commonly grown in the Piedmont region and most of northern Italy. Now thought by some to be identical with the Perricone, or Pignatello, grape of Sardinia. Was probably imported into the U.S.A. late in the 19th century. Usually produces an intense red wine with deep color, low tannins and high acid and is used in California to provide "backbone" for so-called "jug" wines. Century-old vines still exist in many regional vineyards and allow production of long-aging, robust red wines with intense fruit and enhanced tannic content. Plantings in North America are mostly confined to the warm western coastal regions.</description>
+  </grape>
+  <grape id="07bede0a6620480ba05a208004003ff1">
+    <meta created="2012-11-09T15:17:42.098Z"/>
+    <name>Cabernet Franc</name>
+    <description> Recently - (4-97) - discovered to be one of the parent grape species that gave rise to the Cabernet Sauvignon variety. Mainly found in cooler, damper climatic conditions than its offspring. Shows moderately vigorous growth and earlier wood and crop maturation than Cabernet Sauvignon. Widely grown in the Loire region where it is known as the Breton and in large areas of southwest France where it is sometimes known as Bouchy or Bouchet. In NE. Italy it is known as the Bordo grape. Other alias names are Carmenet, Gros Bouchet and Veron. Bordeaux wines commonly contain a blend of both varietal wines, a practice increasingly being followed in California. Wine from these grapes has a deep purple color, when young, with a herbaceous aroma. Just like Cabernet Sauvignon, North American growth is mainly confined to the coastal regions; Long Island (N.Y.) and the Pacific Northwest showing signs of being very hospitable. New Zealand has also proved to be a potential good home</description>
+  </grape>
+  <grape id="758d86da77d04d17899b9a317bd65c81">
+    <meta created="2012-11-09T15:17:42.098Z"/>
+    <name>Cabernet Sauvignon</name>
+    <description> Small, tough skinned grape that gives the distinction to the red wines of Bordeaux, although always blended with Merlot and sometimes Malbec. The best Medoc vineyards have up to 80% Cabernet, but in St. Emilion and Pomerol the Cabernet Franc is used.. Cabernet Sauvignon is widely planted in Australia, where it's best wine needs long aging, in South Africa and in California, where it has scored its greates successes outside of France. All Cabernet wines gain by age in bottle as well as wood.</description>
+  </grape>
+  <grape id="10e09af93a6c4bf18e1d98d347d14a83">
+    <meta created="2012-11-09T15:17:42.098Z"/>
+    <name>Cannonau</name>
+    <description> (aka Grancha in Spain, Grenache in France). A principal red-winge grape in Sardina. See grenache.</description>
+  </grape>
+  <grape id="0938af5f1354485da2f1075d235cd88f">
+    <meta created="2012-11-09T15:17:42.098Z"/>
+    <name>Carignane</name>
+    <description> (aka Carinena and Mazuelo in Spain, Gragnano in Italy). Semi-classic grape commonly used for making red wines in Southern France and Spain. It is also successfully grown in California's Central Valley, often ending up in generic blends and "jug" wines, although some old plantings allow small lots of premium extract wine to be made. Blended with other varieties such as Cinsaut, Grenache, Mourvedre and Syrah, it has been used to create french Rhone-style red wines in California similar to the famed Chateauneuf-du-Pape blend.</description>
+  </grape>
+  <grape id="ac8973d41b774ca89575c2fdca7fbfbc">
+    <meta created="2012-11-09T15:17:42.098Z"/>
+    <name>Carinena</name>
+    <description> alternate name for the Carignane grape in Spain. (See above).</description>
+  </grape>
+  <grape id="e95e9b71b9f64659825bee5215ecf131">
+    <meta created="2012-11-09T15:17:42.098Z"/>
+    <name>Carmenere </name>
+    <description>The Carmenere grape was prominent in Bordeaux in the 19th century before deadly phylloxera attacked. Fortunately, some cuttings were transported to Chile pre- phylloxera and they thrived in their new home. The story of Carmenere there is an interesting one. For more than 100 years, winemakers in Chile thought it was Merlot. It wasn't until 1997 that Chilean officials admitted the error (the vines are similar; it was the pinkish tint of Carmenere's leaves that eventually led to its identification). After overcoming some embarrassment, some vintners started making varietal Carmenere,</description>
+  </grape>
+  <grape id="9d53d1b8bcab4ac8a2ec0598f18da301">
+    <meta created="2012-11-09T15:17:42.098Z"/>
+    <name>Catawba</name>
+    <description> This historically important native American - ("vitis labrusca") - grape is used to produce sweet white, red and rose' wines distinguished by a so-called "foxy" aroma component. Suitable also as a Table grape. Commonly grown in the Eastern U.S. and Canada. New York state wineries produce large amounts of sparkling wine from this grape. Its intensity can be modified by blending with other suitable labruscana derived wines such as Rougeon. Also quite popular when made into an ultra-sweet "ice-wine".</description>
+  </grape>
+  <grape id="78fc8e69712b4a60b56418653e5babd9">
+    <meta created="2012-11-09T15:17:42.098Z"/>
+    <name>Chardonnay</name>
+    <description> The grape of white burgandy (Chablis, Montrachet, Meursault, Pouilly-Ffuisse) and Champagne. This grape is the best-known white wine grape grown in France, a grape widely grown in the Champagne region. The Chardonnay is also widely planted in the Burgundy and Chablis regions. There, as in the cooler regions of North America and California, the wine made from it is often aged in small oak barrels to produce strong flavors and aromas. Possessing a fruity character - (e.g</description>
+  </grape>
+  <grape id="aef67c866ce04bf8b2008969b7f62637">
+    <meta created="2012-11-09T15:17:42.098Z"/>
+    <name>Chenin Blanc</name>
+    <description> A widely grown white-wine grape variety, known as Steen in South Africa, Pineau de la Loire in the Loire region of France and under the alias name White Pinot (Pinot Blanco) elsewhere in the world. Often made in a number of styles with or without some residual sugar. It is the favored grape of the Anjou region of France and, although naturally a hard, acidic grape slow to mature, is made into fine sweet wines that age well for a least ten years in the bottle. In the U.S. the grape all too often ends up in the generic jug wines of bulk producers as acidity enhancer for otherwise flabby high sugar/alcohol blends.</description>
+  </grape>
+  <grape id="29c6f95622b64d5bbc8f360520980ec4">
+    <meta created="2012-11-09T15:17:42.098Z"/>
+    <name>Chasellas</name>
+    <description> Minor grape grown in Switzerland, France, Germany and New Zealand. Recent research indicates that the Viognier grape may be clonally related. Widely grown in the cantons of the first country where it has several regional synonym names, the main one being Fendant in the Vaud and Valais districts. It is also known as Perlan in the Mandement district. Mostly vinified to be a full, dry and fruity white wine. Also suitable as a Table grape. In France it is mostly grown in the Loire region where it is converted into a blend with Sauvignon Blanc called "Pouilly-sur-Loire" and in the Savoy region where it is treated in the Swiss manner. German growers of the Baden region know it under the name Gutedel. In New Zealand it is mainly made into popular sweet white wines. Californian and Australian growers know this variety under the alias names of Chasselas Dore or Golden Chasselas.</description>
+  </grape>
+  <grape id="4fbf47ee4ddf49a38637bd79e248d351">
+    <meta created="2012-11-09T15:17:42.098Z"/>
+    <name>Cinsaut</name>
+    <description> aka Cinsault). Semi-classic grape widely grown in southern France and also in the Lebanon. Used as blend component in many red or ros頷ines. Transplanted to South Africa, where it was erroneously thought to be a Rhone Hermitage grape, and now a widely grown variety making a popular red wine in that country, and often blended with Cabernet Sauvignon. It has also been used to create the hybrid grape species known as Pinotage. Also grown in Australia under several alias names that include Black Prince, Blue Imperial, Oeillade and Ulliade.</description>
+  </grape>
+  <grape id="564554395926421296c92262df9e51d0">
+    <meta created="2012-11-09T15:17:42.098Z"/>
+    <name>Corvina</name>
+    <description> (aka "Corvina Veronese"). Used with two other grapes, Rondinella and Molinara, to create the light red regional blends known as "Bardolino" and "Valpolicella" wine that have a mild fruity flavor with hints of almond. Mainly grown in the Veneto region of northeast Italy.</description>
+  </grape>
+  <grape id="cf8a97718cb94880adadf4c29b4c76aa">
+    <meta created="2012-11-09T15:17:42.098Z"/>
+    <name>Cortese</name>
+    <description> Cortese is a white grape that has been grown in Piedmont since the eighteenth century. It is mostly grown in the southeastern sections of Piedmont where it is hot enough to allow the early ripening character of this grape to develop. Cortese does have a relatively high affinity to rot so growers will pick them even earlier in the season than other early ripening grapes. Cortese is best known for its DOC wine, Gavi or Cortese di Gavi. Cortese is also grown in Cortese dei Colli Tortonesi DOC and Cortese dell'Alto Monferrato DOC. Gavi is Italy's most expensive white wine exported to the United States. It typifies what Italians consider Bianco, low in aroma, high in acid and neutral in character</description>
+  </grape>
+  <grape id="c0ddfd42effb4acdb13f53d3dcb67110">
+    <meta created="2012-11-09T15:17:42.098Z"/>
+    <name>Counoise</name>
+    <description> A semi-classic grape of the Rhone and Pyrenees regions of France. Used in the red wine blends of Chateauneuf-du-Pape to create aroma and acidic freshness. Not-recognized until recently for lableling in the US. Adds overtones of strawberry and anise.</description>
+  </grape>
+  <grape id="bf19ba5b170345af98366ec830c6aa4b">
+    <meta created="2012-11-09T15:17:42.098Z"/>
+    <name>Dolcetto</name>
+    <description> The red grape, Dolcetto, like the Nebbiolo, is predominately grown in northern Italy. In Piedmont, you will find more Dolcetto and Barbera on the tables during dinnertime than Nebbiolo even though Nebbiolo is the more prized grape. The Nebbiolo wines produced are mostly exported because they demand a higher price and the winemakers need to profit. Unlike the Nebbiolo, Dolcetto grapes ripen earlier and can be planted in lesser conditions of both soil and temperature. Harvesting the Dolcetto also occurs earlier than Nebbiolo, about 4 weeks earlier. The wines have a low acidity and do not age well. Low tannins also explain Dolcetto's aging potential, or lack there of. The name Dolcetto derives from the Italian phrase, "little sweet one." They produce wines that are fairly sweet even though the sugar levels of this grape are no higher than the norm. It is the low tannin level that exaggerates the sugar level and explains the sweetness.</description>
+  </grape>
+  <grape id="266526e5f64c48ce9b69b7a57009504a">
+    <meta created="2012-11-09T15:17:42.098Z"/>
+    <name>Ehrenfelser</name>
+    <description> Grape resulting from the crossing of Johannisberg Riesling and a Sylvaner clone. Many consider it second only to the Kerner grape-cross as a frost-resistant Riesling type substitute for the better known Muller-Thurgau grape widely grown in Germany and elsewhere. Mild acid content discourages aging. Claimed to have excellent Riesling grape similarities in taste etc. Small acreages can now be found in the Okanagan region of western Canada, where it appears to do well.</description>
+  </grape>
+  <grape id="2ac824bc4eed449f81e6e8a83618cdca">
+    <meta created="2012-11-09T15:17:42.098Z"/>
+    <name>Fiano</name>
+    <description> Minor, but of ancient origin, grape grown in Campania region of southern Italy. Makes balanced, elegant white wine with attractive nut-like hints in the aroma.</description>
+  </grape>
+  <grape id="e205f1cfe7bf43b5ae01fcb41870c5cc">
+    <meta created="2012-11-09T15:17:42.098Z"/>
+    <name>Folle Blanc</name>
+    <description> Cognac</description>
+  </grape>
+  <grape id="1aac971379b14932aa9ecffa589468f1">
+    <meta created="2012-11-09T15:17:42.098Z"/>
+    <name>Freisa</name>
+    <description> Medium bodied red winegrape from the Piedmont region of Italy.Freisa's origin dates back to 1799 in Piedmont. The red Freisa grape must be aged for 2 years before bottling. It often produces frizzante, highly acidic, pale cherry red wines, but could range from still to frizzante and dry to sweet. There are two slightly different clones of Freisa. Freisa Piccola grows usually on the hills and Freisa Grossa grows better on flatter surfaces. It is also called Fresa and Fresia.</description>
+  </grape>
+  <grape id="d57dfa46f4b4455cbcb909cef9a46fb1">
+    <meta created="2012-11-09T15:17:42.098Z"/>
+    <name>Furmint</name>
+    <description> Tokay</description>
+  </grape>
+  <grape id="5d9ad5c604a748a9af16a99e82e8ae19">
+    <meta created="2012-11-09T15:17:42.098Z"/>
+    <name>Gamay</name>
+    <description> Only makes first class wine on the graite hills of Beaujolais, with their sandy soil. In the rest of Burgandy it is an inferior variety, although adequate in certain other parts of France (the Loire, Ardeche), in Switzerland and (alias Napa Gamay in California. At its best Gamay produces wine that is incomparably light, fruity aand gulpable, pale red, or, exceptionally, a dark wine aging well vof six or seven years.</description>
+  </grape>
+  <grape id="7d17183214e348a89788a8a07487c632">
+    <meta created="2012-11-09T15:17:42.098Z"/>
+    <name>Gewurztraminer</name>
+    <description> ("geh-verts-tram-in-er"). A clone of the parent Traminer varietal. Widely grown, and one of the mainstay grapes for which the Alsace is famous, the popular Gewurztraminer produces white wines with a strong floral aroma and lychee nut like flavor. It is often regarded as somewhat similar in style to the Johannisberg Riesling when vinified as slightly sweet yet tart. Occasionally it is made into a "botrytized" late harvest dessert style wine. Does well in the cooler coastal regions of Western U.S., Australia, New Zealand and B.C. Interior,Canada .</description>
+  </grape>
+  <grape id="a76c3f6a3b6b4876806e318a97860f7c">
+    <meta created="2012-11-09T15:17:42.098Z"/>
+    <name>Grenache</name>
+    <description> Grenache is the second most planted grape in the world, but in the United States Grenache it only ranks in the top 10. California mostly uses this red grape for jug wine blends, ros頡nd the White Grenache. There are Rhone wine enthusiasts attempting to filter the Grenache into their blends. 98 percent of all Grenache vines are found in the hot Central Valley because it does relatively well in dry, hot conditions and its strong stalks make it well suited for windy conditions as well. When ripe, Grenache has a very high sugar level and can produce wines with 15 to 16 percent alcohol. The wines are sweet, fruity and contain very little tannins. Grenache comes in both red and white varieties, but unless specified, Grenache refers to the red version, Grenache Noir. Grenache Blanc or Garnacha Blance is the white version of this grape. Although not as popular as the red in California, it is widely planted in Spain (as garnacha) and France. The white wines produced are high in alcohol and low in acid.</description>
+  </grape>
+  <grape id="5d36807187214552a490a104af6eedee">
+    <meta created="2012-11-09T15:17:42.098Z"/>
+    <name>Grechetto</name>
+    <description> The white Grechetto is the primary ingredient in Orvieto DOC in Umbria. It is also used in the production of Torgiano DOC. Grechetto has a distinctive nutty character which allows it to make an excellent Vin Santo.It is often blended with Trebbiano Toscano and Malvasia.</description>
+  </grape>
+  <grape id="0d930efc6e3a47fea345a029f843708a">
+    <meta created="2012-11-09T15:17:42.098Z"/>
+    <name>Johannisberg Riesling</name>
+    <description> A white-wine variety widely grown along the Rhine river and tributaries - (e.g</description>
+  </grape>
+  <grape id="54c4ddb3d1b944a0b82ccf8a1cc3d480">
+    <meta created="2012-11-09T15:17:42.098Z"/>
+    <name>Kerner</name>
+    <description> Moderately hardy grape developed from a cross between the Riesling and Schiava Grossa grapes. The latter variety is known as the Trollinger where grown in Germany. Used to produce a Riesling-like white wine said to often reach "Auslese" Pr䤩kat quality. Regarded by many as having superior characteristics to the Bacchus or Optima grapes. Currently, 1997, recommended for good site locations in southern Michigan and other suitable cool climate regions where it usually fully ripens in mid-season.</description>
+  </grape>
+  <grape id="65b5bb881be849e98854cd4491baa8d7">
+    <meta created="2012-11-09T15:17:42.098Z"/>
+    <name>Lagrein</name>
+    <description> Lagrein is almost exclusively grown in Trentino-Alto Adige, and produces both light and dark red wines. These wines tend to have an almost chocolatety taste and rich, fruit flavors. Lagrein is a late-ripening vine, therefore needs warmer climates to develop. Santa Maddalena DOC in Alto Adige uses Lagrein along with Schiava for its wines.</description>
+  </grape>
+  <grape id="30198c960a0f4fd488c56c8c8309f908">
+    <meta created="2012-11-09T15:17:42.098Z"/>
+    <name>Macebeo</name>
+    <description> (aka Maccabeo). Widely grown in the Rioja region of north-eastern Spain and the Languedoc region of France, this grape is used to make mildly acidic and young white wines suitable for early consumption or incorporation into suitable blends. Also known in Spain by an alias name of Viura.</description>
+  </grape>
+  <grape id="84abd19c8b9642b3bf9eecbf4a3739b0">
+    <meta created="2012-11-09T15:17:42.098Z"/>
+    <name>Malvasia</name>
+    <description> Malvasia has been cultivated in Europe for 2,000 years. Its origin is thought to be from the Aegean Sea area, between Turkey and Greece. Malvasia is primarily a white wine grape, but it has many known red subvarieties including Malvasia Nera. Malvasia Nera is mostly grown in Puglia. Malvasia is one of two white grapes allowed in Chianti's blend, Trebbiano being the other. It is also blended with Trebbiano to produce Frascati, Marino, Est!Est !!Est!!!, and Galestro. All are DOC zones. Malvasia is one white grape that does have the potential to produce bold wines able to age well. It does, however, oxidize rather quickly. It is not a high-yielding vine and has begun to be replaced by grapes like Trebbiano.</description>
+  </grape>
+  <grape id="71ef918e9756456c84bc763965301a96">
+    <meta created="2012-11-09T15:17:42.098Z"/>
+    <name>Marsanne</name>
+    <description> Vigorous high yielding white grape from the Rhone valley.</description>
+  </grape>
+  <grape id="7451af81eb554e3ba55c58831fdf2fda">
+    <meta created="2012-11-09T15:17:42.098Z"/>
+    <name>Malbec</name>
+    <description> Semi-classic grape grown in the Bordeaux region of France and in other areas under the name C����nd in the Alsace has the local name Auxerrois. Also grown in the cooler regions of California. In Argentina the grape known as the Fer is now thought to be a clone of this variety. Alone it creates a rather inky red, intense wine, so it is mainly used in blends, such as with Merlot and Cabernet Sauvignon to create the world renowned red Bordeaux "claret" blend. In California and other areas it is increasingly being used for the same blending purpose.</description>
+  </grape>
+  <grape id="d3727f2c317c432ebfc79bc0eb1432fa">
+    <meta created="2012-11-09T15:17:42.098Z"/>
+    <name>Mazuela</name>
+    <description> Carinena or Carignan</description>
+  </grape>
+  <grape id="081498c6491b42ef86e67e385588c22d">
+    <meta created="2012-11-09T15:17:42.098Z"/>
+    <name>Merlot</name>
+    <description> Classic grape widely grown in the Bordeaux region of France and elsewhere. The red wine bears a resemblance to Cabernet Sauvignon wine, with which it is sometimes blended, but is usually not so intense, with softer tannins. Matures earlier than Cabernet Sauvignon. In California it is a popular varietal on its own and also as a percentage constituent of the red wine blend resembling Bordeaux claret called "Meritage". It does extremely well in the state of Washington and shows great promise on Long Island, N.Y. Other countries such as Canada, Chile, Argentina and New Zealand also seem to have the right climate for this variety. B.C. Merlot grapes attain good sugar and acid balance however the style is more of Bordeaux than Washington state.</description>
+  </grape>
+  <grape id="e3cbdb2372cb428ebbf28eec87b786d2">
+    <meta created="2012-11-09T15:17:42.098Z"/>
+    <name>Melon</name>
+    <description> Muscadet</description>
+  </grape>
+  <grape id="9a79ca01c90c4543bb19294f147f924e">
+    <meta created="2012-11-09T15:17:42.098Z"/>
+    <name>Montepulciano</name>
+    <description> Montepulciano is a name of a city in Tuscany, but the grape is mostly planted in Abruzzi and Marches. Its composition is completely different than Sangiovese. It is soft and supple. It ripens later than Sangiovese and is lower in acidity and tannins. It is thought that Montepulciano originated in Tuscany. The region Abruzzi produces, what most consider, the best Montepulciano in Italy. These grapes are full bodied and robust with the potential for aging. Sangiovese is sometimes blended with Montepulciano. Rosso Piceno, a DOC zone in eastern Marches, uses 40 percent Montepulciano with 60 percent Sangiovese. Montepulciano is also a small component of Torgiano, a DOC and DOCG zone in Umbria as well as Cori Rosso, DOC in Latium, Cerveteri, DOC in Latium, and Montepulciano d'Abruzzi DOC in Abruzzi.</description>
+  </grape>
+  <grape id="9a89d0e1c6534550ba660f974fd01afc">
+    <meta created="2012-11-09T15:17:42.098Z"/>
+    <name>Moscato</name>
+    <description> A white grape used for both Asti Spumante DOCG, Moscato d'Alba DOCG and other sparkling white wines. It is Piedmont's oldest grape. Known as Muscat in California.</description>
+  </grape>
+  <grape id="1b23ebdf4cfd4c09bfb025bbfde49ae2">
+    <meta created="2012-11-09T15:17:42.098Z"/>
+    <name>Mourvedre</name>
+    <description> Red winegrape from the Rhone valley blended with Grenache; also found in Spain where it is known as Monastrell or Mataro.</description>
+  </grape>
+  <grape id="4b01c229cf5c497c8749e2f718fdd9f1">
+    <meta created="2012-11-09T15:17:42.098Z"/>
+    <name>Muller-Thurgau</name>
+    <description> Early ripening cross officially developed from Sylvaner and Johannisberg Riesling, but some authorities now contend was actually from two clonal varieties of Riesling. Produces a flowery, yet acidic white wine that bears a modest resemblance to the parent Riesling grapewine. Widely planted in Europe, New Zealand and some parts of the cooler Northern regions of N. America. Known as Rivaner in parts of Europe. Losing production to both Chardonnay and Sauvignon Blanc.</description>
+  </grape>
+  <grape id="9bc4440d111a4ce6bfb26d0b471db988">
+    <meta created="2012-11-09T15:17:42.098Z"/>
+    <name>Muscadet</name>
+    <description> (aka Melon de Bourgogne). Temperate climate grape widely grown in the western-most area of the Loire region of France. The product juice goes into the making of the dry, tart white wine that is famous as "Muscadet de Sevres et Maine". The wine is light, fresh with distinctive fruit in its better years and is best consumed while young. Possibly grown also in California where recent research indicates some plantings may have been mis-named the Pinot Blanc.</description>
+  </grape>
+  <grape id="f2ac873d5f3247c49f3e4cb3f30cc736">
+    <meta created="2012-11-09T15:17:42.098Z"/>
+    <name>Muscat</name>
+    <description> Another "c鰡ge" family of clone varieties, making both red and white wines. Most are of the muscat type, having the unique aromatic character commonly associated with muscat wines. These include the Muscat Blanc, (aka Moscato di Canelli and Muscat Frontignon, all alias names for the premier c鰡ge varietal Muscat Blanc ࠐetit Grains). These clones are mostly used for making medium-sweet and dessert style table or fortified wines. An example of these is "Constantia", a centuries-old wine blend still made in South Africa from the Orange Muscat grape, a darker skinned mutation of the Muscat Frontignan clone and wine made from the Pontac, a red-wine grape translocated from south-west France. Small acreages of Orange Muscat in the Central Valley of California allow a local variation of this wine to be made by at least one producer, a situation that also occurs in Australia. Hot climate producers of sparkling wines often use the various Muscat grape clones to create wines in the style of Italian Spumante. Lesser regarded clones of the c鰡ge include Muscat of Alexandria and others.</description>
+  </grape>
+  <grape id="7c3a382c4ba046ee9d12afab23ed4a2b">
+    <meta created="2012-11-09T15:17:42.098Z"/>
+    <name>Nebbiolo</name>
+    <description> The Nebbiolo grape has proven to be one of the most difficult grapes to grown the world. It shares this honor with Pinot Noir or Pinot Nero. The name, Nebbiolo, derives from the the Italian word for fog, "nebbia." It is harvested late in the season, relative to other grapes (usually in October) when the Langhe Hills in Piedmont are covered with fog. It is this fog which forced the Nebbiolo to evolve into a thick-skinned grape. Within these thick skins, bold and heavy tannins, which allow the Nebbiolo to age, are found. Growing the Nebbiolo in the northern regions of Italy dates back to 1268. It is used both as a individual grape to produce some of the most sought after wines in the world, and a blending grape is many different DOC and DOCG zones. Barolo DOCG, Barbaresco DOCG and Gattinara DOCG (which only needs to be 90 percent Nebbiolo) all utilize Nebbiolo's bold character, along with its tannins, to produce fantastic wines. Piedmont and Lombardy are the two regions where growing the Nebbiolo grape is most prevalent. Nebbiolo, as stated before, is not only used by itself, it is sometimes blended with other grapes. For example, Gattinara only needs to contain 90 percent Nebbiolo. The other 10 percent is normally Bonarda, another red grape grown mostly in northern Italy. Another example is Nebbiolo d'Alba DOC around the city of Alba. Here Nebbiolo is blended with 5 percent Arneis. Arneis is a white grape mostly grown in the Roero Hills between Barolo and Barbaresco. Nebbiolo can also be blended with Vespolina Also known as the Chiavennasca in Lombardy.</description>
+  </grape>
+  <grape id="4bbb90566d4e42f4a3152590440a823e">
+    <meta created="2012-11-09T15:17:42.098Z"/>
+    <name>Negroamaro</name>
+    <description> Negroamaro means "bitter black" in Italian and the grape lives up to its name. Negroamaro is a dark and spicy grape that blends well with Malvasia Nera. Both Negroamaro and Malvasia Nera are sometimes shipped north to be used in Chianti, up to 10 percent. This does not happen as much today. Negroamaro grows well on a flat peninsula in Puglia called Salento.</description>
+  </grape>
+  <grape id="e7441f92bb0e4dc8a85796e5228b2684">
+    <meta created="2012-11-09T15:17:42.098Z"/>
+    <name>Parellada</name>
+    <description> Viura in Rioja</description>
+  </grape>
+  <grape id="078690fe4db64f93a910f9c75690f767">
+    <meta created="2012-11-09T15:17:42.098Z"/>
+    <name>Palomino</name>
+    <description> Red wine grape, mostly used for Sherry-type fortified wines, widely grown in Spain and South Africa. Identical to the Listan variety found in France. Also found in Australia and California where it is also used mainly to produce fortified wines. The grape was once thought to be the Golden Chasselas, a table grape, where grown in California. The wine-must has tendency to oxidise quickly, a characteristic that can be ignored when used for sherry production.</description>
+  </grape>
+  <grape id="3252d2a438a94c2c8f00967f5d8ee685">
+    <meta created="2012-11-09T15:17:42.098Z"/>
+    <name>Pedro Ximenez</name>
+    <description> Red wine variety found in Australia and used, along with Palomino, to produce fortified wines.</description>
+  </grape>
+  <grape id="536f2df6869c4f45bf80b208833bb2d8">
+    <meta created="2012-11-09T15:17:42.098Z"/>
+    <name>Petite Cabernet</name>
+    <description> An alias for Cabernet Sauvignon.</description>
+  </grape>
+  <grape id="94fce21f1fa04ff3b009c69d995f4480">
+    <meta created="2012-11-09T15:17:42.098Z"/>
+    <name>Petite Verdot</name>
+    <description> Grape grown in limited amounts. Found mainly in the temperate Bordeaux region St.ɭilion subdistrict and used to make a red wine later blended with other famous Bordeaux varietal wines. Recommended for growing in the State of Virginia. Has higher titratable acid and is slightly more cold-hardy than Cabernet Sauvignon, ripening around the same time in mid-late October.</description>
+  </grape>
+  <grape id="c281125e9fc64d6d9d69a3701fa2e872">
+    <meta created="2012-11-09T15:17:42.098Z"/>
+    <name>Petite Vidure</name>
+    <description> An alias for Cabernet Sauvignon.</description>
+  </grape>
+  <grape id="bd1c8ef9e92f4f1ba6e43f7db6476967">
+    <meta created="2012-11-09T15:17:42.098Z"/>
+    <name>Pinot Bianco</name>
+    <description> Italian version of the grape known as Pinot Blanc. Grown mainly in the Trentino and Fruili regions of Italy. Usually made into a fresh, fruity white wine.</description>
+  </grape>
+  <grape id="79188591e8994737826d4c0d5978b79a">
+    <meta created="2012-11-09T15:17:42.098Z"/>
+    <name>Pinot Blanc</name>
+    <description> Mutation of the Pinot Gris vine. Grape is generally used to make dry, crisp, rather intense white wines in the Alsace, parts of Burgundy and in Austria. In the latter country it is known as the Weissburgunder. In California, a similarly named grape is used to make a fruity, rather subtle wine similar to the simpler versions of Chardonnay. Used in many of the better champagne style sparkling wines of California because of its acid content and clean flavor.</description>
+  </grape>
+  <grape id="31581291377f42128256f0477e4d5612">
+    <meta created="2012-11-09T15:17:42.098Z"/>
+    <name>Pinot Grigio</name>
+    <description> Originally grown in France and then brought to Italy. It is DOC in Oltrep򠐡vese and Franciacorta. It is also grown around Lake d'Iseo in Lombardy. Pinot Grigio is the most popular grape grown in northern Italy.</description>
+  </grape>
+  <grape id="4d56e97e345346a8996191bc1bdebcda">
+    <meta created="2012-11-09T15:17:42.098Z"/>
+    <name>Pinot Gris</name>
+    <description> Clone of Pinot Noir grown in western coastal regions of the U.S. Also called the Malvoisie or Pinot Beurot in the Loire, and the former name in the Languedoc region of France. In Germany and Austria it is known as the Rulander or Grauer Burgunder</description>
+  </grape>
+  <grape id="223a0da382014f7fb13ed06c28351616">
+    <meta created="2012-11-09T15:17:42.098Z"/>
+    <name>Pinot Meunier</name>
+    <description> (aka Meunier). Clone of Pinot Noir cepage. Widely grown in the Champagne (Aube) region of France. Used in the blend with Chardonnay to make champagne sparkling wine.</description>
+  </grape>
+  <grape id="753ea9d542ae4da39f5cd7115aa5cd10">
+    <meta created="2012-11-09T15:17:42.098Z"/>
+    <name>Pinot Noir</name>
+    <description> Pinot Noir&#x92;s best representation is from Burgundy's C����D&#x92;or region, and has been for an estimated 2,000 years. When young, a good Pinot Noir exhibits the simpler and fruity characteristics of cherry, plum and raspberries. As they age, they become more rich and complex and will continue to do so in proper conditions. Some say that Pinot Noir is more complex than Cabernet Sauvignon, but it do not age as well. Pinot Noir is widely used in French Champagne so the grapes are picked at low sugar levels with high acidity. They are then blended with Chardonnay, which is also picked at low sugar levels and high acidity. Pinot Noir is also used in the production of California Champagne. In fact, 1/3 of all Pinot Noir grown is used for sparkling wines. The Pinot Noir grape is extremely difficult to grow. If it does not have the correct environment and care, the wines can be uninviting. California once regarded Pinot Noir as a great and complex red, but in the 1970&#x92;s, Merlot and Zinfandel knocked it out of second place and production levels shrank. Dedicated Pinot Noir growers were not discouraged and continued experiments with clones, stem retention in fermentation, open versus closed fermentation, crop levels and soil types. Progress was made. The consensus is that it must not be allowed to ripen too much or the fruit will diminish. Also, Pinot Noir likes cooler temperatures, instead of next to Cabernet Sauvignon in the hot Central Valley, where it was originally planted. Many areas have had success with this grape. Among these include the Carneros District in southern Napa and Sonoma counties, the near-coastal Russian River Valley, the cool areas south of San Francisco in Monterey, San Luis Obispo, and Santa Barbara Counties. Pinot Noir can now challenge the number two spot among California&#x92;s red grapes. It is also known as the Italian Pinot Nero and is grown in both Lombardy and Umbria. It is sometimes added to Chianti.</description>
+  </grape>
+  <grape id="c9beba706c2243faacfb0f4d1d6f9ace">
+    <meta created="2012-11-09T15:17:42.098Z"/>
+    <name>Primitivo</name>
+    <description> Primitivo is a great grape for blending. It is strong, rich, spicy , similiar to Negroamaro. Primitivo grows well a flat peninsula in Puglia called Salento. It is thought to be an ancestor of the California Zinfandel grape.</description>
+  </grape>
+  <grape id="8efa9c32d8ad49c7a0f802912d2a8bef">
+    <meta created="2012-11-09T15:17:42.098Z"/>
+    <name>Prugnolo</name>
+    <description> Prugnolo is another name for Sangiovese Grosso. It is called Prugnolo because of its plummy color. It is the grape that forms Vino Nobile di Montepulciano DOCG and Rosso di Montepulciano DOC. Both wines are produced in Montepulciano, a city east of Siena in Tuscany. (Don't confuse Montepulciano the city with Montepulciano the grape.) Prugnolo is 50-70 percent of Vino Nobile di Montepulciano. The other grapes used are Canaiolo and Cabernet Sauvignon.</description>
+  </grape>
+  <grape id="f73d245608a9448db63b44daee94d98f">
+    <meta created="2012-11-09T15:17:42.098Z"/>
+    <name>Rousanne</name>
+    <description> Delicate end elegant white grape from the Rhone valley.</description>
+  </grape>
+  <grape id="5a6af6cbd2fb4a51ba44477bff710f0d">
+    <meta created="2012-11-09T15:17:42.098Z"/>
+    <name>Sangiovese</name>
+    <description> The most influential grape grown in central Italy, more specifically in Tuscany. The name, Sangiovese, is derived from Sangius Jovis or "Blood of Jupiter." The Sangiovese grape's skins are thick and full of tannins. Sangiovese's most important role in the wine industry is the composition of Chianti DOCG, Italy's most popular wine. Sangiovese is typically blended with Canaiolo and either Malvasia or Trebbiano. Other red grapes such as Cabernet Sauvignon, Malvasia Nera, Mammolo and Syrah can also be added, up to 10 percent. Sangiovese is the main component of Chianti and its percentage has risen over the past 20 years. Heavy tannins from Sangiovese allow wines age for decades. When Chianti is labeled riserva, a higher proportion of Sangiovese is used in the uvaggio. Uvaggio is the term for the grape mix for each wine. For the normale, the most common style of Chianti, less Sangiovese is used and more Canaiolo or Mammolo is blended. There are clones of Sangiovese used to produce other wines in Tuscany, Latium, Marches and Emilia-Romagna. Sangiovese Grosso and Sangiovese Piccolo are two examples of clones. One of Sangiovese Grosso's strains is called Brunello. It is this grape that creates another of the world's most treasured wines, Brunello di Montalcino DOCG. Sangiovese is also grown in Emilia-Romagna and Latium to produce some of Italy's cheapest red wine.</description>
+  </grape>
+  <grape id="db68ec200796494488034b6aec27f935">
+    <meta created="2012-11-09T15:17:42.098Z"/>
+    <name>Savagnin</name>
+    <description> Semi-classic grape used to create the celebrated "Vin jaune" of the Jura region of France. Is one of the few wines in which maderization is desirable and acquired with long bottle-aging. Thought by some to be identical with the Traminer grape still grown in that area of Europe. Sometimes called Klevner in the Alsace region of France.</description>
+  </grape>
+  <grape id="ce1124e38dd44791b8bf63a57d288217">
+    <meta created="2012-11-09T15:17:42.098Z"/>
+    <name>Sauvignon Blanc</name>
+    <description> Classic white-wine variety commonly planted in the Bordeaux and eastern Loire regions of France. Still a widely grown varietal in the U.S., its production has declined in favor of the popular Chardonnay. It shows a tendency towards a grassy, herbaceous flavor in the wine when the grapes are grown in temperate regions. In warmer regions, the flavors and aromas tend to be more citruslike, (e.g</description>
+  </grape>
+  <grape id="1fc6710d85cf45218441718611dc8295">
+    <meta created="2012-11-09T15:17:42.098Z"/>
+    <name>Schiava</name>
+    <description> A red grape grown in Trentino-Alto Adige, more specifically in Alto Adige. It is DOC in Lago di Caldaro and Santa Maddalena, both are in Alto Adige. Schiava wines are light in color. It is also called Vernatsch.</description>
+  </grape>
+  <grape id="b852c4d1cf6c4e7cb6c57bf92527cf8f">
+    <meta created="2012-11-09T15:17:42.098Z"/>
+    <name>Semillion</name>
+    <description> Semi-classic grape widely grown in the Bordeaux region of France and also elsewhere. This grape variety has a distinct fig-like character. In France, Australia and increasingly in California it is often blended with Sauvignon Blanc to cut some of the strong "gooseberry" flavor of the latter grape and create better balance. Wineries in many countries also use the grape to create dry single-varietal white wines. When infected by the "noble rot" fungi, (Botrytis cineria), it can be used to produce first-class sweet white wines such as those of the french Sauternes. The B.C. grape has proven very hardy and is only being experimented with of late.</description>
+  </grape>
+  <grape id="96a1062905db4cd481fd0423f111f785">
+    <meta created="2012-11-09T15:17:42.098Z"/>
+    <name>Seyval Blanc</name>
+    <description> </description>
+  </grape>
+  <grape id="8c009ddff3a44aa28e5b303ef0022140">
+    <meta created="2012-11-09T15:17:42.098Z"/>
+    <name>Scheurebe</name>
+    <description> Grape variety developed from a cross between Sylvaner and Johannisberg Riesling. Extensively planted in the Rheinhessen, Rheinfalz and Franconia regions of Germany. Used to produce full-bodied, aromatic white wines that can reach "Auslese" Pradikat standard in the better vintages.</description>
+  </grape>
+  <grape id="568bdcd0b6384ba4a4a566eef2a20fdb">
+    <meta created="2012-11-09T15:17:42.098Z"/>
+    <name>Sylvaner</name>
+    <description> (aka Silvaner) Widely grown in the Alsace region of France, Germany and Central Europe. Suited to temperate zones, the vine is high-yielding and the grape produces an "easy" white wine with lightly spicy, floral flavors and mild intensity. Once very popular in California, it seems to have fallen victim to changing fashion in recent years and been replaced by (Johannisberg) Riesling in current taste. Belief that it had been crossed with the latter grape to yield the M����r-Thurgau hybrid grape is now in doubt. It is still believed to be involved as one parent in the creation of another hybrid version called Scheurebe as well as several other crossings of a similar nature - (e.g</description>
+  </grape>
+  <grape id="ea64fd7e6b364531b32d3dd5cb51043a">
+    <meta created="2012-11-09T15:17:42.098Z"/>
+    <name>Syrah</name>
+    <description> Noble red winegrape of the Rhone valley of France, and also known as Shiraz in Australia or the Serine.</description>
+  </grape>
+  <grape id="f948f2d1e5874193800861d31f18f4e5">
+    <meta created="2012-11-09T15:17:42.098Z"/>
+    <name>Temperanillo</name>
+    <description> Fine red wine grape used in best Rioja wines of Spain. Also known under the alias names of Cencibel and Valdepe񡳮 In Portugal the grape is known as the (Tinta) Roriz. Large acreages are grown in Argentina. Also found in the Central Valley of California. Makes a grapejuice much favored by home-winemakers that is sold under the "Valdepenas" name in N. America. Called Ull de Lebre in Catalonia.</description>
+  </grape>
+  <grape id="55fcf311c14a4bbdb4346703d61b5276">
+    <meta created="2012-11-09T15:17:42.098Z"/>
+    <name>Traminer</name>
+    <description> Parent grape of the popular Gew����raminer clone. Still grown in France and in California but almost everywhere has been replaced by its much more intense and aromatic offspring clone. This name is still used in Australia as an alias name for Gew����raminer and itself is also known there under the alias name of Sauvignon Rose, (and should not to be confused with an identical alias used in France for a member of the Sauvignon Blanc c鰡ge).</description>
+  </grape>
+  <grape id="c342abddc19347819c4f71b56a7bd4c0">
+    <meta created="2012-11-09T15:17:42.098Z"/>
+    <name>Trebbiano</name>
+    <description> Italy's most widely planted white grape. The reason for its popularity is the high yields it achieves throughout Italy. The grape also shows high resistance to diseases. There are 3 clones of the Trebbiano grape</description>
+  </grape>
+  <grape id="609e9ba1249542e68144c1c691a53148">
+    <meta created="2012-11-09T15:17:42.098Z"/>
+    <name>Ugni Blanc</name>
+    <description> (aka Trebbiano). Widely grown in Italy and Southern France. There it produces a fruity, acidic white wine, best drunk when young and chilled. In the Cognac region of France and in Australia it is known as the St. ɭilion grape. Australian growers also know this variety under the alias names of White Hermitage and White Shiraz.</description>
+  </grape>
+  <grape id="13ae0d8e75334b028437209babc70344">
+    <meta created="2012-11-09T15:17:42.098Z"/>
+    <name>Verdiccio</name>
+    <description> Grown in Marches since the fourteenth century. The wines are clean, crisp and thanks to technology, virtually colorless. There are two DOC zones where Verdicchio is produced, both are in Marches and are 80 percent Verdicchio. They are Verdicchio dei Colli Pesaresi DOC and Verdicchio di Matelica DOC. Verdicchio di Matelica has the more body of the two. It is blended with Trebbiano and Malvasia. Verdicchio is aged in wood and will yield a crisp and nutty wine. This grape also makes a good sparkling wine because of the natural acidity. The sparkling wine could either be produced by Charmat method or the classic bottle fermentation.</description>
+  </grape>
+  <grape id="28c4f5ad409e46f994155681d64ff2c4">
+    <meta created="2012-11-09T15:17:42.098Z"/>
+    <name>Vernaccia</name>
+    <description> Grown in Tuscany and used for Vernaccia di San Gimignano DOCG. This grape dates back to the 13th century and is Greek in origin. Its name is thought to derive from the Latin, vernaculus meaning "native" or "of this place." The wines produced from this grape will vary. Traditionally, they are gold in color with a rich and full-bodied flavor or they could be almost bitter. More modern winemakers are now producing Vernaccia paler in color with crisper characteristics. Vernaccia Nera is grown in Marche</description>
+  </grape>
+  <grape id="aa6fcde678f045d49bce1be92cc8c627">
+    <meta created="2012-11-09T15:17:42.098Z"/>
+    <name>Petite Vidure</name>
+    <description> An alias for Cabernet Sauvignon.</description>
+  </grape>
+  <grape id="443b73a8451e4acc9375d537043a95c0">
+    <meta created="2012-11-09T15:17:42.098Z"/>
+    <name>Viognier</name>
+    <description> White grape from the Rhone valley that is floral and fruity in taste.</description>
+  </grape>
+  <grape id="44562c8f62f9470fab873f133fece082">
+    <meta created="2012-11-09T15:17:42.098Z"/>
+    <name>Viura</name>
+    <description> White grape commonly blended with Malvasia in White Riojas.</description>
+  </grape>
+  <grape id="e623e2ef4b9c4624a520f020c5fd0a14">
+    <meta created="2012-11-09T15:17:42.098Z"/>
+    <name>Welschriesling</name>
+    <description> </description>
+  </grape>
+  <grape id="73998b84ff2a4a3ba31425318738530f">
+    <meta created="2012-11-09T15:17:42.098Z"/>
+    <name>Zinfandel</name>
+    <description> An important grape variety, also thought to be the variety once known as Black St. Peter in early 19th century California lore, currently grown in California and used to produce robust red wine as well as very popular "blush wines" called "white Zinfandel". Zinfandel is noted for the fruit-laden, berry-like aroma and prickly taste characteristics in its red version and pleasant strawberry reminders when made into a "blush" wine. While its origins are not clear it has been tentatively identified as the Primitivo (di Gioia), a grape species found in Apulia, southern Italy. According to a recent report this grape may also be identical to the Vranac grape found in Montenegro, the state that, combined with Serbia, constitutes what remains of the former Yugoslavia. Another, somewhat suspect, clone contender is the Plavac Mali from the coastal area known as Dalmatia, a province of Croatia also recently a part of the former Yugoslavia and located just across the Adriatic sea from the shores of Italian Apulia.</description>
+  </grape>
+</grapes>

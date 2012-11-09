@@ -2,8 +2,8 @@
 /* http://docs.angularjs.org/#!angular.service */
 
 // Declare app level module which depends on filters, and services
-var Cellar=angular.module('cellar', [ 'cellar.services', 'cellar.directives',
-                                     'SharedServices','cellar.auth']).
+var Cellar=angular.module('cellar', [ 'cellar.services', 'cellar.directives','Error',
+                                     'SharedServices','cellar.auth','flasher']).
 config(
 		[ '$routeProvider', function($routeProvider) {
 
@@ -11,8 +11,6 @@ config(
 				templateUrl : 'partials/wine-thumbs.xml',
 				controller: WineListCtrl	
 			})
-			// any route that doesn't match an available wine will result in an
-			// empty form, which can be used to add a new wine
 			.when('/wines/:wineId', {
 				templateUrl : 'partials/wine-details.xml',
 				controller : WineDetailCtrl
@@ -20,28 +18,30 @@ config(
 				templateUrl : 'partials/wine-list.xml',
 				controller : WineListCtrl
 			}).when('/users', {
-				templateUrl : 'partials/users.xml',controller: UserCtrl
+				templateUrl : 'partials/user-list.xml',controller: UserCtrl,permission:"*"
+			}).when('/users/:userid', {
+				templateUrl : 'partials/user-details.xml'
 			}).when('/welcome', {
 				templateUrl : 'partials/welcome.xml'			
 			}).when('/resources', {
-				templateUrl : 'partials/resources.xml'
+				templateUrl : 'partials/resources.xml',permission:"*"
 			}).when('/404', {
 				templateUrl : 'partials/404.xml'			
             }).otherwise({
 				redirectTo : '/wines'
 			});
 		}]).
-		run(function($rootScope, $location, Auth) {
+		run(function($rootScope, $location, Auth,Flash) {
   return $rootScope.$on('$routeChangeStart', function(event,next, current) {
-    if (!Auth.isAuthenticated() && next.$route && next.$route.templateUrl == 'partials/users.xml') {
+    if (!Auth.isAuthenticated() && next.$route && next.$route.permission) {
 	  Auth.setReturn($location.$$url);
-	  
+	//  Flash.add("warn","You must log in to access the page");
       return $location.path("/auth/login");
     }
   });
 });;
 // picture filter, use generic if not set		
-Cellar.filter('default', function() {
+Cellar.filter('winePic', function() {
 	return function(pic) {return pic ? pic : 'generic.jpg';}
 });		
 /* no hashbang within URLs for browers that support HTML5 history
@@ -51,10 +51,13 @@ Cellar.config(['$locationProvider', function($location) {
 */		
 // http://www.bennadel.com/blog/2424-Setting-Prototype-Properties-Using-Inherited-Scope-Methods-In-AngularJS.htm
 // Define our root-level controller for the application.
-Cellar.controller("AppController", function($scope,$location, $window,flash,Auth) {
-      $scope.username="";
-      $scope.loggedIn=false
+Cellar.controller("AppController", function($scope,$location, $window,Auth,Flash) {
       $scope.auth=Auth;
+	  // flash msgs... 
+	  $scope.alerts=[]; 
+	  $scope.$on('showflash', function(event) {
+		$scope.alerts=Flash.msgs();
+	  });
      // http://stackoverflow.com/questions/10713708/tracking-google-analytics-page-views-with-angular-js
 	  $scope.$on('$viewContentLoaded', function(event) {
 		$window._gaq.push(['_trackPageview', $location.path()]);
@@ -81,39 +84,5 @@ Cellar.controller("AppController", function($scope,$location, $window,flash,Auth
 		$scope.windowTitle = title+ " - " + appname;
 
 	};
-	 $scope.flash = flash;
 });
-
-
-//http://plnkr.co/edit/3n8m1X?p=preview
-Cellar.factory("flash", function($rootScope,$location) {
-	  var queue = []
-      var lasturl=""  //routeChangeSuccess called twice???
-	  var showFlash=function(){
-	    var ascope=angular.element("#alerts").scope()
-		ascope.clear();
-		for(var i = 0, len = queue.length; i < len; ++i){
-			var a=queue[i]
-			ascope.addAlert(a.type,a.msg);
-		}
-		queue = []
-	  };
-	  	$rootScope.$on('event:flash', function(event,msg) {
-		  queue.push(msg);
-		  $rootScope.$apply(showFlash);        
-        });
-	  $rootScope.$on('$routeChangeSuccess', function($currentRoute, $previousRoute ) {
-	    //console.log("routeChangeSuccess: ",queue.length,$location.$$absUrl )
-		if(lasturl==$location.$$absUrl)return;
-		lasturl=$location.$$absUrl;
-		showFlash();
-	  });
-	  
-	  return {
-	    set: function(type,message) {
-		  console.log("flash set")
-	      queue.push({type:type,msg:message});
-	    }
-	  };
-	});
 

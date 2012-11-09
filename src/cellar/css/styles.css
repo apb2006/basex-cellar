@@ -22,16 +22,12 @@ body {
     padding-left: 30px;
 }
 .ng-cloak { display: none; }
-.winelist {
-	
-	padding-left:20px;
-	padding-top:20px;
-}
+
 .winelist li {
 	background-color:white;
 }
 .wine-name {
-	  height: 40px;
+	  height: 20px;
 }
 a.plain:link
 { color: #333; text-decoration: none }

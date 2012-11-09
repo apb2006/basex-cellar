@@ -41,29 +41,40 @@ function users() {
 :)
 declare
 %rest:path("cellar/auth/login")
-%rest:form-param("username", "{$username}" )
-%rest:form-param("password", "{$password}" )
+%rest:POST("{$body}")  
 %output:method("json")
-updating function login-post($username as xs:string,$password as xs:string)
+updating function login-post($body)
 {
- let $u:=users:check-password($auth:userdb,$username,$password)
+ let $json:=$body/json 
+ let $u:=users:check-password($auth:userdb,$json/username,$json/password)
+ let $json:=session-user($u)
  return 
-     if($u)
-     then
-	    let $json:= <json  objects="json">
-		              <rc>0</rc>
-		              <id>{$u/@id/fn:string()}</id>
-					  <name>{$u/@name/fn:string()}</name>
-					  <role>{$u/login/@role/fn:string()}</role>
-				</json>
-        return (
+     if($u) then
+         (
 		   users:update-stats($auth:userdb,$u/@id), 
 			db:output((
                 session:set("uid", $u/@id/fn:string()),
                 $json ))
 				)
      else
-	  db:output(<json  objects="json"><rc>1</rc></json>)
+	  db:output($json)
+};
+
+(:~
+:  session info for user
+:)
+declare function session-user($u as element(user)?){
+	if($u) then
+		 <json  objects="json">
+				  <rc>0</rc>
+				  <id>{$u/@id/fn:string()}</id>
+				  <name>{$u/@name/fn:string()}</name>
+				  <role>{$u/login/@role/fn:string()}</role>
+			</json>
+	else
+		 <json  objects="json">
+				  <rc>1</rc>
+			</json>
 };
 
 declare
@@ -77,12 +88,14 @@ declare
 
 declare 
 %rest:path("cellar/auth/register") 
-%rest:form-param("username", "{$username}" )
-%rest:form-param("password", "{$password}" )
+%rest:POST("{$body}")  
 %output:method("json")
-updating function register-post($username as xs:string,$password as xs:string)
+updating function register-post($body)
 {
-    if(users:find-name($auth:userdb,$username))
+    let $json:=$body/json
+    let $username as xs:string:=  $json/username
+	let $password as xs:string:=  $json/password
+    return if(users:find-name($auth:userdb,$username))
     then 
         let $t:= "The name '" || $username || "' is already registered, please choose different name."
        
@@ -106,7 +119,9 @@ declare
 %rest:GET %rest:path("cellar/auth/session")
 %output:method("json")
 function session(){
- <json  objects="json"><uid>{session:get("uid")}</uid></json>
+ let $uid:=session:get("uid")
+ let $u:=users:find-id($auth:userdb,$uid)
+ return session-user($u) 
 };
 
 declare

@@ -36,7 +36,7 @@
 		</div>
 		<div class="span4">
 			<label>Last updated:</label> <input id="idInput" type="text"
-				ng:model="wine.changed" disabled="disabled" />
+				ng:model="wine.modified" disabled="disabled" />
 		</div>
 	</div>
 	<div class="form-actions">

@@ -13,7 +13,6 @@ angular.module('cellar.services', ['ngResource']).
 			         
 				}),
 			/*
-			* A generic function that can be called to emit an event on one ctrl that can be handled by another ctrl.
 			* The WineDetailCtrl emits it on each save, update or delete request, so that the WineListCtrl can react and update itself.	
 			*/
 			broadcastChange: function(){
@@ -22,6 +21,23 @@ angular.module('cellar.services', ['ngResource']).
 
 		}
 	}]).
+	 factory('Grape', ['$resource', '$http', '$rootScope', function($resource, $http, $rootScope){
+	        return {
+	        	//the resource provider interacting with the BaseX backend
+		        api: 
+					$resource('../restxq/cellar/api/grapes/:grapeId', {}, {
+				        update: {method:'PUT'}
+					}),
+				
+				/*
+				* The WineDetailCtrl emits it on each save, update or delete request, so that the WineListCtrl can react and update itself.	
+				*/
+				broadcastChange: function(){
+					$rootScope.$broadcast('wine:change');
+				}
+
+			}
+		}]).
 	 factory('User', ['$resource', '$http', '$rootScope', function($resource, $http, $rootScope){
         return {
         	//the resource provider interacting with the BaseX backend

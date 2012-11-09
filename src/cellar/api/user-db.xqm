@@ -19,9 +19,9 @@ declare function find-name($userDb,$username as xs:string)
     $userDb/users/user[@name=$username]
 };
 
-declare function find-id($userDb,$id as xs:string?)
+declare function find-id($userDb,$id as xs:string?) as element(user)?
 {
-    $userDb/users/user[@id=$id]
+    if($id) then $userDb/users/user[@id=$id] else ()
 };
 
 (:~
@@ -29,7 +29,7 @@ declare function find-id($userDb,$id as xs:string?)
 :)
 declare function check-password($userDb,
                                 $username as xs:string,
-                                $password as xs:string)
+                                $password as xs:string)  as element(user)?
 {
     $userDb/users/user[@name=$username and login/@password=hash:md5($password) ]
 };
