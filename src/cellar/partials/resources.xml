@@ -8,4 +8,11 @@
 		<li><a href="http://basex.org/">BaseX</a></li>
 	</ul>
 	<p>The list of Grapes comes from <a href="http://www.bryny.com/grapes.htm">here</a></p> 
+	<h2>Data</h2>
+	<ul>
+	<li><a href="../restxq/cellar/api/xml?doc=grapes.xml">Grapes</a></li>
+	<li><a href="../restxq/cellar/api/xml?doc=wines.xml">Wines</a></li>
+	<li><a href="../restxq/cellar/api/xml?doc=users.xml">Users</a></li>
+	<li><a href="../restxq/cellar/api/xml?doc=github.xml">Github</a></li>
+	</ul>
 </div>

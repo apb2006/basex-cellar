@@ -12,7 +12,7 @@ function UserCtrl(Flash,User, $location, $scope) {
 UserCtrl.$inject = ['Flash','User', '$location', '$scope'];
 
 
-
+//---------------------------------------------------------------
 function WineListCtrl(Flash,Wine, $location, $filter,$scope) {
 
     $scope.wines = Wine.api.query({},
@@ -72,8 +72,68 @@ function WineListCtrl(Flash,Wine, $location, $filter,$scope) {
 
 }
 WineListCtrl.$inject = ['Flash','Wine', '$location', '$filter','$scope'];
+//---------------------------------------------------------------
+function GrapeListCtrl(Flash,Grape, $location, $filter,$scope) {
 
+    $scope.grapes = Grape.api.query({},
+		    		function(){},
+			        function(res){
+		    			alert("Big problem: "+res.data);
+		    			console.log(res);
+				        Flash.add("error","Bad news!!! ");
+				        $location.path("/");
+				     });
+					
+    $scope.query="";
+	
+	// sorting..
+	 $scope.head = [
+        {head: "Name", column: "name"},
+        {head: "Created", column: "created"},
+        {head: "Year", column: "year"},
+		{head: "Updated", column: "modified"},
+		];
+	$scope.sort = { column: 'name', descending: false};
+	
+    $scope.selectedCls = function(column) {
+	    if(column == $scope.sort.column){
+			return $scope.sort.descending?"icon-arrow-up":"icon-arrow-down"
+		}else{
+			return "icon-"
+		}		 
+    };
+    $scope.activeCls = function(column) {
+	    return (column == $scope.sort.column)?"active":""
+    };
+    $scope.changeSorting = function(column) {
+        var sort = $scope.sort;
+        if (sort.column == column) {
+            sort.descending = !sort.descending;
+        } else {
+            sort.column = column;
+            sort.descending = false;
+        }
+    };
+    $scope.submit = function() {
+		$scope.grapes = Grape.api.query({q:$scope.q},
+				function(){},
+		        function(res){
+		            Flash.add("error","Item not found: ");
+		            $location.path("/wines");
+                 });
+		console.log("search");
+		$location.path("/grapes");
+	};
+	
+    $scope.$on('wine:change', function() {
+	    console.log('wine:change');
+        $scope.wines = Wine.api.query(); 
+    });   
 
+}
+GrapeListCtrl.$inject = ['Flash','Grape', '$location', '$filter','$scope'];
+
+//-------------------------------------------------------------
 function WineDetailCtrl(Wine,Flash, $routeParams, $location, $scope) {
 	
     $scope.wine = Wine.api.get({wineId: $routeParams.wineId},function(){},

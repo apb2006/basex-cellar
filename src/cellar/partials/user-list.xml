@@ -1,14 +1,14 @@
-<div class="row-fluid" data-ng-init="setWindowTitle('Users')" > 
-<h2>Users</h2>
-<ul class="media-list">
-	<li class="media thumbnail" data-ng-repeat="user in users">
+<div class="row-fluid" data-ng-init="setWindowTitle('Users')">
+	<h2>Users</h2>
+	<ul class="media-list">
+		<li class="media thumbnail" data-ng-repeat="user in users">
 			<a href="#/users/{{  user.id }}" class="pull-left">
-			 <img class="media-object" src="http://placehold.it/64x64"/>
-            </a>
+				<img class="media-object img-circle" src="pics/user1.png" />
+			</a>
 			<div class="media-body">
-              <h4 class="media-heading">{{ user.name }}</h4>
-			  <div>The id is: {{ user.id }}</div>
-			 </div>
-	</li>		
-</ul>
+				<h4 class="media-heading">{{ user.name }}</h4>
+				<div>The id is: {{ user.id }}</div>
+			</div>
+		</li>
+	</ul>
 </div>

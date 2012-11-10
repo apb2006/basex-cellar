@@ -9,15 +9,20 @@ declare default function namespace 'apb.auth.app';
 
 import module namespace web = 'apb.web.utils2' at "webutils.xqm";
 import module namespace users = 'apb.users.app' at "user-db.xqm";
-import module namespace github = 'http://developer.github.com/v3/oauth/' at "oauth-github.xqm";
+
+import module namespace github = 'http://developer.github.com/v3/oauth/' at "github-oauth.xqm";
+import module namespace github-db = 'apb.github.db' at "github-db.xqm";
+
 import module namespace session ="http://basex.org/modules/session";
 declare namespace rest = 'http://exquery.org/ns/restxq';
 
 
 declare variable $auth:userdb:=db:open('cellar',"users.xml");							
-                            
+declare variable $auth:gitdb:=db:open('cellar',"github.xml"); 
+                           
 (:~
-: return users auth required
+: return users 
+: auth required
 :)
 declare
 %rest:GET %rest:path("cellar/api/users")  
@@ -139,8 +144,15 @@ declare
 %rest:form-param("code","{$code}")  
 %rest:form-param("state","{$state}")  
 function login($code,$state) {
-   let $token:= github:login($code,"")
+   let $token:= github:get-access-token($code,"")
    return if($token)
-          then github:user($token)
-          else <fail></fail>
+          then 
+            let $gitprofile:=github:user($token)
+            let $login:=$gitprofile/json/login/fn:string()
+            let $gu:=github-db:find-name($auth:gitdb,$login)
+            
+            return if($gu) then $gu/@id/fn:string()
+                   else <notfound></notfound>
+           else
+               <login>fail</login>
 };

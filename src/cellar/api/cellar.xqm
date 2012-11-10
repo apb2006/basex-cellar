@@ -11,7 +11,8 @@ import module namespace web = 'apb.web.utils2' at "webutils.xqm";
 declare namespace rest = 'http://exquery.org/ns/restxq';
 declare namespace random = 'http://basex.org/modules/random';
 
-declare variable $cellar:wines:=db:open("cellar","wines.xml")/wines; 
+declare variable $cellar:wines:=db:open("cellar","wines.xml")/wines;
+declare variable $cellar:grapes:=db:open("cellar","grapes.xml")/grapes;  
 declare variable $cellar:baseuri:="/restxq/cellar/api/wines/";
 
 (:~
@@ -81,7 +82,8 @@ function get-wine($id) {
     return if($wine) then
 				<json  objects="json " numbers="year" >
                     <id>{$wine/@id/fn:string()}</id>
-                    <modified>{$wine/meta/@changed/fn:string()}</modified>
+                    <created>{$wine/meta/@created/fn:string()}</created>
+                    <modified>{$wine/meta/@modified/fn:string()}</modified>
                     {$wine/* except $wine/meta}
                 </json>
 			else 
@@ -90,7 +92,7 @@ function get-wine($id) {
 
 (:~
 : update details for wine with id
-: @changed timestamp used to detect lost update errors
+: @modified timestamp used to detect lost update errors
 :)
 declare
 %rest:PUT("{$body}") %rest:path("cellar/api/wines/{$id}")  
@@ -102,12 +104,12 @@ updating function put-wine($id,$body) {
            let $new:=  <wine id="{$old/@id}">
                         <meta created="{$old/meta/@created}"
                         modified="{fn:current-dateTime()}"/>
-                        {$items/* except $items/modified, $items/created,$items/id} 
+                        {$items/* except ($items/modified, $items/created,$items/id)} 
                         </wine>
            return              
-               if($items/modified=$old/meta/@changed/fn:string() or fn:not($old/meta/@changed))
+               if($items/modified=$old/meta/@modified/fn:string() or fn:not($old/meta/@modified))
                then (replace node $old with $new, db:output($body))
-               else db:output( web:status(403,"data changed"))
+               else db:output( web:status(403,"data modified"))
          else 
 			db:output(web:status(404,"Not found: " || $id))
 };
@@ -126,6 +128,36 @@ updating function delete-wine($id) {
                         </json>
               return (delete node  $wine,db:output($w))
          else db:output(web:status(404,"Not found: " || $id))
+};
+
+(:~
+: return name and id for all grapes as json
+:)
+declare
+%rest:GET %rest:path("cellar/api/grapes")  
+%output:method("json")
+function grapes() {
+  <json arrays="json" objects="grape">
+    {for $grape in $cellar:grapes/grape
+    order by fn:upper-case($grape/name)
+    return <grape>
+       <id>{$grape/@id/fn:string()}</id>
+       <created>{$grape/meta/@created/fn:string()}</created>
+       {$grape/name,
+       $grape/description}
+       </grape>}
+  </json>
+};
+
+(:~
+: return xml source
+:)
+declare
+%rest:GET %rest:path("cellar/api/xml") 
+%restxq:query-param("doc", "{$doc}") 
+%output:method("xml")
+function xml($doc) {
+  db:open("cellar",$doc)
 };
 
 (:~

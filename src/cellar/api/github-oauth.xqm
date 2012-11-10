@@ -28,7 +28,7 @@ declare variable $github:Client-Secret:=$github:config/github/Client-Secret;
 :    Optional string 
 : http://developer.github.com/v3/oauth/
 :)
-declare function login($code  as xs:string,
+declare function get-access-token($code  as xs:string,
                        $redirect_uri  as xs:string){
     let $p:=map{"client_id":=$github:Client-Id,
                 "client_secret" := $github:Client-Secret,

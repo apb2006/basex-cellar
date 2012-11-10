@@ -1,5 +1,5 @@
 <wines>
-	<wine id="e99be012-969f-40d8-bbbf-2635522d80f6">
+	<wine id="e99be012969f40d8bbbf2635522d80f6">
 		<meta created="2012-01-01T22:33:19.111Z" />
 		<name>BLOCK NINE</name>
 		<year>2009</year>
@@ -12,7 +12,7 @@
 		</description>
 		<picture>block_nine.jpg</picture>
 	</wine>
-	<wine id="0f3b922a-aa72-4b74-afd4-26bdfbd0fdde">
+	<wine id="0f3b922aaa724b74afd426bdfbd0fdde">
 		<meta created="2012-01-01T22:33:19.111Z" />
 		<name>BODEGA LURTON</name>
 		<year>2011</year>
@@ -23,7 +23,7 @@
 			make this wine an easy pour for varied palates.</description>
 		<picture>bodega_lurton.jpg</picture>
 	</wine>
-	<wine id="1b08f290-5428-4f6b-8d82-e44900ff7659">
+	<wine id="1b08f2905428-4f6b-8d82-e44900ff7659">
 		<meta created="2012-01-01T22:33:19.111Z" modified="2012-10-30T21:01:16.877Z" />
 		<name>CHATEAU DE SAINT COSME</name>
 		<year>2009</year>

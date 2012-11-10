@@ -17,6 +17,9 @@ config(
 			}).when('/list', {
 				templateUrl : 'partials/wine-list.xml',
 				controller : WineListCtrl
+			}).when('/grapes', {
+				templateUrl : 'partials/grape-list.xml',
+				controller : GrapeListCtrl	
 			}).when('/users', {
 				templateUrl : 'partials/user-list.xml',controller: UserCtrl,permission:"*"
 			}).when('/users/:userid', {
