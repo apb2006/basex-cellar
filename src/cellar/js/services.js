@@ -17,7 +17,13 @@ angular.module('cellar.services', ['ngResource']).
 			*/
 			broadcastChange: function(){
 				$rootScope.$broadcast('wine:change');
-			}
+			},
+			countries:["France",
+	                     "Spain",
+	                     "Usa",
+	                     "Italy",
+	                     "Greece"
+	                      ]
 
 		}
 	}]).

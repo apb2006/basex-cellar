@@ -27,7 +27,7 @@
 				<div class="bar" style="width: 100%;"> Please wait... </div>
      </div>
 	 <div  style="margin:0px 10px;" id="alerts">
-      <div ng-repeat="alert in alerts">
+      <div ng:repeat="alert in alerts">
           <div class="alert alert-{{alert.type}}"  >
          <button type="button" class="close" data-dismiss="alert">×</button>
              {{alert.msg}}

@@ -19,13 +19,19 @@ config(
 				controller : WineListCtrl
 			}).when('/grapes', {
 				templateUrl : 'partials/grape-list.xml',
-				controller : GrapeListCtrl	
+				controller : GrapeListCtrl
+			}).when('/search', {
+				templateUrl : 'partials/search.xml'
 			}).when('/users', {
-				templateUrl : 'partials/user-list.xml',controller: UserCtrl,permission:"*"
-			}).when('/users/:userid', {
-				templateUrl : 'partials/user-details.xml'
-			}).when('/welcome', {
-				templateUrl : 'partials/welcome.xml'			
+				templateUrl : 'partials/user-list.xml',permission:"*",
+				controller : UserCtrl
+			}).when('/users/:userId', {
+				templateUrl : 'partials/user-details.xml',permission:"*",
+				controller : UserDetailCtrl	
+			}).when('/tasks', {
+				templateUrl : 'partials/tasks.xml',permission:"admin"
+			}).when('/about', {
+				templateUrl : 'partials/about.xml'			
 			}).when('/resources', {
 				templateUrl : 'partials/resources.xml',permission:"*"
 			}).when('/404', {
@@ -46,7 +52,14 @@ config(
 // picture filter, use generic if not set		
 Cellar.filter('winePic', function() {
 	return function(pic) {return pic ? pic : 'generic.jpg';}
-});		
+});
+// e.g {{dateISO | moment:'M/D/YYYY h:m A'}}
+Cellar.filter('moment', function() {
+    return function(dateString, format) {return moment(dateString).format(format);}
+});
+Cellar.filter('fromNow', function() {
+    return function(dateString) {return moment(dateString).fromNow();}
+});
 /* no hashbang within URLs for browers that support HTML5 history
 Cellar.config(['$locationProvider', function($location) {
   $location.html5Mode(true); 

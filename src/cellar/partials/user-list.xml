@@ -1,6 +1,6 @@
 <div class="row-fluid" data-ng-init="setWindowTitle('Users')">
 	<h2>Users</h2>
-	<ul class="media-list">
+	<ul class="media-list winelist">
 		<li class="media thumbnail" data-ng-repeat="user in users">
 			<a href="#/users/{{  user.id }}" class="pull-left">
 				<img class="media-object img-circle" src="pics/user1.png" />

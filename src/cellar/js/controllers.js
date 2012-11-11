@@ -1,20 +1,15 @@
-function UserCtrl(Flash,User, $location, $scope) {
-    $scope.users = User.api.query({},
-		    		function(){},
-			        function(res){
-		    			alert("Big problem: "+res.data);
-		    			console.log(res);
-				        Flash.add("error","Bad news!!! ");
-				        $location.path("/");
-				     })
-
+function UserCtrl(User,$scope){
+	$scope.users= User.api.query();
 };
-UserCtrl.$inject = ['Flash','User', '$location', '$scope'];
+UserCtrl.$inject = ['User', '$scope'];
 
+function UserDetailCtrl(User, $location, $scope) {
+	$scope.user = User.api.get({userId: $routeParams.userId});
+};
+UserDetailCtrl.$inject = ['User', '$scope'];
 
 //---------------------------------------------------------------
 function WineListCtrl(Flash,Wine, $location, $filter,$scope) {
-
     $scope.wines = Wine.api.query({},
 		    		function(){},
 			        function(res){
@@ -187,7 +182,15 @@ function WineDetailCtrl(Wine,Flash, $routeParams, $location, $scope) {
         	alert("error:"+res.data)
         });
     	}
-    }
+    };
+    $scope.countries=Wine.countries;
 }
 WineDetailCtrl.$inject = ['Wine', 'Flash','$routeParams', '$location', '$scope'];
-
+//------------------------------------------
+function SearchCtrl( $location,$scope) {
+	$scope.q=null;
+	$scope.submit=function(){
+		$location.path("/search");
+	};
+};
+SearchCtrl.$inject = [ '$location','$scope'];
