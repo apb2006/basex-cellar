@@ -1,6 +1,6 @@
 <form xmlns:ng="http://angularjs.org" name="myForm"
 	ng:init="setWindowTitle('Add or edit a wine')">
-	<div class="row-fluid form-inline">
+	<div class="row-fluid form-inline" data-ng-show="wine.id">
 		
 		<label>Created:</label>
 		<input id="idCreated" type="hidden" ng:model="wine.created"

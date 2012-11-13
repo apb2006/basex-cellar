@@ -19,7 +19,9 @@ angular.module('cellar.auth', [])
             })
 		}])
 
-.factory('Auth', ['Flash','$http','$rootScope',function(Flash,$http,$rootScope) {
+.factory('Auth', ['Flash','$http','$rootScope','$location',
+                  function(Flash,$http,$rootScope,$location) {
+  console.log("Auth created")
   var _this = this;
   this.authenticated = false;
   this.name = null;
@@ -71,11 +73,12 @@ angular.module('cellar.auth', [])
 			 })
     },
     logout: function(callback) {
-    	alert("logout")
       if (_this.authenticated) {
         return $http.post('../restxq/cellar/auth/logout', {}).success(function(data) {
           if (data.rc==0) {
             _this.authenticated = false;
+			Flash.add("success","You are now logged out");
+			$location.path("/");
           }
           return callback(true);
   
@@ -92,6 +95,7 @@ angular.module('cellar.auth', [])
 }}]);
 
 function AuthController(Flash,Auth, $location,$scope,$rootScope) {
+  console.log("AuthController created")	
   $scope.auth={username:"",password:""};
   $scope.login = function() {
      // alert("hh");

@@ -68,6 +68,16 @@ declare updating function create($userDb,
 };
 
 (:~
+: delete user
+:)
+declare updating function delete($userDb,
+                              $id as xs:string)
+{    
+   
+    delete node $userDb/users/user[@id=$id]
+};
+
+(:~
 : update login stats
 :)
 declare updating function update-stats($userDb,$uid as xs:string)                           

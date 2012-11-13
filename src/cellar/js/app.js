@@ -19,9 +19,9 @@ config(
 				controller : WineListCtrl
 			}).when('/grapes', {
 				templateUrl : 'partials/grape-list.xml',
-				controller : GrapeListCtrl
+				controller : "GrapeListCtrl"
 			}).when('/search', {
-				templateUrl : 'partials/search.xml'
+				templateUrl : 'partials/search.xml',controller :"SearchCtrl"
 			}).when('/users', {
 				templateUrl : 'partials/user-list.xml',permission:"*",
 				controller : UserCtrl
@@ -69,6 +69,10 @@ Cellar.config(['$locationProvider', function($location) {
 // Define our root-level controller for the application.
 Cellar.controller("AppController", function($scope,$location, $window,Auth,Flash) {
       $scope.auth=Auth;
+      $scope.q=null;
+      $scope.doSearch=function(){
+    	  $location.path("/search").search({q: $scope.q});
+      };
 	  // flash msgs... 
 	  $scope.alerts=[]; 
 	  $scope.$on('showflash', function(event) {

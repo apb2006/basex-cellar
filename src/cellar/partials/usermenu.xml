@@ -19,7 +19,7 @@
 				</li>
 				<li class="divider"></li>
 				<li>
-				<a href="#/auth/logout"><i class="icon-off"></i> Sign out</a>
+				<a  ng-click="auth.logout()"><i class="icon-off"></i> Sign out</a>
 				</li>
 
 			</ul>

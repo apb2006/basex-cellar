@@ -187,10 +187,10 @@ function WineDetailCtrl(Wine,Flash, $routeParams, $location, $scope) {
 }
 WineDetailCtrl.$inject = ['Wine', 'Flash','$routeParams', '$location', '$scope'];
 //------------------------------------------
-function SearchCtrl( $location,$scope) {
-	$scope.q=null;
+function SearchCtrl( $location,$scope,$routeParams){
+    $scope.q=$routeParams.q;
 	$scope.submit=function(){
 		$location.path("/search");
 	};
 };
-SearchCtrl.$inject = [ '$location','$scope'];
+SearchCtrl.$inject = [ '$location','$scope','$routeParams'];
