@@ -83,6 +83,7 @@ factory(
 						}
 
 					}
-				} ]).factory('Search', [ '$http', function($http) {
-	return {}
+				} ]).factory('Search', ['$resource','$http', function($resource,$http) {
+				     return {api : $resource('../restxq/cellar/api/search?q=:q')}
+	
 } ])

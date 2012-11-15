@@ -186,11 +186,14 @@ function WineDetailCtrl(Wine,Flash, $routeParams, $location, $scope) {
     $scope.countries=Wine.countries;
 }
 WineDetailCtrl.$inject = ['Wine', 'Flash','$routeParams', '$location', '$scope'];
+
 //------------------------------------------
-function SearchCtrl( $location,$scope,$routeParams){
+function SearchCtrl(Search, $location,$scope,$routeParams){
     $scope.q=$routeParams.q;
+	$scope.results=Search.api.get({q:$scope.q});
 	$scope.submit=function(){
 		$location.path("/search");
+		
 	};
 };
-SearchCtrl.$inject = [ '$location','$scope','$routeParams'];
+SearchCtrl.$inject = [ 'Search', '$location','$scope','$routeParams'];

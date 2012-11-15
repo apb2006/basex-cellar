@@ -8,6 +8,18 @@ module namespace web = 'apb.web.utils2';
 declare default function namespace 'apb.web.utils2'; 
 
 declare namespace rest = 'http://exquery.org/ns/restxq';
+import module namespace session ="http://basex.org/modules/session";
+
+(:~
+: execute function fn if session has loggedin user with matching role else 401
+:)
+declare function role-check($role as xs:string,$fn){
+  let $uid:=session:get("uid")
+  return if($uid) then
+        $fn()
+         else http-auth("Whizz apb auth",())
+};
+
 
 declare function status($code,$reason){
    <rest:response>            

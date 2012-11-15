@@ -19,8 +19,8 @@ angular.module('cellar.auth', [])
             })
 		}])
 
-.factory('Auth', ['Flash','$http','$rootScope','$location',
-                  function(Flash,$http,$rootScope,$location) {
+.factory('Auth', ['Flash','$http','$route','$location',
+                  function(Flash,$http,$route,$location) {
   console.log("Auth created")
   var _this = this;
   this.authenticated = false;
@@ -78,7 +78,8 @@ angular.module('cellar.auth', [])
           if (data.rc==0) {
             _this.authenticated = false;
 			Flash.add("success","You are now logged out");
-			$location.path("/");
+			$location.path("/")
+			//$route.reload();
           }
           return callback(true);
   

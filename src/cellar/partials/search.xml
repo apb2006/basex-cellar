@@ -1,3 +1,8 @@
 <div  >
-No search results YET {{q}}
+search results YET {{q}} found:{{results.length}}
+<ul>
+<li data-ng-repeat="result in results">
+{{result.score}}
+</li>
+</ul>
 </div>

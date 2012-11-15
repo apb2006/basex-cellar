@@ -21,24 +21,22 @@ declare variable $auth:userdb:=db:open('cellar',"users.xml");
 declare variable $auth:gitdb:=db:open('cellar',"github.xml"); 
                            
 (:~
-: return users 
+: return all users as json if this session is for admin
 : auth required
 :)
 declare
 %rest:GET %rest:path("cellar/api/users")  
 %output:method("json")
 function users() {
-   let $uid:=session:get("uid")
-   return if($uid)
-		  then  <json arrays="json" objects="user">
+   web:role-check("admin",function(){
+       <json arrays="json" objects="user">
 		      {for $u in db:open('cellar',"users.xml")/users/user
 			  return <user>
 			      <id>{$u/@id/fn:string()}</id>
 				  <name>{$u/@name/fn:string()}</name>
 				  </user>}
-		  </json>
-          else web:http-auth("Whizz apb auth",())
-};
+		</json>}   
+)};
 
 (:~
 : login 

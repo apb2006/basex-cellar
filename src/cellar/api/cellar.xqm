@@ -91,6 +91,24 @@ function get-wine($id) {
 };
 
 (:~
+: full details for wines with id as json
+:)
+declare
+%rest:GET %rest:path("cellar/api/search")
+%rest:query-param("q", "{$q}")  
+%output:method("json")
+function search($q as xs:string){
+let $res:=for $wine in $cellar:wines/wine 
+let score $s:= $wine/description contains text ({$q} weight{1}) 
+						  or  $wine/name contains text ({$q} weight{4}) using fuzzy
+			   where $s gt 0           
+			   order by $s descending
+			   return  <hit><score>{fn:round(20 * $s)}</score>
+			                {$wine/name}
+                  </hit>							
+return <json arrays="json" objects="hit">{$res}</json>
+};
+(:~
 : update details for wine with id
 : @modified timestamp used to detect lost update errors
 :)
