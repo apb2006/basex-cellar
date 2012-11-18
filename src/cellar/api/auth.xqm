@@ -95,7 +95,7 @@ declare
 %output:method("json")
 updating function register-post($body)
 {
-    let $json:=fn:trace($body/json,"register")
+    let $json:=$body/json
     let $username as xs:string:=  $json/username/fn:string()
 	let $password as xs:string:=  $json/password/fn:string()
     return if(users:find-name($auth:userdb,$username))
@@ -107,7 +107,7 @@ updating function register-post($body)
                          ))
     else
         let $t:=$username || " your registration was successful. " 
-        let $uid:=users:next-id($auth:userdb)/fn:string()                 
+        let $uid:=fn:string(users:next-id($auth:userdb))                 
         return (
             users:create($auth:userdb,$username,$password),
             
@@ -135,23 +135,22 @@ function github(){
 };
 
 (:~
-: login
+: github login callback
 : http://developer.github.com/v3/oauth/
 :)
 declare
 %rest:GET %rest:path("cellar/auth/github/callback")
 %rest:form-param("code","{$code}")  
 %rest:form-param("state","{$state}")  
-function login($code,$state) {
+updating function login-github($code,$state) {
    let $token:= github:get-access-token($code,"")
-   return if($token)
-          then 
+   return if($token) then 
             let $gitprofile:=github:user($token)
-            let $login:=$gitprofile/json/login/fn:string()
-            let $gu:=github-db:find-name($auth:gitdb,$login)
-            
-            return if($gu) then $gu/@id/fn:string()
-                   else <notfound></notfound>
+            let $login:=$gitprofile/json/login/fn:string()            
+            return (
+            github-db:ensure($auth:gitdb,$login,$gitprofile),
+               db:output(<login>not yet</login>)
+               )
            else
-               <login>fail</login>
+               db:output(<login>not approved</login>)
 };
