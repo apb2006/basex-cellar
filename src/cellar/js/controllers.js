@@ -13,7 +13,7 @@ function WineListCtrl(Flash,Wine, $location, $filter,$scope) {
     $scope.wines = Wine.api.query({},
 		    		function(){},
 			        function(res){
-		    			alert("Big problem: "+res.data);
+		    			//alert("Big problem: "+res.data);
 		    			console.log(res);
 				        Flash.add("error","Bad news!!! ");
 				        $location.path("/");
@@ -73,7 +73,7 @@ function GrapeListCtrl(Flash,Grape, $location, $filter,$scope) {
     $scope.grapes = Grape.api.query({},
 		    		function(){},
 			        function(res){
-		    			alert("Big problem: "+res.data);
+		    			
 		    			console.log(res);
 				        Flash.add("error","Bad news!!! ");
 				        $location.path("/");
@@ -197,3 +197,20 @@ function SearchCtrl(Search, $location,$scope,$routeParams){
 	};
 };
 SearchCtrl.$inject = [ 'Search', '$location','$scope','$routeParams'];
+
+//------------------------------------------
+function ErrorCtrl($scope,$location){
+    $scope.err='no error logged';
+    $scope.logError=function (data){
+    	 $scope.err=data;
+    	 alert($scope.err)
+    	// $location.path("/error");
+    }
+};
+ErrorCtrl.$inject = [ '$scope','$location'];
+
+//------------------------------------------
+function BottleCtrl($scope){
+ console.log("bottleCtrl")
+};
+BottleCtrl.$inject = [ '$scope'];

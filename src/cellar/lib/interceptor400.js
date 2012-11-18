@@ -5,7 +5,8 @@ angular.module('Error', [])
         $httpProvider.responseInterceptors.push('Interceptor400');
     })
 // register the interceptor as a service, intercepts ALL angular ajax http calls
-    .factory('Interceptor400', function ($q, $window) {
+    .factory('Interceptor400',['$q','$location', function ($q,$location) {
+    	var err="no error detected";
         return function (promise) {
             return promise.then(function (response) {
                 return response;
@@ -18,10 +19,13 @@ angular.module('Error', [])
                     config:response.config,
                     deferred:deferred
                 }
+                err=response.data
+                $location.path("/error")
                 alert("Error (code=400) : "+ response.data);
+               // ErrorCtrl.logError(response.data);
             }
             // otherwise
             return $q.reject(response);
             });
         };
-    })	
+    }])	

@@ -11,6 +11,7 @@ config(
 				templateUrl : 'partials/wine-thumbs.xml',
 				controller: WineListCtrl	
 			})
+			.when('/',{redirectTo : '/wines'})
 			.when('/wines/:wineId', {
 				templateUrl : 'partials/wine-details.xml',
 				controller : WineDetailCtrl
@@ -20,6 +21,9 @@ config(
 			}).when('/grapes', {
 				templateUrl : 'partials/grape-list.xml',
 				controller : "GrapeListCtrl"
+			}).when('/bottles', {
+				templateUrl : 'partials/bottles.xml',
+				controller : "BottleCtrl"		
 			}).when('/search', {
 				templateUrl : 'partials/search.xml',controller :"SearchCtrl"
 			}).when('/users', {
@@ -35,9 +39,11 @@ config(
 			}).when('/resources', {
 				templateUrl : 'partials/resources.xml',permission:"*"
 			}).when('/404', {
-				templateUrl : 'partials/404.xml'			
+				templateUrl : 'partials/404.xml'
+			}).when('/error', {
+				templateUrl : 'partials/error.xml'		
             }).otherwise({
-				redirectTo : '/wines'
+				redirectTo : '/404'
 			});
 		}]).
 		run(function($rootScope, $location, Auth,Flash) {
@@ -48,10 +54,10 @@ config(
       return $location.path("/auth/login");
     }
   });
-});;
+});
 // picture filter, use generic if not set		
 Cellar.filter('winePic', function() {
-	return function(pic) {return pic ? pic : 'generic.jpg';}
+	return function(pic) {return pic ? "pics/bottles/"+pic : 'pics/generic.jpg';}
 });
 // e.g {{dateISO | moment:'M/D/YYYY h:m A'}}
 Cellar.filter('moment', function() {

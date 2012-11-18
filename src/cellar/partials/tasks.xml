@@ -1,3 +1,7 @@
 <div  >
-admin tasks
+admin tasks TBD
+<ul>
+<li><a href="../restxq/cellar/api/xml?doc=users.xml">Users</a></li>
+<li><a href="../restxq/cellar/api/xml?doc=github.xml">Github</a></li>
+</ul>
 </div>

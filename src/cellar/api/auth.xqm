@@ -95,26 +95,27 @@ declare
 %output:method("json")
 updating function register-post($body)
 {
-    let $json:=$body/json
-    let $username as xs:string:=  $json/username
-	let $password as xs:string:=  $json/password
+    let $json:=fn:trace($body/json,"register")
+    let $username as xs:string:=  $json/username/fn:string()
+	let $password as xs:string:=  $json/password/fn:string()
     return if(users:find-name($auth:userdb,$username))
     then 
         let $t:= "The name '" || $username || "' is already registered, please choose different name."
        
-        return db:output(
+        return db:output((web:status(409,"Duplicate"),
                          <json objects="json"><msg>{$t}</msg></json>
-                         )
+                         ))
     else
         let $t:=$username || " your registration was successful. " 
-                          
+        let $uid:=users:next-id($auth:userdb)/fn:string()                 
         return (
             users:create($auth:userdb,$username,$password),
             
             db:output((
-            session:set("uid", fn:string(users:next-id($auth:userdb))),
+            session:set("uid", $uid),
+            web:http-created("/users/" || $uid,
             <json objects="json"><msg>{$t}</msg></json>
-            ))
+            )))
     )
 };
 

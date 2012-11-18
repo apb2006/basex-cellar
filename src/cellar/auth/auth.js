@@ -16,7 +16,10 @@ angular.module('cellar.auth', [])
 				templateUrl : 'auth/changepassword.xml'
             }).when('/auth/lostpassword', {
 				templateUrl : 'auth/lostpassword.xml'				
+            }).when('/auth/profile', {
+				templateUrl : 'auth/profile.xml'				
             })
+            
 		}])
 
 .factory('Auth', ['Flash','$http','$route','$location',
@@ -72,7 +75,7 @@ angular.module('cellar.auth', [])
 	         Flash.show("error","Bad thing!: "+data);
 			 })
     },
-    logout: function(callback) {
+    logout: function() {
       if (_this.authenticated) {
         return $http.post('../restxq/cellar/auth/logout', {}).success(function(data) {
           if (data.rc==0) {
@@ -81,11 +84,10 @@ angular.module('cellar.auth', [])
 			$location.path("/")
 			//$route.reload();
           }
-          return callback(true);
+          return true;
   
       } )
-	  }else{
-		return callback(true);
+	  
 	}},
 	setReturn: function(url) {
 	_this.returnURL=url;
@@ -128,7 +130,7 @@ function AuthController(Flash,Auth, $location,$scope,$rootScope) {
 AuthController.$inject = ['Flash','Auth','$location',  '$scope',"$rootScope"];
 AuthController.resolve={
 	    pages: function(){
-	    	alert("ff")
+	    	alert("unused testing")
 	    	return Auth.logout()
 	    }
 	}

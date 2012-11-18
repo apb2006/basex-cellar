@@ -8,6 +8,25 @@ This is sample CRUD application built with Angular.js. The BaseX RESTXQ implemen
 
 ## Authentication
 
+All rest calls return a 401 if not autherised, but this is not used directly
+Instead a custom permission property is  defined on route definitions
+````
+.when('/users', {templateUrl : 'partials/user-list.xml',
+                 permission:"*",
+                 controller : UserCtrl})
+   
+````
+The `$routeChangeStart` event redirects to the login page if required. It stores the 
+original destination to redirect after successful login.
+````
+$rootScope.$on('$routeChangeStart', function(event,next, current) {
+    if (!Auth.isAuthenticated() && next.$route && next.$route.permission) {
+      Auth.setReturn($location.$$url);
+    //  Flash.add("warn","You must log in to access the page");
+      return $location.path("/auth/login");
+````
+
+
 ###  local
 
 ### Github
@@ -16,6 +35,7 @@ This is sample CRUD application built with Angular.js. The BaseX RESTXQ implemen
 
 ## Busy indicator
 
+## error handling
 
 ## Server
 

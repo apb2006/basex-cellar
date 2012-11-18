@@ -12,7 +12,6 @@
 	<ul>
 	<li><a href="../restxq/cellar/api/xml?doc=grapes.xml">Grapes</a></li>
 	<li><a href="../restxq/cellar/api/xml?doc=wines.xml">Wines</a></li>
-	<li><a href="../restxq/cellar/api/xml?doc=users.xml">Users</a></li>
-	<li><a href="../restxq/cellar/api/xml?doc=github.xml">Github</a></li>
+	
 	</ul>
 </div>

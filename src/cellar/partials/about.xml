@@ -4,6 +4,8 @@
 <p>This is a sample application demonstrating how to build a CRUD application with Angular.js and RESTful services.</p>
 
 <p>Select a wine in the <a href="#/thumbs">Thumbnails</a> or <a href="#/list">List</a>
- to edit the details, or click the Add Wine button to add a wine to your Wine Cellar.</p>
+ to edit the details or click the Add Wine button to add a wine to your Wine Cellar.</p>
  <p>Grapes <a href="#/grapes">List</a>.</p>
+ <p>Full text search e.g. <a href="#/search?q=citrus">citrus</a>
+  </p>
 </div>

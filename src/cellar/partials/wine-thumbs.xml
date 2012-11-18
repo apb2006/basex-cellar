@@ -22,7 +22,7 @@
 			<li class="span3" 
 			data-ng-repeat="wine in filteredWines = wines | orderBy:sort.column:sort.descending| filter:query">
 			<a href="#/wines/{{ wine.id }}" class="thumbnail plain">
-			    <img data-ng-src="pics/{{ wine.picture |winePic }}" height="150" width="125" alt=""/>
+			    <img data-ng-src="{{ wine.picture |winePic }}" height="150" width="125" alt=""/>
 			    <h5 class="wine-name">{{ wine.name }}</h5>
 			    <p>{{ wine.year }} {{ wine.grapes }}<br/>
 			    <i class="icon-globe"></i> {{ wine.region }}, {{ wine.country }} </p>

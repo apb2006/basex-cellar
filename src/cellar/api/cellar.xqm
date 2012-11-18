@@ -91,7 +91,7 @@ function get-wine($id) {
 };
 
 (:~
-: full details for wines with id as json
+: full text search wine descriptions
 :)
 declare
 %rest:GET %rest:path("cellar/api/search")
@@ -100,11 +100,13 @@ declare
 function search($q as xs:string){
 let $res:=for $wine in $cellar:wines/wine 
 let score $s:= $wine/description contains text ({$q} weight{1}) 
-						  or  $wine/name contains text ({$q} weight{4}) using fuzzy
+				or  $wine/name contains text ({$q} weight{4}) using fuzzy
 			   where $s gt 0           
 			   order by $s descending
-			   return  <hit><score>{fn:round(20 * $s)}</score>
-			                {$wine/name}
+			   return  <hit>
+			           <id>{$wine/@id/fn:string()}</id>
+			           {$wine/name}
+			            <score>{fn:round(20 * $s)}</score>      
                   </hit>							
 return <json arrays="json" objects="hit">{$res}</json>
 };
@@ -167,6 +169,23 @@ function grapes() {
   </json>
 };
 
+(:~
+: bottle pics from folder
+:)
+declare
+%rest:GET %rest:path("cellar/api/pics/bottles")  
+%output:method("json")
+function bottles() {
+let $files:=file:list(".")
+return
+  <json arrays="json" objects="file">
+    {for $file in $files
+    order by fn:upper-case($file)
+    return <file>
+       <name>{$file}</name>
+       </file>}
+  </json>
+};
 (:~
 : return xml source
 :)
