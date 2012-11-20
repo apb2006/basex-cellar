@@ -24,8 +24,8 @@ function WineListCtrl(Flash,Wine, $location, $filter,$scope) {
 	// sorting..
 	 $scope.head = [
         {head: "Name", column: "name"},
+		{head: "Year", column: "year"},
         {head: "Created", column: "created"},
-        {head: "Year", column: "year"},
 		{head: "Updated", column: "modified"},
 		];
 	$scope.sort = { column: 'name', descending: false};

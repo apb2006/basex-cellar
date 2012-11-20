@@ -35,7 +35,7 @@ declare updating function ensure($userDb,
            let $d:=<user id="{$name}" created="{fn:current-dateTime()}">
                      {$profile}
                    </user>
-           return  insert node $d into $userDb/users 
+           return  insert node $d into $userDb/github 
 };
 
 

@@ -14,7 +14,7 @@
 module namespace users = 'apb.users.app';
 declare default function namespace 'apb.users.app';
 
-declare function find-name($userDb,$username as xs:string)
+declare function find-name($userDb,$username as xs:string)  as element(user)?
 {
     $userDb/users/user[@name=$username]
 };
@@ -25,13 +25,33 @@ declare function find-id($userDb,$id as xs:string?) as element(user)?
 };
 
 (:~
-:
+: return user with name and password or empty
 :)
-declare function check-password($userDb,
+declare function password-check($userDb,
                                 $username as xs:string,
                                 $password as xs:string)  as element(user)?
 {
-    $userDb/users/user[@name=$username and login/@password=hash:md5($password) ]
+    password-check(find-name($userDb,$username),$password)
+};
+
+(:~
+: return user with name and password or empty
+:)
+declare function password-check(
+    $user as element(user)?,
+    $password as xs:string)  as element(user)?
+{
+    $user[login/@password=hash:md5($password) ]
+};
+
+(:~
+: change password for user
+:)
+declare updating function password-change(
+    $user as element(user)?,
+    $newpassword as xs:string)   
+{
+    replace value of node $user/login/@password with hash:md5($newpassword) 
 };
 
 (:~
@@ -51,19 +71,38 @@ declare updating function incr-id($userDb)
 };
 
 (:~
+: return data to be added to db  if user registers 
+:)
+declare function generate(
+  $userDb,
+  $name as xs:string,
+  $password as xs:string)
+{    
+<user id="{next-id($userDb)}" name="{$name}">
+	   <stats created="{fn:current-dateTime()}" last="{fn:current-dateTime()}" logins="1" />
+	   <login password="{hash:md5($password)}" role="user" />
+	   <data>
+		 <ace theme="dawn" /> 
+	   </data>        
+</user>
+};
+
+(:~
+: insert new user created with generate
+:)
+declare updating function create($userDb,$u as element(user))
+{    
+    insert node $u into $userDb/users ,incr-id($userDb) 
+};
+
+(:~
 : create new user
 :)
 declare updating function create($userDb,
                               $name as xs:string,
                               $password as xs:string)
 {    
-     let $d:=<user id="{next-id($userDb)}" name="{$name}">
-               <stats created="{fn:current-dateTime()}" last="{fn:current-dateTime()}" logins="1" />
-               <login password="{hash:md5($password)}" role="user" />
-               <data>
-                 <ace theme="dawn" /> 
-               </data>        
-        </user>
+    let $d:=generate($userDb, $name ,  $password)   
     return  (insert node $d into $userDb/users ,incr-id($userDb) )
 };
 

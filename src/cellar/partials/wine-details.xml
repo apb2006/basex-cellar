@@ -44,7 +44,7 @@
 		<div class="span4">
 			<label>Picture:</label>
 			<img width="250" height="300" ng:src="pics/bottles/{{ wine.picture }}"
-				onerror="this.src='pics/bottles/generic.jpg'" />
+				onerror="this.src='pics/generic.jpg'" />
 			<input type="text" id="picInput" ng:model="wine.picture" />
 		</div>
 	</div>

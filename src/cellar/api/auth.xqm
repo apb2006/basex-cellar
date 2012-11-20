@@ -49,42 +49,26 @@ declare
 updating function login-post($body)
 {
  let $json:=$body/json 
- let $u:=users:check-password($auth:userdb,$json/username,$json/password)
- let $json:=session-user($u)
+ let $u:=users:password-check($auth:userdb,$json/username,$json/password)
  return 
      if($u) then
          (
 		   users:update-stats($auth:userdb,$u/@id), 
 			db:output((
                 session:set("uid", $u/@id/fn:string()),
-                $json ))
+                session-user($u) ))
 				)
      else
-	  db:output($json)
+	  db:output(session-user(()) )
 };
 
-(:~
-:  session info for user
-:)
-declare function session-user($u as element(user)?){
-	if($u) then
-		 <json  objects="json">
-				  <rc>0</rc>
-				  <id>{$u/@id/fn:string()}</id>
-				  <name>{$u/@name/fn:string()}</name>
-				  <role>{$u/login/@role/fn:string()}</role>
-			</json>
-	else
-		 <json  objects="json">
-				  <rc>1</rc>
-			</json>
-};
+
 
 declare
 %rest:path("cellar/auth/logout")
 %rest:POST("{$body}")  
 %output:method("json")
- function logout-post($body){
+function logout-post($body){
   (session:delete("uid"),
    <json  objects="json"><rc>0</rc></json>)
 };
@@ -106,17 +90,14 @@ updating function register-post($body)
                          <json objects="json"><msg>{$t}</msg></json>
                          ))
     else
-        let $t:=$username || " your registration was successful. " 
-        let $uid:=fn:string(users:next-id($auth:userdb))                 
+        let $u:=users:generate($auth:userdb,$username,$password)
         return (
-            users:create($auth:userdb,$username,$password),
-            
+            users:create($auth:userdb,$u),
             db:output((
-            session:set("uid", $uid),
-            web:http-created("/users/" || $uid,
-            <json objects="json"><msg>{$t}</msg></json>
-            )))
-    )
+                session:set("uid", $u/@id/fn:string()),
+                session-user($u) ))
+           
+            )
 };
 
 declare
@@ -128,6 +109,43 @@ function session(){
  return session-user($u) 
 };
 
+declare 
+%rest:path("cellar/auth/changepassword") 
+%rest:POST("{$body}")  
+%output:method("json")
+updating function changepassword($body){
+   let $json:=fn:trace($body/json,"newpassword")
+   let $newpassword as xs:string:=  $json/newpassword/fn:string()
+   let $password as xs:string:=  $json/password/fn:string()
+   let $u:=users:find-id($auth:userdb,session:get("uid"))
+   
+   return if($u) then
+           users:password-change($u,$newpassword)
+          else db:output(
+   <json  objects="json">
+         <rc>1</rc>
+         <msg>Not logged in</msg>
+   </json>)
+};
+
+(:~
+:  session info for user
+:)
+declare %private function session-user($u as element(user)?){
+    if($u) then
+         <json  objects="json">
+                  <rc>0</rc>
+                  <id>{$u/@id/fn:string()}</id>
+                  <name>{$u/@name/fn:string()}</name>
+                  <role>{$u/login/@role/fn:string()}</role>
+            </json>
+    else
+         <json  objects="json">
+                  <rc>1</rc>
+            </json>
+};
+
+(:----------------------:)
 declare
 %rest:GET %rest:path("cellar/auth/github")
 function github(){

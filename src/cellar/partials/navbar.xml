@@ -9,7 +9,7 @@
 			</a>
 			<a href="#/" class="brand" title="Version 0.2.0">
 				<img src="wine.png" />
-				Angular Cellar
+				CellarXQ
 			</a>
 
 			<div class="nav-collapse collapse">
@@ -90,7 +90,7 @@
 				</ul>
 				<form class=" navbar-search"  
 					ng-submit="doSearch()">
-					<input type="text" class="search-query span3" placeholder="Search wine notes"
+					<input type="text" class="search-query span2" placeholder="Search wine notes"
 						ng-model="q" name="q" />
 					<div class="icon-search"></div>
 				</form>

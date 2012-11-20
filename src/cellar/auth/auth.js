@@ -89,6 +89,13 @@ angular.module('cellar.auth', [])
       } )
 	  
 	}},
+	changepassword:function(newpass,callback) {
+		alert("new pass")
+		return $http.post('../restxq/cellar/auth/changepassword', {}).success(function(data) {
+			alert(data)
+		})
+		
+	},
 	setReturn: function(url) {
 	_this.returnURL=url;
     },
@@ -100,6 +107,7 @@ angular.module('cellar.auth', [])
 function AuthController(Flash,Auth, $location,$scope,$rootScope) {
   console.log("AuthController created")	
   $scope.auth={username:"",password:""};
+  $scope.newpass={newpassword:"",password:""};
   $scope.login = function() {
      // alert("hh");
     return Auth.login($scope.auth, function(result) {
@@ -119,13 +127,18 @@ function AuthController(Flash,Auth, $location,$scope,$rootScope) {
       if (!result) {
         return window.alert('Authentication failed!');
       } else {
+	    Flash.add("success","Registration sucessfull. Welcome");
 	    var url=Auth.getReturn();
-        return $scope.$apply(function() {
-          return $location.path(url);
-        });
+        return $location.path(url);
+        ;
       }
     });
   };
+  $scope.changepassword = function(){ 
+		  return Auth.changepassword($scope.newpass),function(result){
+	      alert("not yet");
+		  }
+  };   
 };
 AuthController.$inject = ['Flash','Auth','$location',  '$scope',"$rootScope"];
 AuthController.resolve={
