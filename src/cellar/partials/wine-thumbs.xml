@@ -3,7 +3,7 @@
 		<div class="navbar clearfix">
 		 
 		      <form class="navbar-form pull-left">
-    Filter:<input type="text" class="span2" ng:model="query"/>
+    Filter:<input type="text" class="span2" data-ng-model="query"/>
 	Sort:
     </form>
 	
@@ -20,7 +20,7 @@
 
 		<ul class=" thumbnails winelist"  >
 			<li class="span3" 
-			data-ng-repeat="wine in filteredWines = wines | orderBy:sort.column:sort.descending| filter:query">
+			data-ng-repeat="wine in filteredWines = wines | orderBy:sort.column:sort.descending| filter:matchQ">
 			<a href="#/wines/{{ wine.id }}" class="thumbnail plain">
 			    <img data-ng-src="{{ wine.picture |winePic }}" height="150" width="125" alt=""/>
 			    <h5 class="wine-name">{{ wine.name }}</h5>

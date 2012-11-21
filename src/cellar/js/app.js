@@ -45,16 +45,7 @@ config(
             }).otherwise({
 				redirectTo : '/404'
 			});
-		}]).
-		run(function($rootScope, $location, Auth,Flash) {
-  return $rootScope.$on('$routeChangeStart', function(event,next, current) {
-    if (!Auth.isAuthenticated() && next.$route && next.$route.permission) {
-	  Auth.setReturn($location.$$url);
-	//  Flash.add("warn","You must log in to access the page");
-      return $location.path("/auth/login");
-    }
-  });
-});
+		}])
 // picture filter, use generic if not set		
 Cellar.filter('winePic', function() {
 	return function(pic) {return pic ? "pics/bottles/"+pic : 'pics/generic.jpg';}
@@ -66,6 +57,7 @@ Cellar.filter('moment', function() {
 Cellar.filter('fromNow', function() {
     return function(dateString) {return moment(dateString).fromNow();}
 });
+
 /* no hashbang within URLs for browers that support HTML5 history
 Cellar.config(['$locationProvider', function($location) {
   $location.html5Mode(true); 

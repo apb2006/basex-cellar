@@ -13,15 +13,30 @@ angular.module('cellar.auth', [])
             }).when('/auth/register', {
 				templateUrl : 'auth/register.xml'
             }).when('/auth/changepassword', {
-				templateUrl : 'auth/changepassword.xml'
+				templateUrl : 'auth/changepassword.xml',permission:"*"
             }).when('/auth/lostpassword', {
 				templateUrl : 'auth/lostpassword.xml'				
             }).when('/auth/profile', {
-				templateUrl : 'auth/profile.xml'				
+				templateUrl : 'auth/profile.xml',permission:"*"				
             })
             
 		}])
-
+.run(function($rootScope, $location, Auth,Flash) {
+  return $rootScope.$on('$routeChangeStart', function(event,next, current) {
+    if(!(next.$route && next.$route.permission))return
+	 var msg=null;
+	  if(!Auth.isAuthenticated()){
+		msg="You must log in to access this page "
+	  }else if(!Auth.hasRole(next.$route.permission)){
+		msg="This page is not accessable to you, please use a different login"
+	  }
+	  if(msg){
+		  Auth.setReturn($location.$$url);
+		  Flash.add("warn",msg);
+		  return $location.path("/auth/login");
+	  }
+    })
+})
 .factory('Auth', ['Flash','$http','$route','$location',
                   function(Flash,$http,$route,$location) {
   console.log("Auth created")
@@ -30,13 +45,16 @@ angular.module('cellar.auth', [])
   this.name = null;
   this.role = null;
   this.returnURL="/";
+  this.set=function(data){
+    _this.name = data.name;
+	_this.role = data.role;
+    _this.authenticated = true;
+  };
   $http.get('../restxq/cellar/auth/session')
   .success(function(data){
      // Flash.show("info","Welcome to Angular cellar");
 	 if(data.rc==0){
-	     _this.name = data.name;
-		  _this.role = data.role;
-          _this.authenticated = true;
+	     _this.set(data)
 	 }else{
 	  _this.authenticated = false;
 	 }
@@ -51,12 +69,14 @@ angular.module('cellar.auth', [])
     getName: function() {
       return _this.name;
     },
+	hasRole: function(roleRe) {
+	   var re=new RegExp(roleRe);
+      return re.test(_this.role);
+    },
     login: function(auth, callback) {
       return $http.post('../restxq/cellar/auth/login', auth).success(function(data) {
         if (data.name) {
-          _this.name = data.name;
-		  _this.role = data.role;
-          _this.authenticated = true;
+          _this.set(data);
         }
         return callback(data.rc==0);
       }).error(function(data){
@@ -66,9 +86,7 @@ angular.module('cellar.auth', [])
 	register: function(auth, callback) {
       return $http.post('../restxq/cellar/auth/register', auth).success(function(data) {
         if (data.name) {
-          _this.name = data.name;
-		  _this.role = data.role;
-          _this.authenticated = true;
+          _this.set(data);
         }
           return callback(data.rc==0);
       }).error(function(data){

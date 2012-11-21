@@ -99,7 +99,7 @@ declare
 %output:method("json")
 function search($q as xs:string){
 let $res:=for $wine in $cellar:wines/wine 
-let score $s:= $wine/description contains text ({$q} weight{1}) 
+          let score $s:= $wine/description contains text ({$q} weight{1}) 
 				or  $wine/name contains text ({$q} weight{4}) using fuzzy
 			   where $s gt 0           
 			   order by $s descending

@@ -49,6 +49,9 @@ function WineListCtrl(Flash,Wine, $location, $filter,$scope) {
             sort.descending = false;
         }
     };
+	$scope.matchQ=function(wine){
+	  return $scope.query?wine.name.indexOf($scope.query)!=-1:true
+	};
     $scope.submit = function() {
 		$scope.wines = Wine.api.query({q:$scope.q},
 				function(){},
@@ -190,10 +193,12 @@ WineDetailCtrl.$inject = ['Wine', 'Flash','$routeParams', '$location', '$scope']
 //------------------------------------------
 function SearchCtrl(Search, $location,$scope,$routeParams){
     $scope.q=$routeParams.q;
-	$scope.results=Search.api.get({q:$scope.q});
+	$scope.results=Search.api.query({q:$scope.q});
 	$scope.submit=function(){
-		$location.path("/search");
-		
+		$location.path("/search");	
+	};
+	$scope.doSearch=function(){
+		$scope.results=Search.api.query({q:$scope.q});
 	};
 };
 SearchCtrl.$inject = [ 'Search', '$location','$scope','$routeParams'];
