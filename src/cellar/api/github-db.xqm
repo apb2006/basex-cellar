@@ -14,25 +14,30 @@
 module namespace users = 'apb.github.db';
 declare default function namespace 'apb.github.db';
 
-
-
-declare function find-user($userDb,$name as xs:string?) as element(user)?
+(:~
+: return user element from name or empty
+:)
+declare function find-user(
+   $userDb,
+   $github-name as xs:string?) as element(user)?
 {
-    if($name) then $userDb/users/user[@id=$name] else ()
+    if($github-name) then $userDb/users/user[@id=$github-name] else ()
 };
 
 (:~
 : ensure user
 :)
-declare updating function ensure($userDb,
-                              $name as xs:string,
-                              $profile)
+declare updating function ensure(
+  $userDb,
+  $github-name as xs:string,
+  $profile)
 {    
-   let $u:=$userDb/users/user[@id=$name]
+   let $u:=$userDb/users/user[@id=$github-name]
    return if($u) then
-            replace node $u/* with $profile
+            (replace node $u/* with $profile,
+			 replace value of node $u/@modified with fn:current-dateTime())
           else
-           let $d:=<user id="{$name}" created="{fn:current-dateTime()}">
+           let $d:=<user id="{$github-name}" created="{fn:current-dateTime()}" modified="{fn:current-dateTime()}">
                      {$profile}
                    </user>
            return  insert node $d into $userDb/github 
@@ -42,8 +47,9 @@ declare updating function ensure($userDb,
 (:~
 : delete user
 :)
-declare updating function delete($userDb,
-                              $name as xs:string)
+declare updating function delete(
+    $userDb,
+    $name as xs:string)
 {    
     delete node $userDb/users/user[@id=$name]
 };

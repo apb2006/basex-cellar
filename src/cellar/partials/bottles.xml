@@ -1,14 +1,13 @@
-<div class="row-fluid" data-ng-init="setWindowTitle('Bottles')">
+<div class="row" data-ng-init="setWindowTitle('Bottles')">
 	<h2>Bottle pictures</h2>
-	<ul class="media-list winelist">
-		<li class="media thumbnail" data-ng-repeat="bottle in bottles">
-			<a href="#/users/{{  user.id }}" class="pull-left">
-				<img class="media-object img-circle" src="pics/user1.png" />
+
+	<ul class="thumbnails winelist">
+		<li class="span2" data-ng-repeat="bottle in bottles">
+			<a href="#" class="thumbnail plain">
+				 <img data-ng-src="{{ bottle.name |winePic }}" style="height:125" height="150"  alt=""/>
+				 <h5 class="wine-name">{{ bottle.name}}</h5>
+				 <div>Usage: {{ bottle.usage }}</div>
 			</a>
-			<div class="media-body">
-				<h4 class="media-heading">{{ user.name }}</h4>
-				<div>The id is: {{ user.id }}</div>
-			</div>
 		</li>
 	</ul>
 </div>

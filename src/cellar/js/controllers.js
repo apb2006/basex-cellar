@@ -215,7 +215,8 @@ function ErrorCtrl($scope,$location){
 ErrorCtrl.$inject = [ '$scope','$location'];
 
 //------------------------------------------
-function BottleCtrl($scope){
- console.log("bottleCtrl")
+function BottleCtrl($scope,Bottle){
+ $scope.bottles=Bottle.api.query();
+ console.log("bottleCtrl");
 };
-BottleCtrl.$inject = [ '$scope'];
+BottleCtrl.$inject = [ '$scope','Bottle'];

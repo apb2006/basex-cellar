@@ -10,8 +10,8 @@
 	<p>The list of Grapes comes from <a href="http://www.bryny.com/grapes.htm">here</a></p> 
 	<h2>Data</h2>
 	<ul>
-	<li><a href="../restxq/cellar/api/xml?doc=grapes.xml">Grapes</a></li>
-	<li><a href="../restxq/cellar/api/xml?doc=wines.xml">Wines</a></li>
+	<li><a href="../restxq/cellar/api/xml?db=cellar&amp;doc=grapes.xml">Grapes</a></li>
+	<li><a href="../restxq/cellar/api/xml?db=cellar&amp;doc=wines.xml">Wines</a></li>
 	
 	</ul>
 </div>

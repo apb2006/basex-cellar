@@ -1,8 +1,7 @@
 //Syntax allows to chain factories
 angular.module('cellar.services', [ 'ngResource' ]).
 // The factory returns objects / functions that can be used by the controllers
-factory(
-		'Wine',
+factory('Wine',
 		['$resource','$http','$rootScope',
 				function($resource, $http, $rootScope) {
 					return {
@@ -24,12 +23,9 @@ factory(
 								"Greece" ]
 
 					}
-				} ]).factory(
-		'Grape',
-		[
-				'$resource',
-				'$http',
-				'$rootScope',
+				} ])
+.factory('Grape',
+		['$resource','$http','$rootScope',
 				function($resource, $http, $rootScope) {
 					return {
 						// the resource provider interacting with the BaseX
@@ -51,8 +47,8 @@ factory(
 						}
 
 					}
-				} ]).factory(
-		'User',
+				} ])
+.factory('User',
 		[
 				'$resource',
 				'$http',
@@ -77,11 +73,13 @@ factory(
 
 					}
 				} ])
+.factory('Bottle', ['$resource','$http', function($resource,$http) {
+                     console.log("Welcome to the bootle factory"); 
+				     return {api : $resource('../restxq/cellar/api/pics/bottles')}
+	
+} ])				
 .factory('Search', ['$resource','$http', function($resource,$http) {
 				     return {api : $resource('../restxq/cellar/api/search?q=:q')}
 	
 } ])
-.factory('Bottle', ['$resource','$http', function($resource,$http) {
-				     return {api : $resource('../restxq/cellar/api/pics/bottles')}
-	
-} ])
+

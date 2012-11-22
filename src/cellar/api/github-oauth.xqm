@@ -28,8 +28,9 @@ declare variable $github:Client-Secret:=$github:config/github/Client-Secret;
 :    Optional string 
 : http://developer.github.com/v3/oauth/
 :)
-declare function get-access-token($code  as xs:string,
-                       $redirect_uri  as xs:string){
+declare function get-access-token(
+   $code  as xs:string,
+   $redirect_uri  as xs:string){
     let $p:=map{"client_id":=$github:Client-Id,
                 "client_secret" := $github:Client-Secret,
                 "code":=$code,
@@ -64,13 +65,15 @@ declare function authorize(){
 : user details
 : http://developer.github.com/v3/users/#get-the-authenticated-user
 :)
-declare function user($token as xs:string){
+declare function user(
+  $token as xs:string){
    let $href:="https://api.github.com/user?" || encode-params(map{"access_token":=$token})
    let $user:=http:send-request(<http:request method="get"/>,$href)
    return $user[2]
 };
 
-declare function encode-params($map as map(*)) as xs:string
+declare function encode-params(
+  $map as map(*)) as xs:string
 {
     let $s:=for $p in map:keys($map)
             return $p || "=" || fn:encode-for-uri(fn:string(map:get($map,$p)))

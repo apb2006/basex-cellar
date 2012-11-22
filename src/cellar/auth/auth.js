@@ -93,6 +93,16 @@ angular.module('cellar.auth', [])
 	         Flash.show("error","Bad thing!: "+data);
 			 })
     },
+    github: function(auth, callback) {
+        return $http.post('../restxq/cellar/auth/github', auth).success(function(data) {
+          if (data.name) {
+            _this.set(data);
+          }
+            return callback(data.rc==0);
+        }).error(function(data){
+  	         Flash.show("error","Bad thing!: "+data);
+  			 })
+      },
     logout: function() {
       if (_this.authenticated) {
         return $http.post('../restxq/cellar/auth/logout', {}).success(function(data) {
@@ -156,7 +166,10 @@ function AuthController(Flash,Auth, $location,$scope,$rootScope) {
 		  return Auth.changepassword($scope.newpass),function(result){
 	      alert("not yet");
 		  }
-  };   
+  };
+  $scope.github=function(){
+	  alert("no yet")
+  }
 };
 AuthController.$inject = ['Flash','Auth','$location',  '$scope',"$rootScope"];
 AuthController.resolve={

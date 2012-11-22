@@ -1,34 +1,49 @@
-<div xmlns:ng="http://angularjs.org"  >
-	<form  class="well form-horizontal span6">
-		<fieldset>
-			<legend>Sign in</legend>
-			<div class="control-group">
-				<label class="control-label" for="username">User name:</label>
-				<div class="controls">
-					<input id="username" ng:model="auth.username" type="text" class="input"
-						required="required" autofocus="autofocus" autoselect="autoselect" />
+<div xmlns:ng="http://angularjs.org">
+	<form class=" form-horizontal">
+		<div class="well span6">
+			<fieldset>
+				<legend>Sign in directly with registered account</legend>
+				<div class="control-group">
+					<label class="control-label" for="username">User name:</label>
+					<div class="controls">
+						<input id="username" ng:model="auth.username" type="text"
+							class="input" required="required" autofocus="autofocus"
+							autoselect="autoselect" />
+					</div>
 				</div>
-			</div>
-			<div class="control-group">
-				<label class="control-label" for="password">Password:</label>
-				<div class="controls">
-					<input id="password" ng:model="auth.password" type="password" class="input"
-						required="required" autoselect="autoselect"/>
+				<div class="control-group">
+					<label class="control-label" for="password">Password:</label>
+					<div class="controls">
+						<input id="password" ng:model="auth.password" type="password"
+							class="input" required="required" autoselect="autoselect" />
+					</div>
 				</div>
+
+				<label class="checkbox">
+					<input name="rememberme" type="checkbox" />
+					Remember me (not implemented yet)
+				</label>
+
+			</fieldset>
+			<div class="form-actions">
+				<button ng:click="login()" class="btn btn-primary">Log in</button>
+				Or
+				<a href="#/auth/register">Register</a>
 			</div>
-
-			<label class="checkbox">
-				<input name="rememberme" type="checkbox" />
-				Remember me (not implemented yet)
-			</label>
-
-		</fieldset>
-		<div class="form-actions">
-			<button ng:click="login()" class="btn btn-primary">Log in</button>
-			Or
-			<a href="#/auth/register">Register</a>
+			<a href="#/auth/lostpassword" class="pull-right">Forgotten your password?</a>
 		</div>
-		<a href="#/auth/lostpassword" class="pull-right">Forgotten your password?</a>
+	</form>
+	<form class=" form-horizontal well span6">
+		<fieldset>
+			<legend>or Sign using another service</legend>
+			<div class="form-actions">
+				Login using your account on:
+				<button ng:click="github()" class="btn btn-primary">Github</button>
+
+			</div>
+		</fieldset>
+		extra
+
 	</form>
 
 </div>

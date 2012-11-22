@@ -17,8 +17,8 @@ import module namespace session ="http://basex.org/modules/session";
 declare namespace rest = 'http://exquery.org/ns/restxq';
 
 
-declare variable $auth:userdb:=db:open('cellar',"users.xml");							
-declare variable $auth:gitdb:=db:open('cellar',"github.xml"); 
+declare variable $auth:userdb:=db:open('users',"users.xml");							
+declare variable $auth:gitdb:=db:open('users',"github.xml"); 
                            
 (:~
 : return all users as json if this session is for admin
@@ -27,13 +27,14 @@ declare variable $auth:gitdb:=db:open('cellar',"github.xml");
 declare
 %rest:GET %rest:path("cellar/api/users")  
 %output:method("json")
-function users() {
+function users()
+{
    web:role-check("admin",function(){
        <json arrays="json" objects="user">
-		      {for $u in db:open('cellar',"users.xml")/users/user
+		      {for $u in $auth:userdb/users/user
 			  return <user>
 			      <id>{$u/@id/fn:string()}</id>
-				  <name>{$u/@name/fn:string()}</name>
+				  <name>{$u/name/fn:string()}</name>
 				  </user>}
 		</json>}   
 )};
@@ -46,7 +47,8 @@ declare
 %rest:path("cellar/auth/login")
 %rest:POST("{$body}")  
 %output:method("json")
-updating function login-post($body)
+updating function login-post(
+	$body)
 {
  let $json:=$body/json 
  let $u:=users:password-check($auth:userdb,$json/username,$json/password)
@@ -68,7 +70,9 @@ declare
 %rest:path("cellar/auth/logout")
 %rest:POST("{$body}")  
 %output:method("json")
-function logout-post($body){
+function logout-post(
+	$body)
+{
   (session:delete("uid"),
    <json  objects="json"><rc>0</rc></json>)
 };
@@ -77,7 +81,8 @@ declare
 %rest:path("cellar/auth/register") 
 %rest:POST("{$body}")  
 %output:method("json")
-updating function register-post($body)
+updating function register-post(
+	$body)
 {
     let $json:=$body/json
     let $username as xs:string:=  $json/username/fn:string()
@@ -90,7 +95,7 @@ updating function register-post($body)
                          <json objects="json"><msg>{$t}</msg></json>
                          ))
     else
-        let $u:=users:generate($auth:userdb,$username,$password)
+        let $u:=users:generate($auth:userdb,$username,"local",$password)
         return (
             users:create($auth:userdb,$u),
             db:output((
@@ -103,7 +108,8 @@ updating function register-post($body)
 declare
 %rest:GET %rest:path("cellar/auth/session")
 %output:method("json")
-function session(){
+function session()
+{
  let $uid:=session:get("uid")
  let $u:=users:find-id($auth:userdb,$uid)
  return session-user($u) 
@@ -113,7 +119,9 @@ declare
 %rest:path("cellar/auth/changepassword") 
 %rest:POST("{$body}")  
 %output:method("json")
-updating function changepassword($body){
+updating function changepassword(
+	$body)
+{
    let $json:=fn:trace($body/json,"newpassword")
    let $newpassword as xs:string:=  $json/newpassword/fn:string()
    let $password as xs:string:=  $json/password/fn:string()
@@ -131,13 +139,15 @@ updating function changepassword($body){
 (:~
 :  session info for user
 :)
-declare %private function session-user($u as element(user)?){
+declare %private function session-user(
+   $u as element(user)?)
+{
     if($u) then
          <json  objects="json">
                   <rc>0</rc>
                   <id>{$u/@id/fn:string()}</id>
-                  <name>{$u/@name/fn:string()}</name>
-                  <role>{$u/login/@role/fn:string()}</role>
+                  <name>{$u/name/fn:string()}</name>
+                  <role>{$u/role/fn:string()}</role>
             </json>
     else
          <json  objects="json">
@@ -148,7 +158,8 @@ declare %private function session-user($u as element(user)?){
 (:----------------------:)
 declare
 %rest:GET %rest:path("cellar/auth/github")
-function github(){
+function github()
+{
   github:authorize()
 };
 
@@ -159,16 +170,27 @@ function github(){
 declare
 %rest:GET %rest:path("cellar/auth/github/callback")
 %rest:form-param("code","{$code}")  
-%rest:form-param("state","{$state}")  
-updating function login-github($code,$state) {
+%rest:form-param("state","{$state}")
+%output:method("json")  
+updating function login-github(
+  $code,
+  $state)
+{
    let $token:= github:get-access-token($code,"")
    return if($token) then 
-            let $gitprofile:=github:user($token)
-            let $login:=$gitprofile/json/login/fn:string()            
+            let $github-profile:=github:user($token)
+            let $github-user:=$github-profile/json/login/fn:string()
+            let $exists:=users:find-github($auth:gitdb,$github-user)
+            let $user:=if($exists) then $exists
+                       else users:generate($auth:userdb,$github-user,"github",$github-user)			
             return (
-            github-db:ensure($auth:gitdb,$login,$gitprofile),
-               db:output(<login>not yet</login>)
+               if($exists) then () else users:create($auth:userdb,$user), 
+               github-db:ensure($auth:gitdb,$github-user,$github-profile),
+               db:output(session-user($user))
                )
            else
-               db:output(<login>not approved</login>)
+               db:output( <json  objects="json">
+                  <rc>1</rc>
+                  <msg>Not approved</msg>
+            </json>)
 };
