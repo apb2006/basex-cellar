@@ -1,0 +1,7 @@
+<events>
+<!--
+<event userid="{$user}" username=".." created="{fn:current-dateTime()}" 
+              event="{$event}" item="{$item}"/>
+			  -->
+<event userid="1" username="admin" event="systembuild" created="2012-01-01T22:33:19.111Z" />			  
+</events>

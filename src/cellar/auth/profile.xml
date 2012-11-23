@@ -1,3 +1,4 @@
 <div  xmlns:ng="http://angularjs.org"  ng:controller="AuthController">
 	Profile TBD...
+	{{user.name}}
 </div>

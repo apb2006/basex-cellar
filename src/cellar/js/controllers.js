@@ -3,10 +3,11 @@ function UserCtrl(User,$scope){
 };
 UserCtrl.$inject = ['User', '$scope'];
 
-function UserDetailCtrl(User, $location, $scope) {
+function UserDetailCtrl(User, $routeParams,$location, $scope) {
 	$scope.user = User.api.get({userId: $routeParams.userId});
+	console.log("UserDetailCtrl")
 };
-UserDetailCtrl.$inject = ['User', '$scope'];
+UserDetailCtrl.$inject = ['User','$routeParams', '$location','$scope'];
 
 //---------------------------------------------------------------
 function WineListCtrl(Flash,Wine, $location, $filter,$scope) {
@@ -30,6 +31,9 @@ function WineListCtrl(Flash,Wine, $location, $filter,$scope) {
 		];
 	$scope.sort = { column: 'name', descending: false};
 	
+	$scope.$watch('sort', function(value) {
+      //  window.location.hash =$location.path() + '?sort=' + value.column;
+    }, true);
     $scope.selectedCls = function(column) {
 	    if(column == $scope.sort.column){
 			return $scope.sort.descending?"icon-arrow-up":"icon-arrow-down"

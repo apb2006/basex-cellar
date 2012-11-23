@@ -31,11 +31,12 @@ declare function find-id(
 {
     if($id) then $userDb/users/user[@id=$id] else ()
 };
-declare function find-github(
+declare function find-external(
    $userDb,
+   $authtype as xs:string,
    $github-user as xs:string?) as element(user)?
 {
-    if($github-user) then $userDb/users/user[auth[@type="github"]=$github-user and usertype="github"] else ()
+    if($github-user) then $userDb/users/user[auth/@type=$authtype and auth=$github-user] else ()
 };
 
 (:~

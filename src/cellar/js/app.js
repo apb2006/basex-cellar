@@ -8,36 +8,30 @@ config(
 		[ '$routeProvider', function($routeProvider) {
 
 			$routeProvider.when('/wines', {
-				templateUrl : 'partials/wine-thumbs.xml',
-				controller: WineListCtrl	
+				templateUrl : 'partials/wine-thumbs.xml',controller: "WineListCtrl"	
 			})
 			.when('/',{redirectTo : '/wines'})
 			.when('/wines/:wineId', {
-				templateUrl : 'partials/wine-details.xml',
-				controller : WineDetailCtrl
-			}).when('/list', {
-				templateUrl : 'partials/wine-list.xml',
-				controller : WineListCtrl
+				templateUrl : 'partials/wine-details.xml',controller : "WineDetailCtrl"
 			}).when('/grapes', {
-				templateUrl : 'partials/grape-list.xml',
-				controller : "GrapeListCtrl"
+				templateUrl : 'partials/grape-list.xml',controller : "GrapeListCtrl"
 			}).when('/bottles', {
 				templateUrl : 'partials/bottles.xml',
 				controller : "BottleCtrl"		
 			}).when('/search', {
 				templateUrl : 'partials/search.xml',controller :"SearchCtrl"
 			}).when('/users', {
-				templateUrl : 'partials/user-list.xml',permission:"*",
-				controller : UserCtrl
+				templateUrl : 'partials/user-list.xml',permission:".*",controller : "UserCtrl"
 			}).when('/users/:userId', {
-				templateUrl : 'partials/user-details.xml',permission:"*",
-				controller : UserDetailCtrl	
+				templateUrl : 'partials/user-details.xml',permission:".*",controller : "UserDetailCtrl"	
 			}).when('/tasks', {
 				templateUrl : 'partials/tasks.xml',permission:"admin"
+			}).when('/events', {
+				templateUrl : 'partials/events.xml'				
 			}).when('/about', {
 				templateUrl : 'partials/about.xml'			
 			}).when('/resources', {
-				templateUrl : 'partials/resources.xml',permission:"*"
+				templateUrl : 'partials/resources.xml',permission:".*"
 			}).when('/404', {
 				templateUrl : 'partials/404.xml'
 			}).when('/error', {
@@ -55,7 +49,7 @@ Cellar.filter('moment', function() {
     return function(dateString, format) {return moment(dateString).format(format);}
 });
 Cellar.filter('fromNow', function() {
-    return function(dateString) {return moment(dateString).fromNow();}
+    return function(dateString) {return dateString?moment(dateString).fromNow():null;}
 });
 
 /* no hashbang within URLs for browers that support HTML5 history

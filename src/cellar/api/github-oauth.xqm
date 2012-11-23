@@ -9,7 +9,7 @@ declare namespace rest = 'http://exquery.org/ns/restxq';
 import module namespace http = 'http://expath.org/ns/http-client';
 
 declare variable $github:config:=
-                            fn:doc(fn:resolve-uri("../../WEB-INF/site-config.xml"))/config                           
+                            fn:doc(fn:resolve-uri("../../WEB-INF/cellar-config.xml"))/config                           
                             ;                         
 declare variable $github:Client-Id:=$github:config/github/Client-Id;
 declare variable $github:Client-Secret:=$github:config/github/Client-Secret;

@@ -8,7 +8,7 @@
 				<span class="icon-bar"></span>
 			</a>
 			<a href="#/" class="brand" title="Version 0.2.0">
-				<img src="wine.png" />
+				<img src="pics/wine.png" />
 				CellarXQ
 			</a>
 
@@ -77,6 +77,12 @@
 								<a href="#/about">
 									<i class="icon-info-sign"></i>
 									About Angular Cellar
+								</a>
+							</li>
+							<li>
+								<a href="#/events">
+									<i class="icon-info-sign"></i>
+									Recent events
 								</a>
 							</li>
 							<li>

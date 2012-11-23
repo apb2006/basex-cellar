@@ -26,9 +26,9 @@ angular.module('cellar.auth', [])
     if(!(next.$route && next.$route.permission))return
 	 var msg=null;
 	  if(!Auth.isAuthenticated()){
-		msg="You must log in to access this page "
+		msg="You must log in to access that page "
 	  }else if(!Auth.hasRole(next.$route.permission)){
-		msg="This page is not accessable to you, please use a different login"
+		msg="Your current login does not have access to that page, please use a different login"
 	  }
 	  if(msg){
 		  Auth.setReturn($location.$$url);
@@ -93,16 +93,7 @@ angular.module('cellar.auth', [])
 	         Flash.show("error","Bad thing!: "+data);
 			 })
     },
-    github: function(auth, callback) {
-        return $http.post('../restxq/cellar/auth/github', auth).success(function(data) {
-          if (data.name) {
-            _this.set(data);
-          }
-            return callback(data.rc==0);
-        }).error(function(data){
-  	         Flash.show("error","Bad thing!: "+data);
-  			 })
-      },
+   
     logout: function() {
       if (_this.authenticated) {
         return $http.post('../restxq/cellar/auth/logout', {}).success(function(data) {
@@ -118,8 +109,7 @@ angular.module('cellar.auth', [])
 	  
 	}},
 	changepassword:function(newpass,callback) {
-		alert("new pass")
-		return $http.post('../restxq/cellar/auth/changepassword', {}).success(function(data) {
+		return $http.post('../restxq/cellar/auth/changepassword', newpass).success(function(data) {
 			alert(data)
 		})
 		
@@ -167,9 +157,6 @@ function AuthController(Flash,Auth, $location,$scope,$rootScope) {
 	      alert("not yet");
 		  }
   };
-  $scope.github=function(){
-	  alert("no yet")
-  }
 };
 AuthController.$inject = ['Flash','Auth','$location',  '$scope',"$rootScope"];
 AuthController.resolve={

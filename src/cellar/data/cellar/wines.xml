@@ -6,9 +6,7 @@
 		<grapes>Pinot Noir</grapes>
 		<country>USA</country>
 		<region>California</region>
-		<description>With hints of ginger and spice, this wine makes an
-			excellent complement to light appetizer and dessert fare for a
-			holiday gathering.
+		<description>With hints of ginger and spice, this wine makes an excellent complement to light appetizer and dessert fare for a holiday gathering.
 		</description>
 		<picture>block_nine.jpg</picture>
 	</wine>
@@ -19,8 +17,7 @@
 		<grapes>Pinot Gris</grapes>
 		<country>Argentina</country>
 		<region>Mendoza</region>
-		<description>Solid notes of black currant blended with a light citrus
-			make this wine an easy pour for varied palates.</description>
+		<description>Solid notes of black currant blended with a light citrus make this wine an easy pour for varied palates.</description>
 		<picture>bodega_lurton.jpg</picture>
 	</wine>
 	<wine id="1b08f2905428-4f6b-8d82-e44900ff7659">
@@ -31,8 +28,8 @@
 		<country>France</country>
 		<region>Southern Rhone</region>
 		<description>The aromas of fruit and spice give one a hint of the
-			light drinkability of this lovely wine, which makes an excellent
-			complement to fish dishes.
+ light drinkability of this lovely wine, which makes an excellent
+ complement to fish dishes.
 		</description>
 		<picture>saint_cosme.jpg</picture>
 	</wine>
@@ -44,9 +41,7 @@
 		<country>France</country>
 		<region>Bordeaux</region>
 		<description>Though dense and chewy, this wine does not overpower with
-			its finely balanced depth and structure. It is a truly luxurious
-			experience for the
-			senses.
+ its finely balanced depth and structure. It is a truly luxurious experience for the senses.
 		</description>
 		<picture>le_doyenne.jpg</picture>
 	</wine>
@@ -58,8 +53,8 @@
 		<country>France</country>
 		<region>Bordeaux</region>
 		<description>The light golden color of this wine belies the bright
-			flavor it holds. A true summer wine, it begs for a picnic lunch in a
-			sun-soaked vineyard.
+ flavor it holds. A true summer wine, it begs for a picnic lunch in a
+ sun-soaked vineyard.
 		</description>
 		<picture>bouscat.jpg</picture>
 	</wine>
@@ -71,9 +66,9 @@
 		<country>USA</country>
 		<region>Oregon</region>
 		<description>Though subtle in its complexities, this wine is sure to
-			please a wide range of enthusiasts. Notes of pomegranate will delight
-			as the nutty finish completes the picture of a fine sipping
-			experience.
+ please a wide range of enthusiasts. Notes of pomegranate will delight
+ as the nutty finish completes the picture of a fine sipping
+ experience.
 		</description>
 		<picture>domaine_serene.jpg</picture>
 	</wine>
@@ -85,9 +80,9 @@
 		<country>Spain</country>
 		<region>Rioja</region>
 		<description>A resurgence of interest in boutique vineyards has opened
-			the door for this excellent foray into the dessert wine market. Light
-			and bouncy, with a hint of black truffle, this wine will not fail to
-			tickle the taste buds.
+ the door for this excellent foray into the dessert wine market. Light
+ and bouncy, with a hint of black truffle, this wine will not fail to
+ tickle the taste buds.
 		</description>
 		<picture>lan_rioja.jpg</picture>
 	</wine>
@@ -99,16 +94,12 @@
 		<country>France</country>
 		<region>Burgundy</region>
 		<description>Breaking the mold of the classics, this offering will
-			surprise and undoubtedly get tongues wagging with the hints of coffee
-			and tobacco in
-			perfect alignment with more traditional notes. Breaking
-			the mold of the
-			classics, this offering will surprise and
-			undoubtedly
-			get tongues wagging with the hints of coffee and tobacco in
-			perfect
-			alignment with more traditional notes. Sure to please the late-night
-			crowd with the slight jolt of adrenaline it brings.
+ surprise and undoubtedly get tongues wagging with the hints of coffee
+ and tobacco in perfect alignment with more traditional notes. 
+ Breaking the mold of the classics, this offering will surprise and undoubtedly get 
+ tongues wagging with the hints of coffee and tobacco in perfect
+ alignment with more traditional notes. Sure to please the late-night
+ crowd with the slight jolt of adrenaline it brings.
 		</description>
 		<picture>morizottes.jpg</picture>
 	</wine>
@@ -120,9 +111,9 @@
 		<country>USA</country>
 		<region>California Central Cosat</region>
 		<description>The cache of a fine Cabernet in ones wine cellar can now
-			be replaced with a childishly playful wine bubbling over with
-			tempting tastes of black cherry and licorice. This is a taste sure to
-			transport you back in time.</description>
+ be replaced with a childishly playful wine bubbling over with
+ tempting tastes of black cherry and licorice. This is a taste sure to
+ transport you back in time.</description>
 		<picture>margerum.jpg</picture>
 	</wine>
 	<wine id="02b28bd5-465d-42f6-a9e3-d221ddf1f8fa">
@@ -133,9 +124,8 @@
 		<country>USA</country>
 		<region>Washington</region>
 		<description>A one-two punch of black pepper and jalapeno will send
-			your senses reeling, as the orange essence snaps you back to reality.
-			Don't miss
-			this award-winning taste sensation.
+ your senses reeling, as the orange essence snaps you back to reality.
+ Don't miss this award-winning taste sensation.
 		</description>
 		<picture>ex_umbris.jpg</picture>
 	</wine>
@@ -147,9 +137,8 @@
 		<country>USA</country>
 		<region>Oregon</region>
 		<description>One cannot doubt that this will be the wine served at the
-			Hollywood award shows, because it has undeniable star power. Be the
-			first to catch
-			the debut that everyone will be talking about tomorrow.
+ Hollywood award shows, because it has undeniable star power. Be the
+ first to catch the debut that everyone will be talking about tomorrow.
 		</description>
 		<picture>rex_hill.jpg</picture>
 	</wine>
@@ -161,9 +150,9 @@
 		<country>Italy2</country>
 		<region>Tuscany2</region>
 		<description>Though soft and rounded in texture, the body of this wine
-			is full and rich and oh-so-appealing. This delivery is even more
-			impressive when one takes note of the tender tannins that leave the
-			taste buds wholly satisfied.2
+ is full and rich and oh-so-appealing. This delivery is even more
+ impressive when one takes note of the tender tannins that leave the
+ taste buds wholly satisfied.
 		</description>
 		<picture>viticcio.jpg</picture>
 	</wine>
@@ -209,17 +198,17 @@
 		<grapes>Grenache</grapes>
 		<region>Alicanté</region>
 		<description>Quite aromatic on the nose with a hint of blueberry early
-			on. Then come mineral-tinged notes of pipe tobacco, roasted
-			chestnuts, toasty rye bread and black currant fruit. On the lighter
-			side for Monastrell with a real softness and elegance where one
-			normally finds only rusticity. This is not refined but remarkably
-			well managed. Full of blue and black berry fruit flavors that are
-			supported by firm yet pliant tannins and subtle hints of green
-			tobacco, a little almond and delicate fine herb notes. The acidity is
-			supportive if not obvious, lending a lovely freshness to the finish,
-			which is flecked with clear peppery notes and lovely, crisp tannins.
-			This is delicious and a real find. Will it age well over the next 3-6
-			years? I'll wager that it will.</description>
+ on. Then come mineral-tinged notes of pipe tobacco, roasted
+ chestnuts, toasty rye bread and black currant fruit. On the lighter
+ side for Monastrell with a real softness and elegance where one
+ normally finds only rusticity. This is not refined but remarkably
+ well managed. Full of blue and black berry fruit flavors that are
+ supported by firm yet pliant tannins and subtle hints of green
+ tobacco, a little almond and delicate fine herb notes. The acidity is
+ supportive if not obvious, lending a lovely freshness to the finish,
+ which is flecked with clear peppery notes and lovely, crisp tannins.
+ This is delicious and a real find. Will it age well over the next 3-6
+ years? I'll wager that it will.</description>
 		<year>2009</year>
 	</wine>
 	<wine id="f67be863-b7ce-4c9b-9b6e-356acf430974">
@@ -236,12 +225,12 @@
 		<region>Northern Rhône</region>
 		<year>2009</year>
 		<description>La Guiraude is 100 percent Syrah from vines planted on
-			alluvial soils in the heart of the Crozes plateau. The warm, dry 2009
-			growing season produced an early harvest of ripe grapes balanced with
-			fresh acidity. Second-generation winemaker Maxime Graillot fermented
-			with stems and aged the wine 80 percent in used oak and 20 percent in
-			vat for one year, to add complexity and structure without masking the
-			fruit.</description>
+ alluvial soils in the heart of the Crozes plateau. The warm, dry 2009
+ growing season produced an early harvest of ripe grapes balanced with
+ fresh acidity. Second-generation winemaker Maxime Graillot fermented
+ with stems and aged the wine 80 percent in used oak and 20 percent in
+ vat for one year, to add complexity and structure without masking the
+ fruit.</description>
 	</wine>
 	<wine id="9571858ddf874874a9b0e56d626bafef">
 		<meta created="2012-01-01T22:33:19.111Z" modified="2012-10-30T20:54:21.851Z" />

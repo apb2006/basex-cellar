@@ -11,10 +11,13 @@ import module namespace web = 'apb.web.utils2' at "webutils.xqm";
 import module namespace meta-db = 'apb.meta.db' at "meta-db.xqm";
 declare namespace rest = 'http://exquery.org/ns/restxq';
 
+(: used for created :)
+declare variable $cellar:baseuri:="/restxq/cellar/api/wines/";
 
 declare variable $cellar:wines:=db:open("cellar","wines.xml")/wines;
-declare variable $cellar:grapes:=db:open("cellar","grapes.xml")/grapes;  
-declare variable $cellar:baseuri:="/restxq/cellar/api/wines/";
+declare variable $cellar:grapes:=db:open("cellar","grapes.xml")/grapes;
+declare variable $cellar:events:=db:open('cellar',"events.xml")/events;  
+
 
 (:~
 : return name and id for all wines as json
@@ -104,7 +107,7 @@ function search(
   $q as xs:string)
 {
 let $res:=for $wine in $cellar:wines/wine 
-          let score $s:= $wine/description contains text ({$q} weight{1}) 
+          let score $s:= $wine/description contains text ({$q} weight{1}) using fuzzy 
 				or  $wine/name contains text ({$q} weight{4}) using fuzzy
 			   where $s gt 0           
 			   order by $s descending
@@ -217,3 +220,25 @@ function xml(
   db:open($db,$doc)
 };
 
+(:~
+: return  all events as json
+:)
+declare
+%rest:GET %rest:path("cellar/api/events")  
+%output:method("json")
+function events()
+{
+  <json arrays="json" objects="event">
+    {for $wine in $cellar:wines/wine
+    order by fn:upper-case($wine/name)
+    return <wine>{(
+	   meta-db:output($wine),
+	   $wine/name,
+       $wine/year,
+       $wine/grapes,
+       $wine/region,
+       $wine/country,
+       $wine/picture
+	   )}</wine>}
+  </json>
+};

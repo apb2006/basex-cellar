@@ -21,25 +21,6 @@ declare variable $auth:userdb:=db:open('users',"users.xml");
 declare variable $auth:gitdb:=db:open('users',"github.xml"); 
                            
 (:~
-: return all users as json if this session is for admin
-: auth required
-:)
-declare
-%rest:GET %rest:path("cellar/api/users")  
-%output:method("json")
-function users()
-{
-   web:role-check("admin",function(){
-       <json arrays="json" objects="user">
-		      {for $u in $auth:userdb/users/user
-			  return <user>
-			      <id>{$u/@id/fn:string()}</id>
-				  <name>{$u/name/fn:string()}</name>
-				  </user>}
-		</json>}   
-)};
-
-(:~
 : login 
 : @return fail
 :)
@@ -63,8 +44,6 @@ updating function login-post(
      else
 	  db:output(session-user(()) )
 };
-
-
 
 declare
 %rest:path("cellar/auth/logout")
@@ -122,7 +101,7 @@ declare
 updating function changepassword(
 	$body)
 {
-   let $json:=fn:trace($body/json,"newpassword")
+   let $json:=$body/json
    let $newpassword as xs:string:=  $json/newpassword/fn:string()
    let $password as xs:string:=  $json/password/fn:string()
    let $u:=users:find-id($auth:userdb,session:get("uid"))
@@ -180,13 +159,16 @@ updating function login-github(
    return if($token) then 
             let $github-profile:=github:user($token)
             let $github-user:=$github-profile/json/login/fn:string()
-            let $exists:=users:find-github($auth:gitdb,$github-user)
+            let $exists:=users:find-external($auth:userdb,"github",$github-user)
             let $user:=if($exists) then $exists
                        else users:generate($auth:userdb,$github-user,"github",$github-user)			
             return (
-               if($exists) then () else users:create($auth:userdb,$user), 
+               if($exists) then users:update-stats($auth:userdb,$user/@id)
+			               else users:create($auth:userdb,$user), 
                github-db:ensure($auth:gitdb,$github-user,$github-profile),
-               db:output(session-user($user))
+               db:output((session:set("uid", $user/@id/fn:string()),
+			             web:redirect("/cellar"))
+			            )
                )
            else
                db:output( <json  objects="json">

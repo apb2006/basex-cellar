@@ -8,7 +8,7 @@
 <meta name="author" content="andy bunce" />
 <title ng:bind="windowTitle">Angular RESTXQ Cellar</title>
 	<!-- Le fav and touch icons -->
-<link rel="shortcut icon" href="wine.png"/>
+<link rel="shortcut icon" href="pics/wine.png"/>
 <link rel="stylesheet"
 	href="/lib/twitter-bootstrap/2.2.1/css/bootstrap.css">
 	<link rel="stylesheet" href="css/styles.css" />	
@@ -23,8 +23,8 @@
 
 <body  style="background-color:lavender;">
 	<ng:include src="'partials/navbar.xml'"></ng:include>
-	 <div id="loading" class="progress progress-striped active">  
-				<div class="bar" style="width: 100%;"> Please wait... </div>
+	 <div id="loading" >  
+				<div ><img src="pics/ajax-loader.gif"/> Please wait... </div>
      </div>
 	 <div  style="margin:0px 10px;" id="alerts">
       <div ng:repeat="alert in alerts">

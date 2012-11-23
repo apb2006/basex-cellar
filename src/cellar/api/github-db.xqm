@@ -32,7 +32,7 @@ declare updating function ensure(
   $github-name as xs:string,
   $profile)
 {    
-   let $u:=$userDb/users/user[@id=$github-name]
+   let $u:=$userDb/github/user[@id=$github-name]
    return if($u) then
             (replace node $u/* with $profile,
 			 replace value of node $u/@modified with fn:current-dateTime())

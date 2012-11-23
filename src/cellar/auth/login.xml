@@ -38,8 +38,9 @@
 			<legend>or Sign using another service</legend>
 			<div class="form-actions">
 				Login using your account on:
-				<button ng:click="github()" class="btn btn-primary">Github</button>
-
+	
+                <a href="../restxq/cellar/auth/github">Github</a>
+				<a href="../restxq/cellar/auth/twitter">Twitter</a>
 			</div>
 		</fieldset>
 		extra

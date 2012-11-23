@@ -3,11 +3,11 @@
 	<ul class="media-list winelist">
 		<li class="media thumbnail" data-ng-repeat="user in users">
 			<a href="#/users/{{  user.id }}" class="pull-left">
-				<img class="media-object img-circle" src="pics/user1.png" />
+				<img class="media-object img-circle" src="pics/users/user1.png" />
 			</a>
 			<div class="media-body">
 				<h4 class="media-heading">{{ user.name }}</h4>
-				<div>The id is: {{ user.id }}</div>
+				<div>Logins: {{ user.count }} last login:{{ user.last | fromNow}} joined:{{ user.created | fromNow}}</div>
 			</div>
 		</li>
 	</ul>
