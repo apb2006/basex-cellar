@@ -1,5 +1,5 @@
 <div xmlns:ng="http://angularjs.org">
-	<form class=" form-horizontal">
+	<form ng:submit="login()"  class=" form-horizontal">
 		<div class="well span6">
 			<fieldset>
 				<legend>Sign in directly with registered account</legend>
@@ -26,7 +26,7 @@
 
 			</fieldset>
 			<div class="form-actions">
-				<button ng:click="login()" class="btn btn-primary">Log in</button>
+				<button type="submit"  class="btn btn-primary">Log in</button>
 				Or
 				<a href="#/auth/register">Register</a>
 			</div>
@@ -39,8 +39,8 @@
 			<div class="form-actions">
 				Login using your account on:
 	
-                <a href="../restxq/cellar/auth/github">Github</a>
-				<a href="../restxq/cellar/auth/twitter">Twitter</a>
+                <a class="btn" href="../restxq/cellar/auth/github">Github</a>
+				<a  class="btn" href="../restxq/cellar/auth/twitter">Twitter</a>
 			</div>
 		</fieldset>
 		extra

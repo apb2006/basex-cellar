@@ -32,7 +32,7 @@ function WineListCtrl(Flash,Wine, $location, $filter,$scope) {
 	$scope.sort = { column: 'name', descending: false};
 	
 	$scope.$watch('sort', function(value) {
-      //  window.location.hash =$location.path() + '?sort=' + value.column;
+      $location.search( 'sort=' + (value.descending?"-":"")+ value.column);
     }, true);
     $scope.selectedCls = function(column) {
 	    if(column == $scope.sort.column){
@@ -224,3 +224,10 @@ function BottleCtrl($scope,Bottle){
  console.log("bottleCtrl");
 };
 BottleCtrl.$inject = [ '$scope','Bottle'];
+//------------------------------------------
+function EventCtrl($scope,Events){
+ $scope.events=Events.api.query();
+ console.log("EventCtrl");
+};
+EventCtrl.$inject = [ '$scope',"Events"];
+

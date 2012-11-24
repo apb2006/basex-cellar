@@ -8,7 +8,8 @@ config(
 		[ '$routeProvider', function($routeProvider) {
 
 			$routeProvider.when('/wines', {
-				templateUrl : 'partials/wine-thumbs.xml',controller: "WineListCtrl"	
+				templateUrl : 'partials/wine-thumbs.xml',controller: "WineListCtrl",
+				reloadOnSearch: false
 			})
 			.when('/',{redirectTo : '/wines'})
 			.when('/wines/:wineId', {
@@ -27,7 +28,7 @@ config(
 			}).when('/tasks', {
 				templateUrl : 'partials/tasks.xml',permission:"admin"
 			}).when('/events', {
-				templateUrl : 'partials/events.xml'				
+				templateUrl : 'partials/events.xml',controller : "EventCtrl"				
 			}).when('/about', {
 				templateUrl : 'partials/about.xml'			
 			}).when('/resources', {

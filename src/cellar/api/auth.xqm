@@ -9,6 +9,7 @@ declare default function namespace 'apb.auth.app';
 
 import module namespace web = 'apb.web.utils2' at "webutils.xqm";
 import module namespace users = 'apb.users.app' at "user-db.xqm";
+import module namespace events = 'apb.cellar.event' at "events.xqm";
 
 import module namespace github = 'http://developer.github.com/v3/oauth/' at "github-oauth.xqm";
 import module namespace github-db = 'apb.github.db' at "github-db.xqm";
@@ -36,7 +37,8 @@ updating function login-post(
  return 
      if($u) then
          (
-		   users:update-stats($auth:userdb,$u/@id), 
+		   users:update-stats($auth:userdb,$u/@id),
+		   events:log("login",$json/username,$u/@id,$json/username), 
 			db:output((
                 session:set("uid", $u/@id/fn:string()),
                 session-user($u) ))
@@ -77,6 +79,7 @@ updating function register-post(
         let $u:=users:generate($auth:userdb,$username,"local",$password)
         return (
             users:create($auth:userdb,$u),
+            events:log("register",$username,0,$username), 
             db:output((
                 session:set("uid", $u/@id/fn:string()),
                 session-user($u) ))
@@ -166,6 +169,7 @@ updating function login-github(
                if($exists) then users:update-stats($auth:userdb,$user/@id)
 			               else users:create($auth:userdb,$user), 
                github-db:ensure($auth:gitdb,$github-user,$github-profile),
+                events:log("github",$github-user,$user/@id,$github-user), 
                db:output((session:set("uid", $user/@id/fn:string()),
 			             web:redirect("/cellar"))
 			            )

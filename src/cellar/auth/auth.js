@@ -13,11 +13,11 @@ angular.module('cellar.auth', [])
             }).when('/auth/register', {
 				templateUrl : 'auth/register.xml'
             }).when('/auth/changepassword', {
-				templateUrl : 'auth/changepassword.xml',permission:"*"
+				templateUrl : 'auth/changepassword.xml',permission:".*"
             }).when('/auth/lostpassword', {
 				templateUrl : 'auth/lostpassword.xml'				
             }).when('/auth/profile', {
-				templateUrl : 'auth/profile.xml',permission:"*"				
+				templateUrl : 'auth/profile.xml',permission:".*"				
             })
             
 		}])
@@ -84,6 +84,7 @@ angular.module('cellar.auth', [])
 			 })
     },
 	register: function(auth, callback) {
+		
       return $http.post('../restxq/cellar/auth/register', auth).success(function(data) {
         if (data.name) {
           _this.set(data);

@@ -1,5 +1,5 @@
 <div xmlns:ng="http://angularjs.org"  ng:controller="AuthController">
-	<form  class="well form-horizontal span6"
+	<form  ng:submit="register()" class="well form-horizontal span6"
 	 oninput="up2.setCustomValidity(up2.value != password.value ? 'Passwords do not match.' : '')">
 		<fieldset>
 			<legend>Register</legend>
@@ -7,7 +7,7 @@
 				<label class="control-label" for="username">Choose a user name:</label>
 				<div class="controls">
 					<input id="username" ng:model="auth.username" type="text" class="input" 
-					required="required"  autofocus="autofocus"
+					required="required"  autofocus="autofocus" pattern="[A-Za-z_][A-Za-z_0-9]*"
 						placeholder="Username" />
 				</div>
 			</div>
@@ -27,7 +27,7 @@
 			</div>
 		</fieldset>
 		<div class="form-actions">
-			<button  ng:click="register()" class="btn btn-primary">Register</button>
+			<button  type="submit"  class="btn btn-primary">Register</button>
 			Or
 			<a href="#/auth/login">Sign in</a>
 		</div>

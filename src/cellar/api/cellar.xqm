@@ -9,6 +9,7 @@ declare default function namespace 'apb.cellar.rest';
 
 import module namespace web = 'apb.web.utils2' at "webutils.xqm";
 import module namespace meta-db = 'apb.meta.db' at "meta-db.xqm";
+import module namespace events = 'apb.cellar.event' at "events.xqm";
 declare namespace rest = 'http://exquery.org/ns/restxq';
 
 (: used for created :)
@@ -16,7 +17,6 @@ declare variable $cellar:baseuri:="/restxq/cellar/api/wines/";
 
 declare variable $cellar:wines:=db:open("cellar","wines.xml")/wines;
 declare variable $cellar:grapes:=db:open("cellar","grapes.xml")/grapes;
-declare variable $cellar:events:=db:open('cellar',"events.xml")/events;  
 
 
 (:~
@@ -57,6 +57,7 @@ updating function add-wine(
 	let $id:=meta-db:generate-id()
     let $new:=<wine id="{$id}"><meta created="{fn:current-dateTime()}"/>{$items }</wine>
     return ( insert node $new into $cellar:wines ,
+            events:log("wine-add","admin","0",$id),
             db:output(
 			  (web:http-created($cellar:baseuri || $id,
 			     <json objects="json">{$new/* except $new/meta}</json>))
@@ -140,7 +141,10 @@ updating function put-wine(
                         </wine>
            return              
                if($items/modified=$old/meta/@modified/fn:string() or fn:not($old/meta/@modified))
-               then (replace node $old with $new, db:output($body))
+               then (replace node $old with $new,
+                     events:log("wine-mod","admin","0",$id), 
+                     db:output($body)    
+                     )
                else db:output( web:status(403,"data modified"))
          else 
 			db:output(web:status(404,"Not found: " || $id))
@@ -160,7 +164,10 @@ updating function delete-wine(
          then let $w:= <json  objects="json ">
                         <deleted>true</deleted>
                         </json>
-              return (delete node  $wine,db:output($w))
+              return (delete node  $wine,
+                      events:log("wine-delete","admin","0",$id),
+                       db:output($w)
+                       )
          else db:output(web:status(404,"Not found: " || $id))
 };
 
@@ -228,17 +235,5 @@ declare
 %output:method("json")
 function events()
 {
-  <json arrays="json" objects="event">
-    {for $wine in $cellar:wines/wine
-    order by fn:upper-case($wine/name)
-    return <wine>{(
-	   meta-db:output($wine),
-	   $wine/name,
-       $wine/year,
-       $wine/grapes,
-       $wine/region,
-       $wine/country,
-       $wine/picture
-	   )}</wine>}
-  </json>
+ events:list()
 };

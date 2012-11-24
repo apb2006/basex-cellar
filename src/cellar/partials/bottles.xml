@@ -1,14 +1,18 @@
 <div class="row" data-ng-init="setWindowTitle('Bottles')">
 	<h2>Bottle pictures</h2>
 
-	<ul class="thumbnails winelist">
-		<li class="span2" data-ng-repeat="bottle in bottles">
-			<a href="#" class="thumbnail plain">
-				 <img data-ng-src="{{ bottle.name |winePic }}" style="height:125" height="150"  alt=""/>
+	<ul class="thumbnails ">
+		<li class="span3" data-ng-repeat="bottle in bottles">
+		<a href="#" class="thumbnail plain">
+		<h5>
+		 <span class="label" >{{ bottle.name}}</span>
+		 <span class="badge badge-warning" title="Usage">{{ bottle.usage }}</span>
+		 </h5>
+			
+				 <img data-ng-src="{{ bottle.name |winePic }}"  height="150"  alt=""/>
 				
 			</a>
-			 <h5 class="wine-name">{{ bottle.name}}</h5>
-		     <div>Usage: {{ bottle.usage }}</div>
+
 		</li>
 	</ul>
 </div>

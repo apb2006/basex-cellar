@@ -82,4 +82,8 @@ factory('Wine',
 				     return {api : $resource('../restxq/cellar/api/search?q=:q')}
 	
 } ])
+.factory('Events', ['$resource','$http', function($resource,$http) {
+				     return {api : $resource('../restxq/cellar/api/events')}
+	
+} ])
 

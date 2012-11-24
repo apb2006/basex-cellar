@@ -2,9 +2,13 @@
 let $cellar:=fn:resolve-uri("data/cellar/")
 let $user:=fn:resolve-uri("data/users/")
 return (
-db:output("done"),
-db:create("cellar",$cellar),
-db:create("users",$user)
+    if(db:exists("cellar"))then db:drop("cellar") else (),
+    db:create("cellar",$cellar),
+    
+    if(db:exists("users"))then db:drop("users") else (),
+    db:create("users",$user),
+    
+    db:output("done")
 )
 
 
