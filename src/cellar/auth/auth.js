@@ -16,8 +16,6 @@ angular.module('cellar.auth', [])
 				templateUrl : 'auth/changepassword.xml',permission:".*"
             }).when('/auth/lostpassword', {
 				templateUrl : 'auth/lostpassword.xml'				
-            }).when('/auth/profile', {
-				templateUrl : 'auth/profile.xml',permission:".*"				
             })
             
 		}])

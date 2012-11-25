@@ -43,7 +43,7 @@ factory('Wine',
 						 * and update itself.
 						 */
 						broadcastChange : function() {
-							$rootScope.$broadcast('wine:change');
+							$rootScope.$broadcast('grape:change');
 						}
 
 					}
@@ -68,7 +68,7 @@ factory('Wine',
 						 * ctrl.
 						 */
 						broadcastChange : function() {
-							$rootScope.$broadcast('userevent');
+							$rootScope.$broadcast('user:change');
 						}
 
 					}

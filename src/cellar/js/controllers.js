@@ -134,7 +134,11 @@ function GrapeListCtrl(Flash,Grape, $location, $filter,$scope) {
 
 }
 GrapeListCtrl.$inject = ['Flash','Grape', '$location', '$filter','$scope'];
-
+//-------------------------------------------------------------
+function GrapeDetailCtrl(Grape,Flash, $routeParams, $location, $scope) {	
+    $scope.grape = Grape.api.get({grapeId: $routeParams.grapeId})
+};
+GrapeDetailCtrl.$inject = ['Grape', 'Flash','$routeParams', '$location', '$scope'];
 //-------------------------------------------------------------
 function WineDetailCtrl(Wine,Flash, $routeParams, $location, $scope) {
 	

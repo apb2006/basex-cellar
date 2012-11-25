@@ -7,7 +7,7 @@
 	Sort:
     </form>
 	
-	<ul class="nav " title="Click to sort">
+	<ul class="nav " title="Click to sort" style="margin-top:4px">
 		 <li data-ng-class="activeCls(th.column)" data-ng-repeat="th in head">
 			<a data-ng-click="changeSorting(th.column)"  style="padding: 6px 4px;">
 			{{th.head}}

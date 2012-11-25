@@ -1,59 +1,38 @@
 (:~ 
-: twitter auth  application 
+: twitter auth  application
+: https://dev.twitter.com/docs/auth/implementing-sign-twitter 
+: https://dev.twitter.com/discussions/6913
 : @author andy bunce
 : @since nov 2012
 :)
-module namespace github = 'http://developer.github.com/v3/oauth/';
-declare default function namespace 'http://developer.github.com/v3/oauth/';
+module namespace twitter = 'https://api.twitter.com/oauth/authenticate';
+declare default function namespace 'https://api.twitter.com/oauth/authenticate';
 declare namespace rest = 'http://exquery.org/ns/restxq';
+
+import module namespace oa="http://basex.org/ns/oauth" at "oauth.xqy";
 import module namespace http = 'http://expath.org/ns/http-client';
 
-declare variable $github:config:=
+declare variable $twitter:config:=
                             fn:doc(fn:resolve-uri("../../WEB-INF/cellar-config.xml"))/config                           
-                            ;                         
-declare variable $github:Client-Id:=$github:config/github/Client-Id;
-declare variable $github:Client-Secret:=$github:config/github/Client-Secret;
+                            ;
+(:                                                    
+let $twitter:CONSUMER-KEY:=$twitter:config/twitter/CONSUMER-KEY
+let $twitter:CONSUMER-SECRET:=$twitter:config/twitter/CONSUMER-SECRET
+
+let $twitter:access-token := $twitter:config/twitter/access-token
+let $twitter:access-token-secret := $twitter:config/twitter/access-token
+:)
+
+
 
 (:~
-: @return token
-: client_id
-:    Required string - The client ID you received from GitHub when you registered.
-: client_secret
-:    Required string - The client secret you received from GitHub when you registered.
-:code
-:    Required string - The code you received as a response to Step 1.
-:state
-:    Required string - The state value you provided in Step 1.
-: redirect_uri
-:    Optional string 
-: http://developer.github.com/v3/oauth/
+: redirect to twitter authorize
 :)
-declare function get-access-token(
-   $code  as xs:string,
-   $redirect_uri  as xs:string){
-    let $p:=map{"client_id":=$github:Client-Id,
-                "client_secret" := $github:Client-Secret,
-                "code":=$code,
-                "state":="fish"}
-    let $ps:=fn:trace(encode-params($p),"params....: ")
-    let $href:= "https://github.com/login/oauth/access_token"          
-    let $request :=
-      <http:request method='post' >
-         <http:header name="Accept" value="application/xml"/>
-         <http:body media-type='application/x-www-form-urlencoded'>{$ps}</http:body>
-      </http:request>
-    let $r:=  http:send-request($request,$href)
-    return $r[2]/OAuth/access_token/fn:string()
-
-};
-
-(:~
-: redirect to github authorize
-:)
-declare function authorize(){
-    let $url:="https://github.com/login/oauth/authorize" || 
-               "?client_id=" ||$github:Client-Id ||
-               "&amp;state=fish"
+declare function authorize()
+{
+    let $oauth_token:="??"
+    let $url:="https://api.twitter.com/oauth/authenticate" || 
+               "?oauth_token=" ||$oauth_token
     return   <rest:response>         
                <http:response status="303" >
                  <http:header name="Location" value="{$url}"/>

@@ -12,6 +12,7 @@
 	<ul>
 	<li><a href="../restxq/cellar/api/xml?db=cellar&amp;doc=grapes.xml">Grapes</a></li>
 	<li><a href="../restxq/cellar/api/xml?db=cellar&amp;doc=wines.xml">Wines</a></li>
+    <li><a href="../restxq/cellar/api/xml?db=cellar&amp;doc=events.xml">Events</a></li>
 	
 	</ul>
 </div>

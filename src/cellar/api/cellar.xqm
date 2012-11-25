@@ -57,7 +57,7 @@ updating function add-wine(
 	let $id:=meta-db:generate-id()
     let $new:=<wine id="{$id}"><meta created="{fn:current-dateTime()}"/>{$items }</wine>
     return ( insert node $new into $cellar:wines ,
-            events:log("wine-add","admin","0",$id),
+            events:log2("wine-add",$id),
             db:output(
 			  (web:http-created($cellar:baseuri || $id,
 			     <json objects="json">{$new/* except $new/meta}</json>))
@@ -133,7 +133,7 @@ updating function put-wine(
 { 
   let $old:=$cellar:wines/wine[@id=$id]
   return if($old) then
-           let $items:=fn:trace($body/json,"put")
+           let $items:=$body/json
            let $new:=  <wine id="{$old/@id}">
                         <meta created="{$old/meta/@created}"
                         modified="{fn:current-dateTime()}"/>
@@ -142,7 +142,7 @@ updating function put-wine(
            return              
                if($items/modified=$old/meta/@modified/fn:string() or fn:not($old/meta/@modified))
                then (replace node $old with $new,
-                     events:log("wine-mod","admin","0",$id), 
+                     events:log2("wine-mod",$id), 
                      db:output($body)    
                      )
                else db:output( web:status(403,"data modified"))
@@ -165,7 +165,7 @@ updating function delete-wine(
                         <deleted>true</deleted>
                         </json>
               return (delete node  $wine,
-                      events:log("wine-delete","admin","0",$id),
+                      events:log2("wine-delete",$id),
                        db:output($w)
                        )
          else db:output(web:status(404,"Not found: " || $id))
@@ -189,6 +189,25 @@ function grapes()
        $grape/description}
        </grape>}
   </json>
+};
+
+(:~
+: full details for wines with id as json
+:)
+declare
+%rest:GET %rest:path("cellar/api/grapes/{$id}")  
+%output:method("json")
+function get-grape(
+  $id)
+{
+    let $grape:=$cellar:grapes/grape[@id=$id]
+    return if($grape) then
+                <json  objects="json " numbers="year" >
+                    {meta-db:output($grape),
+                     $grape/* except $grape/meta}
+                </json>
+            else 
+                web:status(404,"Not found: " || $id)    
 };
 
 (:~
@@ -222,7 +241,7 @@ declare
 %output:method("xml")
 function xml(
    $doc as xs:string,
-    $db  as xs:string)
+   $db as xs:string)
 {
   db:open($db,$doc)
 };

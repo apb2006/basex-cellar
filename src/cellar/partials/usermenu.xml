@@ -12,7 +12,7 @@
 			</a>
 			<ul class="dropdown-menu">
 				<li>
-					<a href="#/auth/profile">Profile</a>
+					<a href="#/profile">Profile</a>
 				</li>
 				<li>
 					<a href="#/auth/changepassword">Change password</a>

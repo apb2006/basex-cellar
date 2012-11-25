@@ -16,6 +16,9 @@ config(
 				templateUrl : 'partials/wine-details.xml',controller : "WineDetailCtrl"
 			}).when('/grapes', {
 				templateUrl : 'partials/grape-list.xml',controller : "GrapeListCtrl"
+			}).when('/grapes/:grapeId', {
+				templateUrl : 'partials/grape-details.xml',controller : "GrapeDetailCtrl"
+
 			}).when('/bottles', {
 				templateUrl : 'partials/bottles.xml',
 				controller : "BottleCtrl"		
@@ -33,6 +36,8 @@ config(
 				templateUrl : 'partials/about.xml'			
 			}).when('/resources', {
 				templateUrl : 'partials/resources.xml',permission:".*"
+			}).when('/profile', {
+					templateUrl : 'partials/profile.xml',permission:".*"					
 			}).when('/404', {
 				templateUrl : 'partials/404.xml'
 			}).when('/error', {

@@ -16,7 +16,7 @@ import module namespace session ="http://basex.org/modules/session";
 declare namespace rest = 'http://exquery.org/ns/restxq';
 
 
-declare variable $auth:userdb:=db:open('users',"users.xml");							
+declare variable $auth:userdb:=db:open('users',"users.xml")/users;							
 
                            
 (:~
@@ -30,14 +30,14 @@ function users()
 {
    web:role-check("admin",function(){
        <json arrays="json" objects="user">
-		      {for $u in $auth:userdb/users/user
+		      {for $u in $auth:userdb/user
 			  order by fn:number($u/stats/@logins) descending
 			  return <user>
 			      <id>{$u/@id/fn:string()}</id>
 				  <name>{$u/name/fn:string()}</name>
 				  <created>{$u/stats/@created/fn:string()}</created>
 				  <last>{$u/stats/@last/fn:string()}</last>
-				  <count>{$u/stats/@logins/fn:string()}</count>
+				  <logins>{$u/stats/@logins/fn:string()}</logins>
 				  </user>}
 		</json>}   
 )};
@@ -51,7 +51,15 @@ declare
 function get-user(
   $id)
 {
- <json arrays="json" objects="user">
-   <msg>Not yet</msg>
- </json>
+ let $u:=$auth:userdb/user[@id=$id]
+ return if($u) then
+            <json objects="json"> 
+                  <id>{$u/@id/fn:string()}</id>
+                  <name>{$u/name/fn:string()}</name>
+                  <created>{$u/stats/@created/fn:string()}</created>
+                  <last>{$u/stats/@last/fn:string()}</last>
+                  <logins>{$u/stats/@logins/fn:string()}</logins>
+              </json>
+      else 
+           web:status(404,"Not found: " || $id)    
 }; 

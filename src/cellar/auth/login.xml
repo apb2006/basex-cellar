@@ -16,6 +16,9 @@
 					<div class="controls">
 						<input id="password" ng:model="auth.password" type="password"
 							class="input" required="required" autoselect="autoselect" />
+						<div>
+						<a href="#/auth/lostpassword" >Forgotten your password?</a>	
+						</div>    
 					</div>
 				</div>
 
@@ -30,7 +33,7 @@
 				Or
 				<a href="#/auth/register">Register</a>
 			</div>
-			<a href="#/auth/lostpassword" class="pull-right">Forgotten your password?</a>
+			
 		</div>
 	</form>
 	<form class=" form-horizontal well span6">

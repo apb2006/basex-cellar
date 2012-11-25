@@ -1,11 +1,6 @@
 /* app.css */
-body {
-    padding-top: 50px;
-}
-@media (max-width: 979px) {
-    body {
-      padding-top: 0;
-    }
+[ng\:cloak], [ng-cloak], .ng-cloak {
+  display: none;
 }
 /* search bar icon */
 .navbar-search .search-query {

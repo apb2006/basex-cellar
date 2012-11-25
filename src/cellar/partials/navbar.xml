@@ -1,4 +1,4 @@
-<div class="navbar navbar-fixed-top " data-dropdown="dropdown"
+<div class="navbar navbar-static-top " data-dropdown="dropdown"
 	data-ng-controller="AppController">
 	<div class="navbar-inner">
 		<div class="container">
@@ -7,7 +7,7 @@
 				<span class="icon-bar"></span>
 				<span class="icon-bar"></span>
 			</a>
-			<a href="#/" class="brand" title="Version 0.2.0">
+			<a href="#/" class="brand" title="Version 0.4.0">
 				<img src="pics/wine.png" />
 				CellarXQ
 			</a>

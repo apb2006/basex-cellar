@@ -1,14 +1,18 @@
-<div class="row-fluid" data-ng-init="setWindowTitle('Grapes')" > 
-<h2>Grapes ({{grapes.length}})</h2>
-<ul class="media-list winelist">
-	<li class="media thumbnail" data-ng-repeat="grape in grapes">
-			<a  class="pull-left">
-			 <img class="media-object" src="pics/grapes.png"/>
-            </a>
+<div class="row-fluid" data-ng-init="setWindowTitle('Grapes')">
+	<h2>Grapes ({{grapes.length}})</h2>
+	<ul class="media-list winelist">
+		<li class="media thumbnail" data-ng-repeat="grape in grapes">
+			<a class="pull-left" href="#/grapes/{{ grape.id }}">
+				<img class="media-object" src="pics/grapes.png" />
+			</a>
 			<div class="media-body">
-              <h4 class="media-heading">{{ grape.name }}</h4>
-			  <div> {{ grape.description }}</div>
-			 </div>
-	</li>		
-</ul>
+				<h4 class="media-heading">
+					<a href="#/grapes/{{ grape.id }}">
+						{{ grape.name }}
+					</a>
+				</h4>
+				<div> {{ grape.description }}</div>
+			</div>
+		</li>
+	</ul>
 </div>

@@ -4,10 +4,8 @@
 <li data-ng-repeat="event in events">
 <time style="width:20em">{{event.created | fromNow}}</time>
 <span class="label  label-info">{{event.eventname}}</span>
-<span class="label">{{event.userid}}</span>
-<span class="label">{{event.username}}</span>
-
-<span class="label">{{event.username}}</span>
+<a href="#/users/{{event.userid}}"  class="label">{{event.username}}</a>
+<span class="label">{{event.item}}</span>
 </li>
 </ul>
 </div>

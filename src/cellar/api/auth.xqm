@@ -14,6 +14,8 @@ import module namespace events = 'apb.cellar.event' at "events.xqm";
 import module namespace github = 'http://developer.github.com/v3/oauth/' at "github-oauth.xqm";
 import module namespace github-db = 'apb.github.db' at "github-db.xqm";
 
+import module namespace twitter = 'https://api.twitter.com/oauth/authenticate' at "twitter-oauth.xqm";
+
 import module namespace session ="http://basex.org/modules/session";
 declare namespace rest = 'http://exquery.org/ns/restxq';
 
@@ -38,9 +40,9 @@ updating function login-post(
      if($u) then
          (
 		   users:update-stats($auth:userdb,$u/@id),
-		   events:log("login",$json/username,$u/@id,$json/username), 
+		   events:log2("login","local",$u), 
 			db:output((
-                session:set("uid", $u/@id/fn:string()),
+                session:set("uid", $u),
                 session-user($u) ))
 				)
      else
@@ -79,9 +81,9 @@ updating function register-post(
         let $u:=users:generate($auth:userdb,$username,"local",$password)
         return (
             users:create($auth:userdb,$u),
-            events:log("register",$username,0,$username), 
+            events:log2("register","local",$u), 
             db:output((
-                session:set("uid", $u/@id/fn:string()),
+                session:set("uid", $u),
                 session-user($u) ))
            
             )
@@ -92,8 +94,7 @@ declare
 %output:method("json")
 function session()
 {
- let $uid:=session:get("uid")
- let $u:=users:find-id($auth:userdb,$uid)
+ let $u:=session:get("uid")
  return session-user($u) 
 };
 
@@ -107,7 +108,7 @@ updating function changepassword(
    let $json:=$body/json
    let $newpassword as xs:string:=  $json/newpassword/fn:string()
    let $password as xs:string:=  $json/password/fn:string()
-   let $u:=users:find-id($auth:userdb,session:get("uid"))
+   let $u:=session:get("uid")
    
    return if($u) then
            users:password-change($u,$newpassword)
@@ -169,8 +170,8 @@ updating function login-github(
                if($exists) then users:update-stats($auth:userdb,$user/@id)
 			               else users:create($auth:userdb,$user), 
                github-db:ensure($auth:gitdb,$github-user,$github-profile),
-                events:log("github",$github-user,$user/@id,$github-user), 
-               db:output((session:set("uid", $user/@id/fn:string()),
+               events:log2("login","github",$user), 
+               db:output((session:set("uid", $user),
 			             web:redirect("/cellar"))
 			            )
                )
@@ -179,4 +180,27 @@ updating function login-github(
                   <rc>1</rc>
                   <msg>Not approved</msg>
             </json>)
+};
+
+(:----------------------:)
+declare
+%rest:GET %rest:path("cellar/auth/twitter")
+function twitter()
+{
+  twitter:authorize()
+};
+
+(:~
+: twitter login callback
+:)
+declare
+%rest:GET %rest:path("cellar/auth/twitter/callback")
+%rest:form-param("code","{$code}")  
+%rest:form-param("state","{$state}")
+%output:method("text")  
+ function login-twitter(
+  $code,
+  $state)
+{
+  fn:trace("not yet","bad")
 };
