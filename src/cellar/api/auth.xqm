@@ -16,6 +16,7 @@ import module namespace github-db = 'apb.github.db' at "github-db.xqm";
 
 import module namespace twitter = 'https://api.twitter.com/oauth/authenticate' at "twitter-oauth.xqm";
 
+import module namespace request = "http://exquery.org/ns/request";
 import module namespace session ="http://basex.org/modules/session";
 declare namespace rest = 'http://exquery.org/ns/restxq';
 
@@ -187,7 +188,8 @@ declare
 %rest:GET %rest:path("cellar/auth/twitter")
 function twitter()
 {
-  twitter:authorize()
+  let $uri:=request:uri() || "/callback"
+  return twitter:authorize($uri)
 };
 
 (:~

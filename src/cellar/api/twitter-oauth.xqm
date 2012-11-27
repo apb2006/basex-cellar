@@ -20,11 +20,11 @@ declare variable $twitter:config:=
 (:~
 : redirect to twitter authorize
 :)
-declare function authorize()
+declare function authorize($callback as xs:string?)
 {
      let $service-document:=oa:twitter-service($twitter:config/CONSUMER-KEY,$twitter:config/CONSUMER-SECRET)
-	 let $request-token:=oa:request-token($service-document,"http://localhost:8984/restxq/cellar/auth/twitter/callback")
-	 let $oauth_token:=fn:trace($request-token/oa:oauth_token/fn:string(),"hhh")
+	 let $request-token:=oa:request-token($service-document,$callback)
+	 let $oauth_token:=$request-token/oa:oauth_token/fn:string()
     let $url:="https://api.twitter.com/oauth/authenticate" || 
                "?oauth_token=" ||$oauth_token
     return   <rest:response>         
