@@ -3,6 +3,7 @@
 
 // Declare app level module which depends on filters, and services
 var Cellar=angular.module('cellar', [ 'cellar.services', 'cellar.directives','Error',
+									'$strap.directives',
                                      'SharedServices','cellar.auth','flasher']).
 config(
 		[ '$routeProvider', function($routeProvider) {

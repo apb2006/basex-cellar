@@ -195,12 +195,23 @@ function twitter()
 :)
 declare
 %rest:GET %rest:path("cellar/auth/twitter/callback")
-%rest:form-param("code","{$code}")  
-%rest:form-param("state","{$state}")
+%rest:form-param("oauth_token","{$oauth_token}")  
+%rest:form-param("oauth_verifier","{$oauth_verifier}")
 %output:method("text")  
- function login-twitter(
-  $code,
-  $state)
+updating  function login-twitter(
+  $oauth_token,
+  $oauth_verifier)
 {
-  fn:trace("not yet","bad")
+    let $twitter-user:=twitter:login($oauth_token,$oauth_verifier)
+    let $exists:=users:find-external($auth:userdb,"twitter",$twitter-user)
+	let $user:=if($exists) then $exists
+			   else users:generate($auth:userdb,$twitter-user,"twitter",$twitter-user)			
+	return (
+	   if($exists) then users:update-stats($auth:userdb,$user/@id)
+				   else users:create($auth:userdb,$user), 
+	   events:log2("login","twitter",$user), 
+	   db:output((session:set("uid", $user),
+				 web:redirect("/cellar"))
+				)
+	   )
 };

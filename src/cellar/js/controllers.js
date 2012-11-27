@@ -1,13 +1,13 @@
-function UserCtrl(User,$scope){
+Cellar.controller("UserCtrl",["User","$scope",
+function(User,$scope){
 	$scope.users= User.api.query();
-};
-UserCtrl.$inject = ['User', '$scope'];
+}]);
 
-function UserDetailCtrl(User, $routeParams,$location, $scope) {
+Cellar.controller("UserDetailCtrl",['User','$routeParams', '$scope',
+function (User, $routeParams, $scope) {
 	$scope.user = User.api.get({userId: $routeParams.userId});
-	console.log("UserDetailCtrl")
-};
-UserDetailCtrl.$inject = ['User','$routeParams', '$location','$scope'];
+}]);
+
 
 //---------------------------------------------------------------
 function WineListCtrl(Flash,Wine, $location, $filter,$scope) {
@@ -181,12 +181,11 @@ function WineDetailCtrl(Wine,Flash, $routeParams, $location, $scope) {
     }
 
     $scope.deleteWine = function () {
-    	if(!$scope.myForm.$valid){
-    		alert("please correct errors")
+    	if(!confirm("Delete this wine?")){
+    		
     	}else{ 
         Wine.api.delete({wineId:$scope.wine.id}, function(wine) {
         	Flash.add("success",'Wine ' + $scope.wine.name + ' deleted')
-            
             Wine.broadcastChange();
             $location.path("/wines");
         },function(res){

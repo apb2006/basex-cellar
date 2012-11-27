@@ -1,0 +1,13 @@
+.icon-twitter,.icon-github {
+	display: inline-block;
+	width: 16px;
+	height: 16px;
+	background-image: url(sprites.png);
+	background-repeat: no-repeat;
+}
+.icon-twitter {
+	background-position: 0 0;
+}
+.icon-github {
+	background-position: -32px 0;
+}

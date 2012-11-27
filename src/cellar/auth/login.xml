@@ -2,7 +2,9 @@
 	<form ng:submit="login()"  class=" form-horizontal">
 		<div class="well span6">
 			<fieldset>
-				<legend>Sign in directly with registered account</legend>
+				<legend>Sign in 
+				<small class="pull-right">First time here? <a href="#/auth/register">Register</a></small>
+				</legend>
 				<div class="control-group">
 					<label class="control-label" for="username">User name:</label>
 					<div class="controls">
@@ -29,25 +31,22 @@
 
 			</fieldset>
 			<div class="form-actions">
-				<button type="submit"  class="btn btn-primary">Log in</button>
-				Or
-				<a href="#/auth/register">Register</a>
-			</div>
+				<button type="submit"  class="btn btn-primary">Sign in</button>
 			
+			</div>
+			 <div >
+			 <label class="control-label">Or use your </label>
+			 
+                
+                <a  class="btn" href="../restxq/cellar/auth/twitter">
+                 <i class="icon-twitter"></i> Twitter</a>
+                 or
+                  <a class="btn" href="../restxq/cellar/auth/github">
+                <i class="icon-github"></i> Github</a>
+                account.
+                 </div>
 		</div>
 	</form>
-	<form class=" form-horizontal well span6">
-		<fieldset>
-			<legend>or Sign using another service</legend>
-			<div class="form-actions">
-				Login using your account on:
 	
-                <a class="btn" href="../restxq/cellar/auth/github">Github</a>
-				<a  class="btn" href="../restxq/cellar/auth/twitter">Twitter</a>
-			</div>
-		</fieldset>
-		extra
-
-	</form>
 
 </div>

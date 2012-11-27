@@ -1,6 +1,7 @@
 <users nextid="2">
 	<user id="0">
 	    <name>guest</name>
+	    <avatar>guest.png</<avatar>
 		<data>
 			<ace theme="dawn" />
 		</data>
@@ -9,6 +10,7 @@
 	    <name>admin</name>
         <role>admin</role>
 		<status>active</status>
+		<avatar>admin.png</<avatar>
 		<auth type="local">oa2xJp0I39IG1DBdfa4Nzg==</auth>
 		<stats created="2012-08-06T22:29:37.643+01:00" last="2012-08-06T22:29:37.643+01:00" logins="0" />
 		<data>

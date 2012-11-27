@@ -8,4 +8,5 @@
  <p>Grapes <a href="#/grapes">List</a>.</p>
  <p>Full text search e.g. <a href="#/search?q=citrus">citrus</a>
   </p>
+  <button type="button" class="btn" bs-modal="'partials/modal.xml'">...</button>
 </div>

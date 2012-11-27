@@ -13,16 +13,8 @@ import module namespace oa="http://basex.org/ns/oauth" at "oauth.xqy";
 import module namespace http = 'http://expath.org/ns/http-client';
 
 declare variable $twitter:config:=
-                            fn:doc(fn:resolve-uri("../../WEB-INF/cellar-config.xml"))/config                           
+                            fn:doc(fn:resolve-uri("../../WEB-INF/cellar-config.xml"))/config/twitter                           
                             ;
-(:                                                    
-let $twitter:CONSUMER-KEY:=$twitter:config/twitter/CONSUMER-KEY
-let $twitter:CONSUMER-SECRET:=$twitter:config/twitter/CONSUMER-SECRET
-
-let $twitter:access-token := $twitter:config/twitter/access-token
-let $twitter:access-token-secret := $twitter:config/twitter/access-token
-:)
-
 
 
 (:~
@@ -30,7 +22,9 @@ let $twitter:access-token-secret := $twitter:config/twitter/access-token
 :)
 declare function authorize()
 {
-    let $oauth_token:="??"
+     let $service-document:=oa:twitter-service($twitter:config/CONSUMER-KEY,$twitter:config/CONSUMER-SECRET)
+	 let $request-token:=oa:request-token($service-document,"http://localhost:8984/restxq/cellar/auth/twitter/callback")
+	 let $oauth_token:=fn:trace($request-token/oa:oauth_token/fn:string(),"hhh")
     let $url:="https://api.twitter.com/oauth/authenticate" || 
                "?oauth_token=" ||$oauth_token
     return   <rest:response>         
@@ -40,13 +34,30 @@ declare function authorize()
            </rest:response>
 };
 
+(:
+: return screen_name
+:)
+declare function login(
+  $oauth_token,
+  $oauth_verifier)
+{
+ let $service-document:=oa:twitter-service($twitter:config/CONSUMER-KEY,$twitter:config/CONSUMER-SECRET)
+ let $request-token:=<oa:request-token>
+					<oa:oauth_token>{$oauth_token}</oa:oauth_token>
+					<oa:oaauth_token_secret>{$twitter:config/access-token-secret}</oa:oaauth_token_secret>
+					</oa:request-token>
+ let $tok:=oa:access-token($service-document,$request-token,$oauth_verifier)
+ let $user:=fn:trace($tok/oa:screen_name,":::")
+  return fn:trace($user,".....")
+};
+
 (:~
 : user details
 : http://developer.github.com/v3/users/#get-the-authenticated-user
 :)
 declare function user(
   $token as xs:string){
-   let $href:="https://api.github.com/user?" || encode-params(map{"access_token":=$token})
+   let $href:="https://api.twitter.com/1/users/show.json?user_id=?" || encode-params(map{"access_token":=$token})
    let $user:=http:send-request(<http:request method="get"/>,$href)
    return $user[2]
 };

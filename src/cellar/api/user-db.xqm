@@ -92,16 +92,16 @@ declare updating function incr-id($userDb)
 declare function generate(
   $userDb,
   $name as xs:string,
-  $authtype as xs:string, (: local or github :)
-  $authdata as xs:string)
+  $authtype as xs:string, (: local or github etc :)
+  $authdata as xs:string) (: password for local or remote username :)
 {    
 <user id="{next-id($userDb)}">
        <name>{$name}</name>
        <role>user</role>
-	   {if($authtype="github") then
-	   <auth type="github" >{$authdata}</auth>	 
-	   else
-       <auth type="local" >{hash:md5($authdata)}</auth>}	   
+	   {if($authtype="local") 
+	    then  <auth type="local" >{hash:md5($authdata)}</auth>	
+	    else  <auth type="{$authtype}" >{$authdata}</auth>	 
+	   }        
 	   <stats created="{fn:current-dateTime()}" last="{fn:current-dateTime()}" logins="1" />
 	   <data>
 		 <ace theme="dawn" /> 
