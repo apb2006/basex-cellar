@@ -1,6 +1,20 @@
 <div class=" pull-right" style="margin-top: 0px">
 	<div ng-show="!auth.isAuthenticated()" class="btn-group">
+	
 		<a href="#/auth/login" class="btn btn-small">Sign in</a>
+		<button class="btn  btn-small dropdown-toggle" data-toggle="dropdown">
+            <span class="caret"></span>
+        </button>
+        <ul class="dropdown-menu">
+          <li>
+                <a   href="../restxq/cellar/auth/twitter">
+                 <i class="icon-twitter"></i> sign in with Twitter</a>
+           </li>
+           <li>
+               <a  href="../restxq/cellar/auth/github">
+                <i class="icon-github"></i> sign in with Github</a>
+           </li>
+        </ul>
 		<a href="#/auth/register" class="btn btn-success btn-small">Register</a>
 	</div>
 	<div ng-show="auth.isAuthenticated()" class="btn-group">

@@ -1,4 +1,7 @@
 <div data-ng-init="setWindowTitle('Grape' )" >
-<h2>Grape: {{grape.name}}</h2>
+<ul class="breadcrumb">
+   <li><a href="#/grapes">grapes</a> <span class="divider">/</span></li>
+    <li class="active">{{grape.name}}</li>
+ </ul>
 <p>{{grape.description}}</p>
 </div>

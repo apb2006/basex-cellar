@@ -1,4 +1,14 @@
 <div data-ng-init="setWindowTitle('User')" >
-<h2>User detail</h2>
-{{user.name}}
+<ul class="breadcrumb">
+   <li><a href="#/users">users</a> <span class="divider">/</span></li>
+    <li class="active">{{user.name}}</li>
+ </ul>
+
+<img class="media-object img-circle" src="{user.avatar | userPic" />
+      
+<div>Logins: {{ user.logins }} 
+last login:{{ user.last | fromNow}} 
+joined:{{ user.created | fromNow}}
+</div>
+
 </div>

@@ -1,5 +1,7 @@
 <div class="row-fluid" data-ng-init="setWindowTitle('Grapes')">
-	<h2>Grapes ({{grapes.length}})</h2>
+<ul class="breadcrumb">
+    <li class="active">Grapes ({{grapes.length}})</li>
+    </ul>
 	<ul class="media-list winelist">
 		<li class="media thumbnail" data-ng-repeat="grape in grapes">
 			<a class="pull-left" href="#/grapes/{{ grape.id }}">

@@ -3,7 +3,7 @@
 
 // Declare app level module which depends on filters, and services
 var Cellar=angular.module('cellar', [ 'cellar.services', 'cellar.directives','Error',
-									'$strap.directives',
+									'$strap.directives','ngGrid',
                                      'SharedServices','cellar.auth','flasher']).
 config(
 		[ '$routeProvider', function($routeProvider) {
@@ -37,6 +37,8 @@ config(
 				templateUrl : 'partials/about.xml'			
 			}).when('/resources', {
 				templateUrl : 'partials/resources.xml',permission:".*"
+			}).when('/admin/grid', {
+				templateUrl : 'partials/gridtest.xml',permission:".*",controller : "GridCtrl"			
 			}).when('/profile', {
 					templateUrl : 'partials/profile.xml',permission:".*"					
 			}).when('/404', {
@@ -50,6 +52,10 @@ config(
 // picture filter, use generic if not set		
 Cellar.filter('winePic', function() {
 	return function(pic) {return pic ? "pics/bottles/"+pic : 'pics/generic.jpg';}
+});
+//picture filter, use generic if not set		
+Cellar.filter('userPic', function() {
+	return function(pic) {return pic ? "pics/users/"+pic : 'pics/users/guest.png';}
 });
 // e.g {{dateISO | moment:'M/D/YYYY h:m A'}}
 Cellar.filter('moment', function() {

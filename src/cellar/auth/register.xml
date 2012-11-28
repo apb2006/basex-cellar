@@ -31,5 +31,14 @@
 			Or
 			<a href="#/auth/login">Sign in</a>
 		</div>
+		 <div >
+             <label class="control-label">Or use your </label>          
+                <a  class="btn" href="../restxq/cellar/auth/twitter">
+                 <i class="icon-twitter"></i> Twitter</a>
+                 or
+                  <a class="btn" href="../restxq/cellar/auth/github">
+                <i class="icon-github"></i> Github</a>
+                account.
+                 </div>
 	</form>
 </div>

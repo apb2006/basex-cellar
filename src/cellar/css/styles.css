@@ -2,6 +2,9 @@
 [ng\:cloak], [ng-cloak], .ng-cloak {
   display: none;
 }
+.breadcrumb{
+ margin: 6px 0;
+}
 /* search bar icon */
 .navbar-search .search-query {
     padding-left: 29px;

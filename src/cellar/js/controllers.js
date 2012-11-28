@@ -233,4 +233,14 @@ function EventCtrl($scope,Events){
  console.log("EventCtrl");
 };
 EventCtrl.$inject = [ '$scope',"Events"];
-
+//------------------------------------------
+function GridCtrl($scope){
+	$scope.myData = [{name: "Moroni", age: 50},
+                     {name: "Tiancum", age: 43},
+                     {name: "Jacob", age: 27},
+                     {name: "Nephi", age: 29},
+                     {name: "Enos", age: 34}];
+    $scope.myOptions = { data: 'myData' };
+ console.log("GridCtrl");
+};
+GridCtrl.$inject = [ '$scope'];

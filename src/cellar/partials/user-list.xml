@@ -1,12 +1,14 @@
 <div class="row-fluid" data-ng-init="setWindowTitle('Users')">
-	<h2>Users</h2>
+	<ul class="breadcrumb">
+    <li class="active">Users</li>
+    </ul>
 	<ul class="media-list winelist">
 		<li class="media thumbnail" data-ng-repeat="user in users">
 			<a href="#/users/{{  user.id }}" class="pull-left">
-				<img class="media-object img-circle" src="pics/users/user1.png" />
+				<img class="media-object img-circle" data-ng-src="{{user.avatar | userPic}}" />
 			</a>
 			<div class="media-body">
-				<h4 class="media-heading">{{ user.name }}</h4>
+				<h4 class="media-heading"><a href="#/users/{{  user.id }}">{{ user.name }}</a></h4>
 				<div>Logins: {{ user.logins }} last login:{{ user.last | fromNow}} joined:{{ user.created | fromNow}}</div>
 			</div>
 		</li>

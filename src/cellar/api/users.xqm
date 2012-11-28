@@ -38,6 +38,7 @@ function users()
 				  <created>{$u/stats/@created/fn:string()}</created>
 				  <last>{$u/stats/@last/fn:string()}</last>
 				  <logins>{$u/stats/@logins/fn:string()}</logins>
+				   <avatar>{$u/avatar/fn:string()}</avatar>
 				  </user>}
 		</json>}   
 )};

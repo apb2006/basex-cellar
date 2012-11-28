@@ -123,9 +123,9 @@
                              <li class="divider"></li>
                              
                             <li>
-                                <a href="/restxq/cellar/auth/github">
+                                <a href="#/admin/grid">
                                     <i class="icon-info-sign"></i>
-                                    github
+                                    Grid
                                 </a>
                             </li>
 
