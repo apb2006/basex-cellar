@@ -240,6 +240,9 @@ function GridCtrl($scope){
                      {name: "Jacob", age: 27},
                      {name: "Nephi", age: 29},
                      {name: "Enos", age: 34}];
+	for (var i=0;i<1000;i++){
+		$scope.myData.push({name: "Jacob"+i, age: i % 100})
+	}
     $scope.myOptions = { data: 'myData' };
  console.log("GridCtrl");
 };
