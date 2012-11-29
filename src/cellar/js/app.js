@@ -38,7 +38,9 @@ config(
 			}).when('/resources', {
 				templateUrl : 'partials/resources.xml',permission:".*"
 			}).when('/admin/grid', {
-				templateUrl : 'partials/gridtest.xml',permission:".*",controller : "GridCtrl"			
+				templateUrl : 'partials/gridtest.xml',permission:".*",controller : "GridCtrl"
+			}).when('/admin/select', {
+				templateUrl : 'partials/select2.xml'			
 			}).when('/profile', {
 					templateUrl : 'partials/profile.xml',permission:".*"					
 			}).when('/404', {
