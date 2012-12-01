@@ -10,7 +10,8 @@ function (User, $routeParams, $scope) {
 
 
 //---------------------------------------------------------------
-function WineListCtrl(Flash,Wine, $location, $filter,$scope) {
+Cellar.controller("WineListCtrl",["SortUtils","Flash","Wine", "$location", "$filter","$scope",
+ function(SortUtils,Flash,Wine, $location, $filter,$scope) {                            
     $scope.wines = Wine.api.query({},
 		    		function(){},
 			        function(res){
@@ -21,7 +22,7 @@ function WineListCtrl(Flash,Wine, $location, $filter,$scope) {
 				     });
 					
     $scope.query="";
-	
+	console.dir($location.search())
 	// sorting..
 	 $scope.head = [
         {head: "Name", column: "name"},
@@ -29,8 +30,9 @@ function WineListCtrl(Flash,Wine, $location, $filter,$scope) {
         {head: "Created", column: "created"},
 		{head: "Updated", column: "modified"},
 		];
-	$scope.sort = { column: 'name', descending: false};
-	
+	$scope.sort = { column: 'modified', descending: true};
+	$scope.view={q:"",sort:"-modified"};
+	$scope.sortutils=SortUtils;
 	$scope.$watch('sort', function(value) {
       $location.search( 'sort=' + (value.descending?"-":"")+ value.column);
     }, true);
@@ -54,7 +56,7 @@ function WineListCtrl(Flash,Wine, $location, $filter,$scope) {
         }
     };
 	$scope.matchQ=function(wine){
-	  return $scope.query?wine.name.indexOf($scope.query)!=-1:true
+	  return $scope.query?wine.name.toLowerCase().indexOf($scope.query.toLowerCase())!=-1:true
 	};
     $scope.submit = function() {
 		$scope.wines = Wine.api.query({q:$scope.q},
@@ -72,13 +74,71 @@ function WineListCtrl(Flash,Wine, $location, $filter,$scope) {
         $scope.wines = Wine.api.query(); 
     });   
 
+}]);
+//-------------------------------------------------------------
+function WineDetailCtrl(Wine,Flash, $routeParams, $location, $scope) {
+	
+    $scope.wine = Wine.api.get({wineId: $routeParams.wineId},function(){},
+    		           function(res){
+    	                 Flash.add("error","Item not found: "+$routeParams.wineId);
+    	                 $location.path("/wines");
+    	                 });
+   
+    $scope.saveWine = function () {
+    	if(!$scope.myForm.$valid){
+    		alert("please correct errors")
+    	}
+    	else if ($scope.wine.id )
+        {
+            Wine.api.update({wineId:$scope.wine.id}, $scope.wine, function (res) {
+                Flash.add("success",'Wine ' + $scope.wine.name + ' updated');
+                Wine.broadcastChange();
+                $location.path("/wines");
+                },
+                function(res){
+                	Flash.add("error",'Wine ' + $scope.wine.name + ' NOT updated: '+res.data);
+                	//console.log(res);
+                }
+            );
+        }
+        //no match for wine means it's an empty form
+        else
+        {      
+            Wine.api.save({}, $scope.wine, function (res) {
+            	Flash.add("success",'Wine ' + $scope.wine.name + ' created'); 
+                Wine.broadcastChange();
+                $location.path("/wines");
+                },
+                function(res){
+                	alert('Wine ' + $scope.wine.name + 'NOT created'); 	
+                }
+            );
+        }
+    }
+
+    $scope.deleteWine = function () {
+    	if(!confirm("Delete this wine?")){
+    		
+    	}else{ 
+        Wine.api.delete({wineId:$scope.wine.id}, function(wine) {
+        	Flash.add("success",'Wine ' + $scope.wine.name + ' deleted')
+            Wine.broadcastChange();
+            $location.path("/wines");
+        },function(res){
+        	alert("error:"+res.data)
+        });
+    	}
+    };
+    $scope.countries=Wine.countries;
 }
-WineListCtrl.$inject = ['Flash','Wine', '$location', '$filter','$scope'];
+WineDetailCtrl.$inject = ['Wine', 'Flash','$routeParams', '$location', '$scope'];
 //---------------------------------------------------------------
 function GrapeListCtrl(Flash,Grape, $location, $filter,$scope) {
 
-    $scope.grapes = Grape.api.query({},
-		    		function(){},
+    var data= Grape.api.get({},
+		    		function(){
+    	$scope.grapes=data.grapes;
+    },
 			        function(res){
 		    			
 		    			console.log(res);
@@ -139,66 +199,11 @@ function GrapeDetailCtrl(Grape,Flash, $routeParams, $location, $scope) {
     $scope.grape = Grape.api.get({grapeId: $routeParams.grapeId})
 };
 GrapeDetailCtrl.$inject = ['Grape', 'Flash','$routeParams', '$location', '$scope'];
-//-------------------------------------------------------------
-function WineDetailCtrl(Wine,Flash, $routeParams, $location, $scope) {
-	
-    $scope.wine = Wine.api.get({wineId: $routeParams.wineId},function(){},
-    		           function(res){
-    	                 Flash.add("error","Item not found: "+$routeParams.wineId);
-    	                 $location.path("/wines");
-    	                 });
-   
-    $scope.saveWine = function () {
-    	if(!$scope.myForm.$valid){
-    		alert("please correct errors")
-    	}
-    	else if ($scope.wine.id )
-        {
-            Wine.api.update({wineId:$scope.wine.id}, $scope.wine, function (res) {
-                Flash.add("success",'Wine ' + $scope.wine.name + ' updated');
-                Wine.broadcastChange();
-                $location.path("/wines");
-                },
-                function(res){
-                	Flash.add("error",'Wine ' + $scope.wine.name + ' NOT updated: '+res.data);
-                	//console.log(res);
-                }
-            );
-        }
-        //no match for wine means it's an empty form
-        else
-        {      
-            Wine.api.save({}, $scope.wine, function (res) {
-            	Flash.add("success",'Wine ' + $scope.wine.name + ' created'); 
-                Wine.broadcastChange();
-                $location.path("/wines");
-                },
-                function(res){
-                	alert('Wine ' + $scope.wine.name + 'NOT created'); 	
-                }
-            );
-        }
-    }
 
-    $scope.deleteWine = function () {
-    	if(!confirm("Delete this wine?")){
-    		
-    	}else{ 
-        Wine.api.delete({wineId:$scope.wine.id}, function(wine) {
-        	Flash.add("success",'Wine ' + $scope.wine.name + ' deleted')
-            Wine.broadcastChange();
-            $location.path("/wines");
-        },function(res){
-        	alert("error:"+res.data)
-        });
-    	}
-    };
-    $scope.countries=Wine.countries;
-}
-WineDetailCtrl.$inject = ['Wine', 'Flash','$routeParams', '$location', '$scope'];
 
 //------------------------------------------
-function SearchCtrl(Search, $location,$scope,$routeParams){
+Cellar.controller("SearchCtrl",['Search', '$location','$scope','$routeParams',
+     function (Search, $location,$scope,$routeParams){
     $scope.q=$routeParams.q;
 	$scope.results=Search.api.query({q:$scope.q});
 	$scope.submit=function(){
@@ -207,34 +212,66 @@ function SearchCtrl(Search, $location,$scope,$routeParams){
 	$scope.doSearch=function(){
 		$scope.results=Search.api.query({q:$scope.q});
 	};
-};
-SearchCtrl.$inject = [ 'Search', '$location','$scope','$routeParams'];
+}]);
 
 //------------------------------------------
-function ErrorCtrl($scope,$location){
+Cellar.controller("ErrorCtrl",['$scope','$location',function ($scope,$location){
     $scope.err='no error logged';
     $scope.logError=function (data){
     	 $scope.err=data;
     	 alert($scope.err)
     	// $location.path("/error");
     }
-};
-ErrorCtrl.$inject = [ '$scope','$location'];
+}]);
 
 //------------------------------------------
-function BottleCtrl($scope,Bottle){
+Cellar.controller("BottleCtrl",['$scope','Bottle',function ($scope,Bottle){
  $scope.bottles=Bottle.api.query();
  console.log("bottleCtrl");
-};
-BottleCtrl.$inject = [ '$scope','Bottle'];
+}]);
+
 //------------------------------------------
-function EventCtrl($scope,Events){
+Cellar.controller("EventCtrl",["$scope","Events",function ($scope,Events){
  $scope.events=Events.api.query();
  console.log("EventCtrl");
-};
-EventCtrl.$inject = [ '$scope',"Events"];
+}]);
+
 //------------------------------------------
-function GridCtrl($scope){
+Cellar.controller("MapCtrl",["$scope",function ($scope){
+	$scope.myMarkers = [];
+
+	$scope.mapOptions = {
+		center: new google.maps.LatLng(35.784, -78.670),
+		zoom: 15,
+		mapTypeId: google.maps.MapTypeId.ROADMAP
+	};
+
+	$scope.addMarker = function($event) {
+		$scope.myMarkers.push(new google.maps.Marker({
+			map: $scope.myMap,
+			position: $event.latLng
+		}));
+	};
+
+	$scope.setZoomMessage = function(zoom) {
+		$scope.zoomMessage = 'You just zoomed to '+zoom+'!';
+		console.log(zoom,'zoomed');
+	};
+
+	$scope.openMarkerInfo = function(marker) {
+		$scope.currentMarker = marker;
+		$scope.currentMarkerLat = marker.getPosition().lat();
+		$scope.currentMarkerLng = marker.getPosition().lng();
+		$scope.myInfoWindow.open($scope.myMap, marker);
+	};
+
+	$scope.setMarkerPosition = function(marker, lat, lng) {
+		marker.setPosition(new google.maps.LatLng(lat, lng));
+	};
+ console.log("MapCtrl");
+}]);
+//------------------------------------------
+Cellar.controller("GridCtrl",["$scope",function ($scope){
 	$scope.myData = [{name: "Moroni", age: 50},
                      {name: "Tiancum", age: 43},
                      {name: "Jacob", age: 27},
@@ -245,5 +282,4 @@ function GridCtrl($scope){
 	}
     $scope.myOptions = { data: 'myData' };
  console.log("GridCtrl");
-};
-GridCtrl.$inject = [ '$scope'];
+}]);

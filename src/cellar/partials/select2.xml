@@ -1,13 +1,7 @@
-<div  >
- <script>
-$(document).ready(function() { $("#e1").select2(
-     placeholder: "Select a State",
-     allowClear: true); }
-     );
-</script>
-  <select id="e1">
-<option value="AL">Alabama</option>
+<div>
+<script src="partials/select2.js"></script>
 
-<option value="WY">Wyoming</option>
-</select>
+  <input type='hidden' id="e1" width="30em">
+
+</input>
 </div>

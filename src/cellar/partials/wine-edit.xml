@@ -21,6 +21,13 @@
 			<label>Name:</label>
 			<input type="text" id="nameInput" ng:model="wine.name"
 				required="required" autofocus="autofocus" />
+             <label>Type:</label>
+			  <select id="e1" ng:model="wine.type">
+			  <option value=""></option>
+			<option value="Red">Red</option>
+			<option value="White">White</option>
+			<option value="Rose">Rose</option>
+			</select>			
 			<label>Grapes:</label>
 			<input type="text" id="grapesInput" ng:model="wine.grapes" />
 			<label>Country:</label>

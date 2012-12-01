@@ -175,19 +175,29 @@ updating function delete-wine(
 : return name and id for all grapes as json
 :)
 declare
-%rest:GET %rest:path("cellar/api/grapes")  
+%rest:GET %rest:path("cellar/api/grapes")
+%rest:query-param("q", "{$q}") 
+%rest:query-param("start", "{$start}",1) 
+%rest:query-param("limit", "{$limit}",999999)   
 %output:method("json")
-function grapes()
+function grapes($q,$start,$limit)
 {
-  <json arrays="json" objects="grape">
-    {for $grape in $cellar:grapes/grape
-    order by fn:upper-case($grape/name)
+  let $items:= for $g in $cellar:grapes/grape
+               where fn:contains($g/name,$q)
+               order by fn:upper-case($g/name)             
+               return $g
+  return
+  <json arrays="grapes" objects="json grape" numbers="total">
+    <total>{fn:count($items)}</total>
+	<grapes>
+    {for $item in fn:subsequence($items,$start,$limit)
     return <grape>
-       <id>{$grape/@id/fn:string()}</id>
-       <created>{$grape/meta/@created/fn:string()}</created>
-       {$grape/name,
-       $grape/description}
+       <id>{$item/@id/fn:string()}</id>
+       <created>{$item/meta/@created/fn:string()}</created>
+       {$item/name,
+       $item/description}
        </grape>}
+	   </grapes>
   </json>
 };
 

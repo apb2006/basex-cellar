@@ -1,4 +1,4 @@
-<div class="navbar navbar-static-top " data-dropdown="dropdown"
+<div class="navbar navbar-fixed-top " data-dropdown="dropdown"
 	data-ng-controller="AppController">
 	<div class="navbar-inner">
 		<div class="container">
@@ -63,7 +63,26 @@
                                     Recent events
                                 </a>
                             </li>
-
+							<li class="divider"></li>
+                             
+                            <li>
+                                <a href="#/labs/grid">
+                                    <i class="icon-info-sign"></i>
+                                    Test Grid
+                                </a>
+                            </li>
+							 <li>
+                                <a href="#/labs/select">
+                                    <i class="icon-info-sign"></i>
+                                    Test Select
+                                </a>
+                            </li>
+                             <li>
+                                <a href="#/labs/map">
+                                    <i class="icon-info-sign"></i>
+                                    Test map
+                                </a>
+                            </li>
                         </ul>
                     </li>					
 		
@@ -115,14 +134,7 @@
                                 </a>
                             </li>
                           
-                             <li class="divider"></li>
-                             
-                            <li>
-                                <a href="#/admin/grid">
-                                    <i class="icon-info-sign"></i>
-                                    Grid
-                                </a>
-                            </li>
+                            
 
                         </ul>
                     </li>

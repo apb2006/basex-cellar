@@ -164,18 +164,10 @@ updating function login-github(
    return if($token) then 
             let $github-profile:=github:user($token)
             let $github-user:=$github-profile/json/login/fn:string()
-            let $exists:=users:find-external($auth:userdb,"github",$github-user)
-            let $user:=if($exists) then $exists
-                       else users:generate($auth:userdb,$github-user,"github",$github-user)			
             return (
-               if($exists) then users:update-stats($auth:userdb,$user/@id)
-			               else users:create($auth:userdb,$user), 
-               github-db:ensure($auth:gitdb,$github-user,$github-profile),
-               events:log2("login","github",$user), 
-               db:output((session:set("uid", $user),
-			             web:redirect("/cellar"))
-			            )
-               )
+             github-db:ensure($auth:gitdb,$github-user,$github-profile),
+             login($github-user,$auth:userdb,"github")
+             )
            else
                db:output( <json  objects="json">
                   <rc>1</rc>
@@ -205,15 +197,24 @@ updating  function login-twitter(
   $oauth_verifier)
 {
     let $twitter-user:=twitter:login($oauth_token,$oauth_verifier)
-    let $exists:=users:find-external($auth:userdb,"twitter",$twitter-user)
-	let $user:=if($exists) then $exists
-			   else users:generate($auth:userdb,$twitter-user,"twitter",$twitter-user)			
-	return (
-	   if($exists) then users:update-stats($auth:userdb,$user/@id)
-				   else users:create($auth:userdb,$user), 
-	   events:log2("login","twitter",$user), 
-	   db:output((session:set("uid", $user),
-				 web:redirect("/cellar"))
-				)
-	   )
+    return login($twitter-user,$auth:userdb,"twitter")
+};
+
+(:~
+: ensure user, log it, set session,
+:)
+declare updating function login($remote-user,$db,$system){
+ let $exists:=users:find-external($db,$system,$remote-user)
+ let $user:=if($exists) then $exists
+            else users:generate($db,$remote-user,$system,$remote-user)
+ let $action:= if($exists)then "login" else "register"        
+return
+(
+  if($exists) then users:update-stats($db,$user/@id)
+                   else users:create($db,$user), 
+  events:log2($action,$system,$user),
+   db:output((session:set("uid", $user),
+                 web:redirect("/cellar"))
+                )
+  )
 };

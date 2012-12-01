@@ -5,10 +5,13 @@
 	<ul>
 		<li><a href="http://twitter.github.com/bootstrap/">Twitter-Bootstrap</a></li>
 		<li><a href="http://angularjs.org/">AngularJS</a></li>
+		<li><a href="http://ivaynberg.github.com/select2">Select2</a></li>
 		<li><a href="http://basex.org/">BaseX</a></li>
 	</ul>
-	<p>The list of Grapes comes from <a href="http://www.bryny.com/grapes.htm">here</a></p> 
+	
 	<h2>Data</h2>
+	<p>The list of Grapes comes from <a href="http://www.bryny.com/grapes.htm">here</a></p> 
+	<h3>View raw XML</h3>
 	<ul>
 	<li><a href="../restxq/cellar/api/xml?db=cellar&amp;doc=grapes.xml">Grapes</a></li>
 	<li><a href="../restxq/cellar/api/xml?db=cellar&amp;doc=wines.xml">Wines</a></li>

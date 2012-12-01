@@ -3,7 +3,7 @@
 
 // Declare app level module which depends on filters, and services
 var Cellar=angular.module('cellar', [ 'cellar.services', 'cellar.directives','Error',
-									'$strap.directives','ngGrid',
+									'$strap.directives','ngGrid',"ui",
                                      'SharedServices','cellar.auth','flasher']).
 config(
 		[ '$routeProvider', function($routeProvider) {
@@ -14,7 +14,9 @@ config(
 			})
 			.when('/',{redirectTo : '/wines'})
 			.when('/wines/:wineId', {
-				templateUrl : 'partials/wine-details.xml',controller : "WineDetailCtrl"
+				templateUrl : 'partials/wine-view.xml',controller : "WineDetailCtrl"
+			}).when('/wines/:wineId/edit', {
+				templateUrl : 'partials/wine-edit.xml',controller : "WineDetailCtrl"	
 			}).when('/grapes', {
 				templateUrl : 'partials/grape-list.xml',controller : "GrapeListCtrl"
 			}).when('/grapes/:grapeId', {
@@ -36,11 +38,13 @@ config(
 			}).when('/about', {
 				templateUrl : 'partials/about.xml'			
 			}).when('/resources', {
-				templateUrl : 'partials/resources.xml',permission:".*"
-			}).when('/admin/grid', {
-				templateUrl : 'partials/gridtest.xml',permission:".*",controller : "GridCtrl"
-			}).when('/admin/select', {
-				templateUrl : 'partials/select2.xml'			
+				templateUrl : 'partials/resources.xml' 
+			}).when('/labs/grid', {
+				templateUrl : 'partials/gridtest.xml',controller : "GridCtrl"
+			}).when('/labs/select', {
+				templateUrl : 'partials/select2.xml'
+			}).when('/labs/map', {
+				templateUrl : 'partials/map.xml',controller : "MapCtrl"				
 			}).when('/profile', {
 					templateUrl : 'partials/profile.xml',permission:".*"					
 			}).when('/404', {

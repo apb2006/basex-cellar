@@ -86,4 +86,31 @@ factory('Wine',
 				     return {api : $resource('../restxq/cellar/api/events')}
 	
 } ])
+.factory('SortUtils', [ function() {
+				     return {
+				    	 // sort class
+				    	 sortCls : function(column,view){
+				    		 var desc="-"==view.sort.charAt(0);
+				    		 var ccol=view.sort.substr(desc?1:0);
+				    		 if(column == ccol){
+				    				return desc?"icon-arrow-up":"icon-arrow-down"
+				    		 }else{
+				    				return "icon-"
+				    			}		 
+				    		 },
+				    	 changeSorting : function(column,view){
+				    		 var desc="-"==view.sort.charAt(0);
+				    		 var ccol=view.sort.substr(desc?1:0);
+				    		 if(column == ccol){
+				    				view.sort=(desc?"":"-")+column
+				    		 }else{
+				    			 view.sort=column
+				    			}		 
+				    		 },
+				    	activeCls:function(column,view){
+				    		 var desc="-"==view.sort.charAt(0);
+				    		 var ccol=view.sort.substr(desc?1:0);
+				    		 return (column == ccol)?"active":"";
+				     }	
+} }])
 
