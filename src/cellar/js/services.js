@@ -20,7 +20,13 @@ factory('Wine',
 							$rootScope.$broadcast('wine:change');
 						},
 						countries : [ "France", "Spain", "Usa", "Italy",
-								"Greece" ]
+								"Greece" ],
+						sortableColumns:[
+						          {head: "Name", column: "name"},
+						  		{head: "Year", column: "year"},
+						          {head: "Created", column: "created"},
+						  		{head: "Updated", column: "modified"},
+						  		]
 
 					}
 				} ])
@@ -35,17 +41,8 @@ factory('Wine',
 									update : {
 										method : 'PUT'
 									}
-								}),
-
-						/*
-						 * The WineDetailCtrl emits it on each save, update or
-						 * delete request, so that the WineListCtrl can react
-						 * and update itself.
-						 */
-						broadcastChange : function() {
-							$rootScope.$broadcast('grape:change');
-						}
-
+								})
+						
 					}
 				} ])
 .factory('User',
@@ -86,31 +83,35 @@ factory('Wine',
 				     return {api : $resource('../restxq/cellar/api/events')}
 	
 } ])
+// utils to help sort. 
 .factory('SortUtils', [ function() {
 				     return {
-				    	 // sort class
-				    	 sortCls : function(column,view){
-				    		 var desc="-"==view.sort.charAt(0);
-				    		 var ccol=view.sort.substr(desc?1:0);
-				    		 if(column == ccol){
-				    				return desc?"icon-arrow-up":"icon-arrow-down"
+				    	 asStr:function(sort){
+				    		return (sort.descending?"-":"") +sort.column
+				    	 },
+				    	 fromStr:function(str){
+				    		 var desc="-"==str.charAt(0);
+				    		 var ccol=str.substr(desc?1:0);
+				    		 return {column:ccol,descending:desc}
+				    	 },
+				    	 sortCls : function(column,sort){    		
+				    		 if(column == sort.column){
+				    				return sort.descending?"icon-arrow-up":"icon-arrow-down"
 				    		 }else{
 				    				return "icon-"
 				    			}		 
 				    		 },
-				    	 changeSorting : function(column,view){
-				    		 var desc="-"==view.sort.charAt(0);
-				    		 var ccol=view.sort.substr(desc?1:0);
-				    		 if(column == ccol){
-				    				view.sort=(desc?"":"-")+column
+				    		 
+				    	 changeSorting : function(column,sort){			    		 
+				    		 if(column == sort.column){
+				    			sort.descending=!sort.descending
 				    		 }else{
-				    			 view.sort=column
+				    			 sort.column=column
 				    			}		 
 				    		 },
-				    	activeCls:function(column,view){
-				    		 var desc="-"==view.sort.charAt(0);
-				    		 var ccol=view.sort.substr(desc?1:0);
-				    		 return (column == ccol)?"active":"";
+				    		 
+				    	activeCls:function(column,sort){
+				    		 return (column == sort.column)?"active":"";
 				     }	
 } }])
 

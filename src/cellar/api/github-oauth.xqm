@@ -35,7 +35,7 @@ declare function get-access-token(
                 "client_secret" := $github:Client-Secret,
                 "code":=$code,
                 "state":="fish"}
-    let $ps:=fn:trace(encode-params($p),"params....: ")
+    let $ps:=encode-params($p)
     let $href:= "https://github.com/login/oauth/access_token"          
     let $request :=
       <http:request method='post' >

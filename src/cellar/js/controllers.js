@@ -11,55 +11,26 @@ function (User, $routeParams, $scope) {
 
 //---------------------------------------------------------------
 Cellar.controller("WineListCtrl",["SortUtils","Flash","Wine", "$location", "$filter","$scope",
- function(SortUtils,Flash,Wine, $location, $filter,$scope) {                            
-    $scope.wines = Wine.api.query({},
-		    		function(){},
-			        function(res){
-		    			//alert("Big problem: "+res.data);
-		    			console.log(res);
-				        Flash.add("error","Bad news!!! ");
-				        $location.path("/");
-				     });
-					
-    $scope.query="";
-	console.dir($location.search())
+ function(SortUtils,Flash,Wine, $location, $filter,$scope) { 
 	// sorting..
-	 $scope.head = [
-        {head: "Name", column: "name"},
-		{head: "Year", column: "year"},
-        {head: "Created", column: "created"},
-		{head: "Updated", column: "modified"},
-		];
-	$scope.sort = { column: 'modified', descending: true};
-	$scope.view={q:"",sort:"-modified"};
+	$scope.head = Wine.sortableColumns;
 	$scope.sortutils=SortUtils;
+    var s=$location.search().sort
+    $scope.sort=SortUtils.fromStr(s?s:"-modified")				
+
+	 $scope.wines = Wine.api.query({});
+	
+	$scope.query="";
+	
 	$scope.$watch('sort', function(value) {
-      $location.search( 'sort=' + (value.descending?"-":"")+ value.column);
+      $location.search( 'sort=' + $scope.sortutils.asStr(value));
     }, true);
-    $scope.selectedCls = function(column) {
-	    if(column == $scope.sort.column){
-			return $scope.sort.descending?"icon-arrow-up":"icon-arrow-down"
-		}else{
-			return "icon-"
-		}		 
-    };
-    $scope.activeCls = function(column) {
-	    return (column == $scope.sort.column)?"active":""
-    };
-    $scope.changeSorting = function(column) {
-        var sort = $scope.sort;
-        if (sort.column == column) {
-            sort.descending = !sort.descending;
-        } else {
-            sort.column = column;
-            sort.descending = false;
-        }
-    };
+   
 	$scope.matchQ=function(wine){
 	  return $scope.query?wine.name.toLowerCase().indexOf($scope.query.toLowerCase())!=-1:true
 	};
     $scope.submit = function() {
-		$scope.wines = Wine.api.query({q:$scope.q},
+		$scope.wines = Wine.api.query({q:$scope.view.q},
 				function(){},
 		        function(res){
 		            Flash.add("error","Item not found: ");
@@ -76,7 +47,8 @@ Cellar.controller("WineListCtrl",["SortUtils","Flash","Wine", "$location", "$fil
 
 }]);
 //-------------------------------------------------------------
-function WineDetailCtrl(Wine,Flash, $routeParams, $location, $scope) {
+Cellar.controller("WineDetailCtrl",['Wine', 'Flash','$routeParams', '$location', '$scope',
+  function (Wine,Flash, $routeParams, $location, $scope) {
 	
     $scope.wine = Wine.api.get({wineId: $routeParams.wineId},function(){},
     		           function(res){
@@ -130,10 +102,10 @@ function WineDetailCtrl(Wine,Flash, $routeParams, $location, $scope) {
     	}
     };
     $scope.countries=Wine.countries;
-}
-WineDetailCtrl.$inject = ['Wine', 'Flash','$routeParams', '$location', '$scope'];
+}]);
 //---------------------------------------------------------------
-function GrapeListCtrl(Flash,Grape, $location, $filter,$scope) {
+Cellar.controller("GrapeListCtrl",['Flash','Grape', '$location', '$filter','$scope',
+     function (Flash,Grape, $location, $filter,$scope) {
 
     var data= Grape.api.get({},
 		    		function(){
@@ -148,34 +120,6 @@ function GrapeListCtrl(Flash,Grape, $location, $filter,$scope) {
 					
     $scope.query="";
 	
-	// sorting..
-	 $scope.head = [
-        {head: "Name", column: "name"},
-        {head: "Created", column: "created"},
-        {head: "Year", column: "year"},
-		{head: "Updated", column: "modified"},
-		];
-	$scope.sort = { column: 'name', descending: false};
-	
-    $scope.selectedCls = function(column) {
-	    if(column == $scope.sort.column){
-			return $scope.sort.descending?"icon-arrow-up":"icon-arrow-down"
-		}else{
-			return "icon-"
-		}		 
-    };
-    $scope.activeCls = function(column) {
-	    return (column == $scope.sort.column)?"active":""
-    };
-    $scope.changeSorting = function(column) {
-        var sort = $scope.sort;
-        if (sort.column == column) {
-            sort.descending = !sort.descending;
-        } else {
-            sort.column = column;
-            sort.descending = false;
-        }
-    };
     $scope.submit = function() {
 		$scope.grapes = Grape.api.query({q:$scope.q},
 				function(){},
@@ -187,19 +131,12 @@ function GrapeListCtrl(Flash,Grape, $location, $filter,$scope) {
 		$location.path("/grapes");
 	};
 	
-    $scope.$on('wine:change', function() {
-	    console.log('wine:change');
-        $scope.wines = Wine.api.query(); 
-    });   
-
-}
-GrapeListCtrl.$inject = ['Flash','Grape', '$location', '$filter','$scope'];
+}]);
 //-------------------------------------------------------------
-function GrapeDetailCtrl(Grape,Flash, $routeParams, $location, $scope) {	
+Cellar.controller("GrapeDetailCtrl",['Grape', '$routeParams', '$scope',
+       function (Grape, $routeParams,  $scope) {	
     $scope.grape = Grape.api.get({grapeId: $routeParams.grapeId})
-};
-GrapeDetailCtrl.$inject = ['Grape', 'Flash','$routeParams', '$location', '$scope'];
-
+}]);
 
 //------------------------------------------
 Cellar.controller("SearchCtrl",['Search', '$location','$scope','$routeParams',
@@ -241,8 +178,8 @@ Cellar.controller("MapCtrl",["$scope",function ($scope){
 	$scope.myMarkers = [];
 
 	$scope.mapOptions = {
-		center: new google.maps.LatLng(35.784, -78.670),
-		zoom: 15,
+		center: new google.maps.LatLng(45.767358, 4.834255),
+		zoom:7,
 		mapTypeId: google.maps.MapTypeId.ROADMAP
 	};
 
@@ -270,6 +207,7 @@ Cellar.controller("MapCtrl",["$scope",function ($scope){
 	};
  console.log("MapCtrl");
 }]);
+
 //------------------------------------------
 Cellar.controller("GridCtrl",["$scope",function ($scope){
 	$scope.myData = [{name: "Moroni", age: 50},
@@ -283,3 +221,8 @@ Cellar.controller("GridCtrl",["$scope",function ($scope){
     $scope.myOptions = { data: 'myData' };
  console.log("GridCtrl");
 }]);
+
+//------------------------------------------
+Cellar.controller("Select2Ctrl",["$scope",function ($scope){
+	$scope.select2="three"
+	}]);

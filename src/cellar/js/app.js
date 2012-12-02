@@ -13,7 +13,9 @@ config(
 				reloadOnSearch: false
 			})
 			.when('/',{redirectTo : '/wines'})
-			.when('/wines/:wineId', {
+			.when('/wines/add', {
+			   templateUrl : 'partials/wine-edit.xml',controller : "WineDetailCtrl"	
+			}).when('/wines/:wineId', {
 				templateUrl : 'partials/wine-view.xml',controller : "WineDetailCtrl"
 			}).when('/wines/:wineId/edit', {
 				templateUrl : 'partials/wine-edit.xml',controller : "WineDetailCtrl"	
@@ -42,7 +44,7 @@ config(
 			}).when('/labs/grid', {
 				templateUrl : 'partials/gridtest.xml',controller : "GridCtrl"
 			}).when('/labs/select', {
-				templateUrl : 'partials/select2.xml'
+				templateUrl : 'partials/select2.xml',controller : "Select2Ctrl"
 			}).when('/labs/map', {
 				templateUrl : 'partials/map.xml',controller : "MapCtrl"				
 			}).when('/profile', {

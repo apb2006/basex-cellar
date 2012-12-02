@@ -14,10 +14,10 @@
 			Filter:
                 <input type="text" class="span2" data-ng-model="query" />
                 Sort:
-				<li data-ng-class="activeCls(th.column)" data-ng-repeat="th in head">
-					<a data-ng-click="changeSorting(th.column)" style="padding: 6px 4px;">
+				<li data-ng-class="sortutils.activeCls(th.column,sort)" data-ng-repeat="th in head">
+					<a data-ng-click="sortutils.changeSorting(th.column,sort)" style="padding: 6px 4px;">
 						{{th.head}}
-						<i data-ng-class="selectedCls(th.column)"></i>
+						<i data-ng-class="sortutils.sortCls(th.column,sort)"></i>
 					</a>
 				</li>
 			</ul>

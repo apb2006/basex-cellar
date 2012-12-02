@@ -1,45 +1,43 @@
-<form xmlns:ng="http://angularjs.org" name="myForm"
-	ng:init="setWindowTitle('Add or edit a wine')">
-	<div class="row-fluid form-inline" data-ng-show="wine.id">
+<div xmlns:ng="http://angularjs.org" 
+	ng:init="setWindowTitle('View wine')">
+	<ul class="breadcrumb">
+   <li><a href="#/wines">wines</a> <span class="divider">/</span></li>
+    <li class="active">{{wine.name}}<span class="divider">/</span></li>
+     <a  href="#/wines/{{wine.id}}/edit"><i class="icon-pencil"></i>Edit...</a>
+ </ul>
+
+	<div class="row-fluid form-inline" >
 		
 		<label>Created:</label>
-		<input id="idCreated" type="hidden" ng:model="wine.created"
-			disabled="disabled" />
+
 		<time class="badge badge-info" datetime="{{wine.created}}">{{wine.created|
 			fromNow}}</time>
 		<label>Modified:</label>
-		<input id="idModified" type="hidden" ng:model="wine.modified"
-			disabled="disabled" />
+
 		<time class="badge badge-info" datetime="{{wine.modified}}">{{wine.modified|
 			fromNow}}</time>
 		<label>Id:</label>
-        <input id="idId" type="hidden" ng:model="wine.id" disabled="disabled" />
+       
         <span class="badge badge-info">{{wine.id}}</span>	
 	</div>
 	<div class="row-fluid">
 		<div class="span4">
 			<label>Name:</label>
-			<input type="text" id="nameInput" ng:model="wine.name"
-				required="required" autofocus="autofocus" />
+			<div>{{wine.name}}</div>
+
              <label>Type:</label>
-			  <select id="e1" ng:model="wine.type">
-			  <option value=""></option>
-			<option value="Red">Red</option>
-			<option value="White">White</option>
-			<option value="Rose">Rose</option>
-			</select>			
+			  <div>{{wine.type}}</div>
+			  
 			<label>Grapes:</label>
-			<input type="text" id="grapesInput" ng:model="wine.grapes" />
+			<div>{{wine.grapes}}</div>
 			<label>Country:</label>
-			<input id="countryInput" list="countryData" ng:model="wine.country" />
-			<datalist id="countryData" data-ng-repeat="country in countries">
-				<option value="{{ country }}" />
-			</datalist>
+			<div>{{wine.country}}</div>
+			
 			<label>Region:</label>
-			<input type="text" id="regionInput" ng:model="wine.region" />
+			<div>{{wine.region}}</div>
 			<label>Year:</label>
-			<input type="number" min="1800" id="yearInput" ng:model="wine.year"
-				title="number, min 1800" />
+			<div>{{wine.year}}</div>
+				
 		</div>
 
 		<div class="span4">
@@ -52,13 +50,8 @@
 			<label>Picture:</label>
 			<img width="250" height="300" ng:src="pics/bottles/{{ wine.picture }}"
 				onerror="this.src='pics/generic.jpg'" />
-			<input type="text" id="picInput" ng:model="wine.picture" />
 		</div>
 	</div>
 
-	<div class="form-actions">
-		<button class="btn btn-primary" ng:click="saveWine()"
-			ng:disabled="!myForm.$valid">Save</button>
-		<button class="btn btn-danger" ng:click="deleteWine()" ng:show="wine.id">Delete</button>
-	</div>
-</form>
+
+</div>

@@ -1,7 +1,14 @@
 <div>
-<script src="partials/select2.js"></script>
-
-  <input type='hidden' id="e1" width="30em">
-
-</input>
+<script xsrc="partials/select2.js"></script>
+  <button type="button" class="btn" bs-modal="'partials/modal.xml'">modal test</button>
+  <input type='hidden' id="e1" width="30em"></input>
+  <div>
+  <select ui-select2="ui-select2" ng-model="select2">
+<option value="">Pick a number</option>
+<option value="one">First</option>
+<option value="two">Second</option>
+<option value="three">Third</option>
+</select>
+Selected: {{select2}}
+</div>
 </div>

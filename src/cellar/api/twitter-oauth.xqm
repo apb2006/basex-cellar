@@ -47,8 +47,8 @@ declare function login(
 					<oa:oaauth_token_secret>{$twitter:config/access-token-secret}</oa:oaauth_token_secret>
 					</oa:request-token>
  let $tok:=oa:access-token($service-document,$request-token,$oauth_verifier)
- let $user:=fn:trace($tok/oa:screen_name,":::")
-  return fn:trace($user,".....")
+ let $user:=$tok/oa:screen_name
+  return $user
 };
 
 (:~

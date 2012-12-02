@@ -1,12 +1,14 @@
 <div>
-<h1>Welcome to Angular Cellar!</h1>
+<h1>Welcome to CellarXQ!</h1>
 
-<p>This is a sample application demonstrating how to build a CRUD application with Angular.js and RESTful services.</p>
+<p>This is a sample application demonstrating how to build a CRUD application with Angular.js and RESTful services
+and an XQuery back-end. 
+For more information about the technical details see <a href="#/resources">resources</a>.</p>
 
-<p>Select a wine in the <a href="#/thumbs">Thumbnails</a> 
+<p>Select a wine in the <a href="#/wines">Thumbnails</a> 
  to edit the details or click the Add Wine button to add a wine to your Wine Cellar.</p>
  <p>Grapes <a href="#/grapes">List</a>.</p>
  <p>Full text search e.g. <a href="#/search?q=citrus">citrus</a>
   </p>
-  <button type="button" class="btn" bs-modal="'partials/modal.xml'">...</button>
+
 </div>

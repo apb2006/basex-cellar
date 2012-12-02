@@ -1,5 +1,10 @@
 <form xmlns:ng="http://angularjs.org" name="myForm"
 	ng:init="setWindowTitle('Add or edit a wine')">
+	<ul class="breadcrumb">
+   <li><a href="#/wines">wines</a> <span class="divider">/</span></li>
+    <li ><a href="#/wines/{{wine.id}}">{{wine.name}}</a><span class="divider">/</span></li>
+    <li class="active">Edit</li>
+ </ul>
 	<div class="row-fluid form-inline" data-ng-show="wine.id">
 		
 		<label>Created:</label>
@@ -31,7 +36,7 @@
 			<label>Grapes:</label>
 			<input type="text" id="grapesInput" ng:model="wine.grapes" />
 			<label>Country:</label>
-			<input id="countryInput" list="countryData" ng:model="wine.country" />
+			<input type="text" id="countryInput" list="countryData" ng:model="wine.country" />
 			<datalist id="countryData" data-ng-repeat="country in countries">
 				<option value="{{ country }}" />
 			</datalist>
