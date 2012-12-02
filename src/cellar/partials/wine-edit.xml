@@ -32,6 +32,7 @@
 			<option value="Red">Red</option>
 			<option value="White">White</option>
 			<option value="Rose">Rose</option>
+			<option value="Sparkling">Sparkling</option>
 			</select>			
 			<label>Grapes:</label>
 			<input type="text" id="grapesInput" ng:model="wine.grapes" />

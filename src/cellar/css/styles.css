@@ -36,8 +36,12 @@ body {
 .winelist li {
 	background-color:white;
 }
+.rofield{
+	background-color:white;
+}
 .wine-name {
 	  height: 20px;
+	  line-height:14px;
 }
 a.plain:link
 { color: #333; text-decoration: none }

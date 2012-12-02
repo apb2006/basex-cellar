@@ -6,44 +6,30 @@
      <a  href="#/wines/{{wine.id}}/edit"><i class="icon-pencil"></i>Edit...</a>
  </ul>
 
-	<div class="row-fluid form-inline" >
-		
-		<label>Created:</label>
 
-		<time class="badge badge-info" datetime="{{wine.created}}">{{wine.created|
-			fromNow}}</time>
-		<label>Modified:</label>
-
-		<time class="badge badge-info" datetime="{{wine.modified}}">{{wine.modified|
-			fromNow}}</time>
-		<label>Id:</label>
-       
-        <span class="badge badge-info">{{wine.id}}</span>	
-	</div>
 	<div class="row-fluid">
 		<div class="span4">
 			<label>Name:</label>
-			<div>{{wine.name}}</div>
+			<div class="rofield">{{wine.name}}</div>
 
              <label>Type:</label>
-			  <div>{{wine.type}}</div>
+			  <div  class="rofield">{{wine.type}}</div>
 			  
 			<label>Grapes:</label>
-			<div>{{wine.grapes}}</div>
+			<div  class="rofield">{{wine.grapes}}</div>
 			<label>Country:</label>
-			<div>{{wine.country}}</div>
+			<div  class="rofield">{{wine.country}}</div>
 			
 			<label>Region:</label>
-			<div>{{wine.region}}</div>
+			<div  class="rofield">{{wine.region}}</div>
 			<label>Year:</label>
-			<div>{{wine.year}}</div>
+			<div  class="rofield">{{wine.year}}</div>
 				
 		</div>
 
 		<div class="span4">
 			<label>Notes:</label>
-			<textarea id="descriptionInput" ng:model="wine.description"
-				rows="10"></textarea>
+			<div  class="rofield">{{wine.description}}</div>	
 
 		</div>
 		<div class="span4">
@@ -52,6 +38,19 @@
 				onerror="this.src='pics/generic.jpg'" />
 		</div>
 	</div>
+    <div class="row-fluid form-inline" >
+        
+        <label>Created:</label>
 
+        <time class="badge badge-info" datetime="{{wine.created}}">{{wine.created|
+            fromNow}}</time>
+        <label>Modified:</label>
+
+        <time class="badge badge-info" datetime="{{wine.modified}}">{{wine.modified|
+            fromNow}}</time>
+        <label>Id:</label>
+       
+        <span class="badge badge-info">{{wine.id}}</span>   
+    </div>
 
 </div>
