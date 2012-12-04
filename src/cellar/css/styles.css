@@ -176,7 +176,7 @@ form.ng-invalid .btn[disabled], form.ng-valid .btn {
 }
 
 /* busy indicator http://jsfiddle.net/dBR2r/8/ */
-#loading { position: absolute; right: 0px; bottom: 0px;
-          display: none;
-          font-weight: bold; z-index:2000;}
-#loading div {font-size:18pt; }
+#loading { position: absolute; left: 20px; top: 4px;
+          
+         z-index:2000;}
+

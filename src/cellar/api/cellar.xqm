@@ -187,9 +187,9 @@ function grapes($q,$start,$limit)
                order by fn:upper-case($g/name)             
                return $g
   return
-  <json arrays="grapes" objects="json grape" numbers="total">
+  <json arrays="items" objects="json grape" numbers="total">
     <total>{fn:count($items)}</total>
-	<grapes>
+	<items>
     {for $item in fn:subsequence($items,$start,$limit)
     return <grape>
        <id>{$item/@id/fn:string()}</id>
@@ -197,7 +197,7 @@ function grapes($q,$start,$limit)
        {$item/name,
        $item/description}
        </grape>}
-	   </grapes>
+	   </items>
   </json>
 };
 

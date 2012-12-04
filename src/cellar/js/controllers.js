@@ -109,7 +109,7 @@ Cellar.controller("GrapeListCtrl",['Flash','Grape', '$location', '$filter','$sco
 
     var data= Grape.api.get({},
 		    		function(){
-    	$scope.grapes=data.grapes;
+    	$scope.grapes=data.items;
     },
 			        function(res){
 		    			
@@ -224,5 +224,13 @@ Cellar.controller("GridCtrl",["$scope",function ($scope){
 
 //------------------------------------------
 Cellar.controller("Select2Ctrl",["$scope",function ($scope){
-	$scope.select2="three"
+	$scope.select2="three";
+	$scope.grape=["cf4ff8726b1141018d9396c18d80b2c6","518805c2176b4a02bacf16290e9910cc"]
+	$scope.grapeFormatResult=function (grape){ 
+		return "<div>"+grape.name+"</div>"
+	};
+    $scope.grapeFormatSelection= function(grape){
+		return "<span style='background-color:yellow'>"+grape.name+"</span>"
+	};
+	
 	}]);

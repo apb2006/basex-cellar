@@ -1,9 +1,9 @@
 <div>
-<script xsrc="partials/select2.js"></script>
+<script Xsrc="partials/select2.js"></script>
   <button type="button" class="btn" bs-modal="'partials/modal.xml'">modal test</button>
   <input type='hidden' id="e1" width="30em"></input>
   <div>
-  <select ui-select2="ui-select2" ng-model="select2">
+  <select apb-select2="" ng-model="select2" style="width:30em">
 <option value="">Pick a number</option>
 <option value="one">First</option>
 <option value="two">Second</option>
@@ -11,4 +11,10 @@
 </select>
 Selected: {{select2}}
 </div>
+<input type="hidden" multiple="true" class="bigdrop" style="width: 250px" placeholder="Select grape types..."
+ 
+aurl="../restxq/cellar/api/grapes" data-formatresult="grapeFormatResult" data-formatselection="grapeFormatSelection"
+apb-select2="{ }"  
+ng-model="grape"   ></input>
+<div>{{grape}}</div>
 </div>

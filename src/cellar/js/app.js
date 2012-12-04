@@ -3,8 +3,9 @@
 
 // Declare app level module which depends on filters, and services
 var Cellar=angular.module('cellar', [ 'cellar.services', 'cellar.directives','Error',
-									'$strap.directives','ngGrid',"ui",
-                                     'SharedServices','cellar.auth','flasher']).
+									'$strap.directives','ngGrid',
+								'services.httpRequestTracker',"ui.directives",
+                                     'cellar.auth','flasher']).
 config(
 		[ '$routeProvider', function($routeProvider) {
 
@@ -80,7 +81,8 @@ Cellar.config(['$locationProvider', function($location) {
 */		
 // http://www.bennadel.com/blog/2424-Setting-Prototype-Properties-Using-Inherited-Scope-Methods-In-AngularJS.htm
 // Define our root-level controller for the application.
-Cellar.controller("AppController", function($scope,$location, $window,Auth,Flash) {
+Cellar.controller("AppController", ["$scope","$location", "$window","Auth","Flash","httpRequestTracker",
+  function($scope,$location, $window,Auth,Flash,httpRequestTracker) {
       $scope.auth=Auth;
       $scope.q=null;
       $scope.doSearch=function(){
@@ -117,5 +119,8 @@ Cellar.controller("AppController", function($scope,$location, $window,Auth,Flash
 		$scope.windowTitle = title+ " - " + appname;
 
 	};
-});
+	$scope.hasPendingRequests = function () {
+    return httpRequestTracker.hasPendingRequests();
+  };
+}]);
 

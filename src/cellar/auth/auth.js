@@ -24,9 +24,9 @@ angular.module('cellar.auth', [])
     if(!(next.$route && next.$route.permission))return
 	 var msg=null;
 	  if(!Auth.isAuthenticated()){
-		msg="You must log in to access that page "
+		msg="You must be logged in to access this part of the application."
 	  }else if(!Auth.hasRole(next.$route.permission)){
-		msg="Your current login does not have access to that page, please use a different login"
+		msg="You do not have the necessary access permissions.  Do you want to login as someone else?"
 	  }
 	  if(msg){
 		  Auth.setReturn($location.$$url);

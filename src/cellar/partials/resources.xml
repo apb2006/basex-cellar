@@ -10,7 +10,9 @@
 	</ul>
 	
 	<h2>Data</h2>
-	<p>The list of Grapes comes from <a href="http://www.bryny.com/grapes.htm">here</a></p> 
+	<p>The list of Grapes comes from <a href="http://www.bryny.com/grapes.htm">here</a>.
+	Much of the wine data is sourced from <a href="https://opendata.socrata.com/Personal/The-Reverse-Wine-Snob-Wine-Ratings-ReverseWineSnob/t75p-gtep">here</a>
+	</p> 
 	<h3>View raw XML</h3>
 	<ul>
 	<li><a href="../restxq/cellar/api/xml?db=cellar&amp;doc=grapes.xml">Grapes</a></li>
