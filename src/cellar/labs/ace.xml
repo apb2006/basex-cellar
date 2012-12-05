@@ -1,0 +1,24 @@
+<div  >
+<style type='text/css'>
+  /* MUST HAVE WIDTH/HEIGHT */
+  .ace-editor {
+    width:500px;
+    height:500px;
+  }
+
+  #contents {
+    width:500px;
+    height:500px;
+    position:absolute;
+    left:500px;
+    top:0;
+  }
+</style>
+<div ace="json" ng-model="bitchin">
+  <textarea name="tutorial[contents]"></textarea>
+</div>
+
+<div id="contents">
+  Value: {{ bitchin }}
+</div>
+</div>

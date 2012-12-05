@@ -1,0 +1,25 @@
+ <li class="dropdown-submenu">
+    <a tabindex="-1" href="#">Labs</a>
+    <ul class="dropdown-menu">
+        <li>
+            <a href="#/labs/grid">
+                <i class="icon-info-sign"/>Test Grid
+            </a>
+        </li>
+        <li>
+            <a href="#/labs/select">
+                <i class="icon-info-sign"/>Test Select
+            </a>
+        </li>
+        <li>
+            <a href="#/labs/map">
+                <i class="icon-info-sign"/>Test map
+            </a>
+        </li>
+         <li>
+            <a href="#/labs/ace">
+                <i class="icon-info-sign"/>Test ace
+            </a>
+        </li>
+    </ul>
+</li>

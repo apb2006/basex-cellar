@@ -1,4 +1,0 @@
-<div  xmlns:ng="http://angularjs.org"  >
-	Profile TBD...
-	{{user.name}}
-</div>
