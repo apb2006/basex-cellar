@@ -1,5 +1,6 @@
 (:~ 
-: user /auth  application 
+: user /auth  application
+:      
 : @author andy bunce
 : @since jun 2012
 :)
@@ -112,12 +113,27 @@ updating function changepassword(
    let $u:=session:get("uid")
    
    return if($u) then
-           users:password-change($u,$newpassword)
-          else db:output(
-   <json  objects="json">
-         <rc>1</rc>
-         <msg>Not logged in</msg>
-   </json>)
+           let $u:=users:password-check($u,$password)
+           return if($u) then
+               (users:password-change($u,$newpassword),
+               db:output(rc(0,"password changed"))
+               )
+               else db:output(rc(2,"Existing password incorrect"))
+          else db:output(rc(1,"Not logged in"))
+  
+};
+
+declare 
+%rest:path("cellar/auth/lostpassword") 
+%rest:POST("{$body}")  
+%output:method("json")
+updating function lostpassword(
+    $body)
+{
+   let $json:=$body/json
+   let $email as xs:string:=  $json/email/fn:string()
+   
+   return db:output(rc(5,"Not yet")) 
 };
 
 (:~
@@ -132,11 +148,10 @@ declare %private function session-user(
                   <id>{$u/@id/fn:string()}</id>
                   <name>{$u/name/fn:string()}</name>
                   <role>{$u/role/fn:string()}</role>
+                  <avatar>{$u/avatar/fn:string()}</avatar>
             </json>
-    else
-         <json  objects="json">
-                  <rc>1</rc>
-            </json>
+    else rc(1,"not logged in")
+        
 };
 
 (:----------------------:)
@@ -164,15 +179,13 @@ updating function login-github(
    return if($token) then 
             let $github-profile:=github:user($token)
             let $github-user:=$github-profile/json/login/fn:string()
+            let $avatar:=$github-profile/json/avatar__url/fn:string()
             return (
              github-db:ensure($auth:gitdb,$github-user,$github-profile),
-             login($github-user,$auth:userdb,"github")
+             remote-login($github-user,$auth:userdb,"github")
              )
            else
-               db:output( <json  objects="json">
-                  <rc>1</rc>
-                  <msg>Not approved</msg>
-            </json>)
+               db:output(rc(1,"Not approved"))
 };
 
 (:----------------------:)
@@ -197,13 +210,17 @@ updating  function login-twitter(
   $oauth_verifier)
 {
     let $twitter-user:=twitter:login($oauth_token,$oauth_verifier)
-    return login($twitter-user,$auth:userdb,"twitter")
+    return remote-login($twitter-user,$auth:userdb,"twitter")
 };
 
 (:~
 : ensure user, log it, set session,
 :)
-declare updating function login($remote-user,$db,$system){
+declare updating function remote-login(
+     $remote-user,
+     $db,
+     $system)
+{
  let $exists:=users:find-external($db,$system,$remote-user)
  let $user:=if($exists) then $exists
             else users:generate($db,$remote-user,$system,$remote-user)
@@ -211,10 +228,45 @@ declare updating function login($remote-user,$db,$system){
 return
 (
   if($exists) then users:update-stats($db,$user/@id)
-                   else users:create($db,$user), 
+              else users:create($db,$user), 
   events:log2($action,$system,$user),
-   db:output((session:set("uid", $user),
+  db:output((session:set("uid", $user),
                  web:redirect("/cellar"))
                 )
   )
 };
+
+(:~
+: get avatar
+:)
+declare function avatar(
+$src-url as xs:string,
+$dest-file as xs:string )
+{    
+    let $r:=  http:send-request(<http:request method='get' />,$src-url)
+    return if($r[1]/@status="200") then
+             let $type:=$r[1]/http:body/@media-type
+             let $is-string:=fn:contains($type,"text") or fn:contains($type,"xml")
+             let $p:=if($is-string)
+                     then convert:binary-to-string(xs:base64Binary($r[2]))
+                     else convert:binary-to-bytes(xs:base64Binary($r[2]))
+             let $path:=fn:resolve-uri("pics/users/" || $dest-file)       
+             let $junk:=if($is-string)
+                        then  file:write-text($path,$p)
+                        else  file:write-binary($path,convert:bytes-to-hex($p))
+             return ()        
+           else ()
+ };
+ 
+ (:~
+: response msg
+:)
+declare function rc(
+$rc as xs:integer,
+$msg as xs:string ) as element(json)
+{
+   <json  objects="json">
+          <rc>{$rc}</rc>
+          <msg>{$msg}</msg>
+   </json> 
+};   

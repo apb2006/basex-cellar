@@ -1,18 +1,24 @@
-<div  xmlns:ng="http://angularjs.org"  >
-<div class="row">
-      <div class="span3 bs-docs-sidebar">
-      {{auth.getName()}}
-        <ul class="nav nav-list bs-docs-sidenav">
-          <li><a href="#"><i class="icon-chevron-right"></i> Profile</a></li>
-          <li><a href="#"><i class="icon-chevron-right"></i> Account Settings</a></li>
-          <li><a href="#"><i class="icon-chevron-right"></i> Emails</a></li>
-          <li><a href="#"><i class="icon-chevron-right"></i> HTML template</a></li>
-          <li><a href="#"><i class="icon-chevron-right"></i> Examples</a></li>
-          <li><a href="#"><i class="icon-chevron-right"></i> What next?</a></li>
-        </ul>
-      </div>
-      <div class="span9">
-	Profile TBD...
-	{{auth.getName()}}
+<div xmlns:ng="http://angularjs.org">
+	<div class="row">
+		<div class="span2 bs-docs-sidebar">
+			<img class="" data-ng-src="{{auth.getAvatar() | userPic}}" />
+			<h2>{{auth.getName()}}</h2>
+
+			view: {{view}}
+			<ul class="nav nav-list bs-docs-sidenav">
+				<li ng-repeat="page in pages">
+					<a ng-class="" href="#/settings/{{page.name}}">
+						{{page.name}}
+						<i class="icon-chevron-right"></i>
+					</a>
+				</li>
+				
+			</ul>
+		</div>
+		<div class="span9">
+			Profile TBD...
+			{{auth.getName()}}
+			<ng-include src="src()"></ng-include>
+		</div>
 	</div>
 </div>

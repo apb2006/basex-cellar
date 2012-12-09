@@ -1,0 +1,17 @@
+<div class="row">
+<h4>Drop and drop countries between two list</h4>
+        <div class="span4 offset2">
+            <ul id="sourceList" dnd-between-list="countries,targetList" style="background-color:linen;padding:6px;"
+             class="minimalList" >
+                <li class="alert alert-error " style="margin:4px" ng-dblclick="dclick($index)"
+                    ng-repeat="item in countries">{{item.name}}</li>
+            </ul>
+        </div>
+        <div class="span4">
+            <ul id="targetList" dnd-between-list="selected,sourceList" style="background-color:linen;padding:6px;"
+             class="minimalList">
+                <li class="alert alert-info " style="margin:4px" ng-dblclick="dclick($index)"
+                    ng-repeat="item in selected">{{item.name}}</li>
+            </ul>
+        </div>
+    </div>

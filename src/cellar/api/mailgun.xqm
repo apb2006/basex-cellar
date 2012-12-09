@@ -9,6 +9,21 @@
 :    -F to=sergeyo@profista.com \
 :    -F subject='Hello' \
 :    -F text='Testing some Mailgun awesomness!'
+:
+:http://en.wikibooks.org/wiki/XQuery/Sending_E-mail
+:<mail>
+:   <from/>
+:   <reply-to/>
+:   <to/>
+:   <cc/>
+:   <bcc/>
+:   <subject/>
+:   <message>
+:     <text/>
+:     <xhtml/>
+:   </message>
+:   <attachment filename="" mimetype="">xs:base64Binary</attachment> 
+:</mail>
 : @related https://docs.marklogic.com/xdmp:email
 :)
 

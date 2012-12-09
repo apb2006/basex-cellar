@@ -1,14 +1,30 @@
 <div>
-<h1>Welcome to CellarXQ!</h1>
+	<h1>Welcome to CellarXQ!</h1>
 
-<p>This is a sample application demonstrating how to build a CRUD application with Angular.js and RESTful services
-and an XQuery back-end. 
-For more information about the technical details see <a href="#/resources">resources</a>.</p>
+	<p>This is a sample application demonstrating how to build a CRUD
+		application with Angular.js, RESTful services
+		and an XQuery back-end. The data in this application is for illustration
+		only, it is NOT accurate.
+	</p>
 
-<p>Select a wine in the <a href="#/wines">Thumbnails</a> 
- to edit the details or click the Add Wine button to add a wine to your Wine Cellar.</p>
- <p>Grapes <a href="#/grapes">List</a>.</p>
- <p>Full text search e.g. <a href="#/search?q=citrus">citrus</a>
-  </p>
-
+	<p>
+		Select a wine in the
+		<a href="#/wines">Thumbnails</a>
+		to edit the details or click the Add Wine button to add a wine to your
+		Wine Cellar.
+	</p>
+	<p>
+		Grapes
+		<a href="#/grapes">List</a>
+		.
+	</p>
+	<p>
+		Full text search e.g.
+		<a href="#/search?q=citrus">citrus</a>
+	</p>
+	<p>
+		For more information about the technical details see
+		<a href="#/resources">resources</a>
+		.
+	</p>
 </div>

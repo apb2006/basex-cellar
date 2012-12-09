@@ -3,6 +3,7 @@
 : <user id="1">
 :	    <name>admin</name>
 :       <role>admin</role>
+:       <avatar>usr1.jpg</avatar>
 :		<status>active</status>
 :		<auth type="local">oa2xJp0I39IG1DBdfa4Nzg==</auth>
 :       <auth type="github">apb2006</auth>
@@ -31,12 +32,16 @@ declare function find-id(
 {
     if($id) then $userDb/users/user[@id=$id] else ()
 };
+
+(:~
+: locate user with name on remote system
+:)
 declare function find-external(
    $userDb,
    $authtype as xs:string,
-   $github-user as xs:string?) as element(user)?
+   $external-user as xs:string?) as element(user)?
 {
-    if($github-user) then $userDb/users/user[auth/@type=$authtype and auth=$github-user] else ()
+    if($external-user) then $userDb/users/user[auth/@type=$authtype and auth=$external-user] else ()
 };
 
 (:~

@@ -83,6 +83,10 @@ factory('Wine',
                      return {api : $resource('../restxq/cellar/api/events')}
     
 } ])
+.factory('Country', ['$resource','$http', function($resource,$http) {
+                     return {api : $resource('../restxq/cellar/api/countries')}
+    
+} ])
 // utils to help sort. 
 .factory('SortUtils', [ function() {
                      return {

@@ -174,7 +174,25 @@ Cellar.controller("EventCtrl",["$scope","Events",function ($scope,Events){
 }]);
 
 //------------------------------------------
-Cellar.controller("SettingsCtrl",["$scope","Auth",function ($scope,Auth){
+Cellar.controller("SettingsCtrl",["$scope","$routeParams","Auth",function ($scope,$routeParams,Auth){
 	$scope.auth=Auth;
+    $scope.view=$routeParams.view;
+    $scope.pages=[
+                  {name:"account",src:"partials/account.xml"},
+                  {name:"password",src:"auth/changepassword.xml"},
+                  {name:"profile",src:"partials/profile.xml"},
+                  {name:"email",src:"partials/email.xml"},
+                  {name:"notifications",src:"partials/notifications.xml"}
+                  ];
+    
+    $scope.src=function(){
+    	var hit=$scope.pages.filter(function( obj ) {
+            return obj.name === $scope.view;
+        })[ 0 ];
+       return hit.src
+    };
+    $scope.clsActive=function(){
+    	return ($scope.pages[$index].name==$scope.view)?"active":""
+    };
  console.log("SettingsCtrl");
 }]);

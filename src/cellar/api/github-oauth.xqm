@@ -72,6 +72,8 @@ declare function user(
    return $user[2]
 };
 
+
+    
 declare function encode-params(
   $map as map(*)) as xs:string
 {

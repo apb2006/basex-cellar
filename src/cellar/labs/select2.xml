@@ -17,4 +17,8 @@ aurl="../restxq/cellar/api/grapes" data-formatresult="grapeFormatResult" data-fo
 apb-select2="{ }"  
 ng-model="grape"   ></input>
 <div>{{grape}}</div>
+<select apb-select2=""  style="width:30em" ng-model="place">
+<option ng-repeat="country in countries" value="{{country.name}}">{{country.name}}</option>
+</select>
+<div>{{place}} from {{countries.length}}</div>
 </div>

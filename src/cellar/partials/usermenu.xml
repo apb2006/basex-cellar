@@ -26,14 +26,11 @@
 			</a>
 			<ul class="dropdown-menu">
 				<li>
-					<a href="#/settings/profile">Profile</a>
-				</li>
-				<li>
-					<a href="#/auth/changepassword">Change password</a>
+					<a href="#/settings/account">Profile</a>
 				</li>
 				<li class="divider"></li>
 				<li>
-				<a  ng-click="auth.logout()"><i class="icon-off"></i> Sign out</a>
+				<a  ng-controller="AuthController" ng-click="logout()"><i class="icon-off"></i> Sign out</a>
 				</li>
 
 			</ul>

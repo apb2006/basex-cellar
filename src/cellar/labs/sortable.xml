@@ -1,0 +1,13 @@
+<div>
+   <h2>Sort countries via drag and drop</h2>
+	<div class="span10">
+		<ol dnd-list="countries" class="thumbnails">
+			<li ng:repeat="country in countries" class="span2  ">
+				<a class="badge thumbnail">{{country.name}}</a>
+			</li>
+		</ol>
+	</div>
+	<div class="span2">
+		<div ng:repeat="country in countries">{{country.name}}</div>
+	</div>
+</div>

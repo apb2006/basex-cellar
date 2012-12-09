@@ -15,7 +15,7 @@ config(
             })
             .when('/',{redirectTo : '/wines'})
             .when('/wines/add', {
-               templateUrl : 'partials/wine-edit.xml',controller : "WineDetailCtrl"	
+               templateUrl : 'partials/wine-edit.xml',controller : "WineDetailCtrl"	,permission:".*"
             }).when('/wines/:wineId', {
                 templateUrl : 'partials/wine-view.xml',controller : "WineDetailCtrl"
             }).when('/wines/:wineId/edit', {

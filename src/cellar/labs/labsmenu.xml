@@ -21,5 +21,15 @@
                 <i class="icon-info-sign"/>Test ace
             </a>
         </li>
+          <li>
+            <a href="#/labs/sortable">
+                <i class="icon-info-sign"/>Test sort
+            </a>
+        </li>
+         <li>
+            <a href="#/labs/sortable2">
+                <i class="icon-info-sign"/>Test sort2
+            </a>
+        </li>
     </ul>
 </li>

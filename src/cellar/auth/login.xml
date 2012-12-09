@@ -1,9 +1,9 @@
 <div xmlns:ng="http://angularjs.org">
-	<form ng:submit="login()"  class=" form-horizontal">
-		<div class="well span6">
+	<form ng:submit="login()"  class=" form-horizontal well span6">
 			<fieldset>
 				<legend>Sign in 
-				<small class="pull-right">First time here? <a href="#/auth/register">Register</a></small>
+				<small class="pull-right">First time here? <a href="#/auth/register">Register</a>
+				</small>
 				</legend>
 				<div class="control-group">
 					<label class="control-label" for="username">User name:</label>
@@ -24,7 +24,7 @@
 					</div>
 				</div>
 
-				<label class="checkbox">
+				<label class="checkbox pull-right">
 					<input name="rememberme" type="checkbox" />
 					Remember me (not implemented yet)
 				</label>
@@ -45,7 +45,7 @@
                 <i class="icon-github"></i> Github</a>
                 account.
                  </div>
-		</div>
+
 	</form>
 	
 

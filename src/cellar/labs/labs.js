@@ -13,6 +13,10 @@ var Labs=angular.module('cellar.labs', [])
                 templateUrl : 'labs/map.xml',controller : "MapCtrl"		
             }).when('/labs/ace', {
                 templateUrl : 'labs/ace.xml' ,controller :"AceCtrl"
+            }).when('/labs/sortable', {
+                templateUrl : 'labs/sortable.xml' ,controller :"SortCtrl"
+                 }).when('/labs/sortable2', {
+                templateUrl : 'labs/sortable2.xml' ,controller :"Sort2Ctrl"
             })
 		}]
 );
@@ -66,7 +70,7 @@ Labs.controller("GridCtrl",["$scope",function ($scope){
 }]);
 
 //------------------------------------------
-Labs.controller("Select2Ctrl",["$scope",function ($scope){
+Labs.controller("Select2Ctrl",["$scope","Country",function ($scope,Country){
 	$scope.select2="three";
 	$scope.grape=["cf4ff8726b1141018d9396c18d80b2c6","518805c2176b4a02bacf16290e9910cc"]
 	$scope.grapeFormatResult=function (grape){ 
@@ -75,12 +79,35 @@ Labs.controller("Select2Ctrl",["$scope",function ($scope){
     $scope.grapeFormatSelection= function(grape){
 		return "<span style='background-color:yellow'>"+grape.name+"</span>"
 	};
-	
+	$scope.countries= Country.api.query({},
+		    		function(){
+    	
+    },
+			        function(res){
+		    			
+		    			console.log(res);
+				        Flash.add("error","Bad news!!! ");
+				        $location.path("/");
+				     });
+      $scope.place="Spain";              
 	}]);
 
 //------------------------------------------
 Labs.controller("AceCtrl",["$scope",function ($scope){
 	$scope.bitchin="three";
-
-	
+	}]);
+//------------------------------------------
+Labs.controller("SortCtrl",["$scope","Country",function ($scope,Country){
+	$scope.countries= Country.api.query();
+	}]);
+//------------------------------------------
+Labs.controller("Sort2Ctrl",["$scope","Country",function ($scope,Country){
+	$scope.countries= Country.api.query();
+    $scope.selected= [];
+    $scope.dclick = function($index) {
+        alert("hi "+$index);
+        console.log($index)
+    };
+ 
+  
 	}]);
