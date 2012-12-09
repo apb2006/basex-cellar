@@ -4,7 +4,7 @@
     <li class="active">{{user.name}}</li>
  </ul>
 
-<img class="media-object img-circle" src="{user.avatar | userPic" />
+<img class="media-object img-circle" data-ng-src="{{user.avatar | userPic}}" />
       
 <div>Logins: {{ user.logins }} 
 last login:{{ user.last | fromNow}} 

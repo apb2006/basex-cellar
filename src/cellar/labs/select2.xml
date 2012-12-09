@@ -21,4 +21,10 @@ ng-model="grape"   ></input>
 <option ng-repeat="country in countries" value="{{country.name}}">{{country.name}}</option>
 </select>
 <div>{{place}} from {{countries.length}}</div>
+<hr/>
+<select ui-select2=""  style="width:30em" ng-model="place2">
+<option ng-repeat="country in countries" value="{{country.name}}">{{country.name}}</option>
+</select>
+<div>{{place2}} from {{countries.length}}</div>
+<button ng-click="setPlace()">Place</button>
 </div>

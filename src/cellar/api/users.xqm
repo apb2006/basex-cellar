@@ -60,6 +60,7 @@ function get-user(
                   <created>{$u/stats/@created/fn:string()}</created>
                   <last>{$u/stats/@last/fn:string()}</last>
                   <logins>{$u/stats/@logins/fn:string()}</logins>
+                  <avatar>{$u/avatar/fn:string()}</avatar>
               </json>
       else 
            web:status(404,"Not found: " || $id)    

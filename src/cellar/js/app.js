@@ -2,10 +2,18 @@
 /* http://docs.angularjs.org/#!angular.service */
 
 // Declare app level module which depends on filters, and services
-var Cellar=angular.module('cellar', [ 'cellar.services', 'cellar.directives','Error',
-                                    'cellar.labs','$strap.directives','ngGrid',
-                                'services.httpRequestTracker',"ui.directives",
-                                     'cellar.auth','flasher']).
+var Cellar=angular.module('cellar', [ 
+        'cellar.services',
+        'cellar.directives',
+        'Error',
+        'cellar.labs',
+        '$strap.directives',
+        'ngGrid',
+        'services.httpRequestTracker',
+        "ui.directives",
+        'cellar.auth',
+        'flasher'
+        ]).
 config(
         [ '$routeProvider', function($routeProvider) {
 

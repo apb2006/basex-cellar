@@ -3,5 +3,5 @@
    <li><a href="#/grapes">grapes</a> <span class="divider">/</span></li>
     <li class="active">{{grape.name}}</li>
  </ul>
-<p>{{grape.description}}</p>
+<div>{{grape.description}}</div>
 </div>

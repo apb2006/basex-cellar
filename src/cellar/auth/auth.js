@@ -14,6 +14,8 @@ angular.module('cellar.auth', [])
 				templateUrl : 'auth/register.xml'
             }).when('/auth/changepassword', {
 				templateUrl : 'auth/changepassword.xml',permission:".*"
+            }).when('/auth/cookies', {
+				templateUrl : 'auth/cookie-policy.xml'	
             }).when('/auth/lostpassword', {
 				templateUrl : 'auth/lostpassword.xml'				
             })
@@ -26,7 +28,7 @@ angular.module('cellar.auth', [])
 	  if(!Auth.isAuthenticated()){
 		msg="You must be logged in to access this part of the application."
 	  }else if(!Auth.hasRole(next.$route.permission)){
-		msg="You do not have the necessary access permissions.  Do you want to signin as someone else?"
+		msg="You do not have the necessary access permissions.  Do you want to sign in as someone else?"
 	  }
 	  if(msg){
 		  Auth.setReturn($location.$$url);

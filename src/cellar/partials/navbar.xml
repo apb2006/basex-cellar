@@ -74,12 +74,6 @@
 							<b class="caret"></b>
 						</a>
 						<ul class="dropdown-menu">
-							<li>
-								<a href="#/about">
-									<i class="icon-info-sign"></i>
-									About CellarXQ
-								</a>
-							</li>
 							
 							<li>
 								<a href="#/resources">
@@ -87,6 +81,20 @@
 									Resources
 								</a>
 							</li>
+							<li>
+                                <a href="#/auth/cookies">
+                                    <i class="icon-comment"></i>
+                                    Cookie policy
+                                </a>
+                            </li>
+                            <li class="divider"></li>
+                            <li>
+                                <a href="#/about">
+                                    <i class="icon-info-sign"></i>
+                                    About CellarXQ
+                                </a>
+                            </li>
+                            
 						</ul>
 					</li>
 				</ul>

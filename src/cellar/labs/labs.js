@@ -79,17 +79,20 @@ Labs.controller("Select2Ctrl",["$scope","Country",function ($scope,Country){
     $scope.grapeFormatSelection= function(grape){
 		return "<span style='background-color:yellow'>"+grape.name+"</span>"
 	};
-	$scope.countries= Country.api.query({},
-		    		function(){
-    	
-    },
-			        function(res){
-		    			
-		    			console.log(res);
-				        Flash.add("error","Bad news!!! ");
-				        $location.path("/");
-				     });
-      $scope.place="Spain";              
+	$scope.countries= Country.api.query({});
+//	http://stackoverflow.com/questions/13253114/angular-ui-select2-sometimes-not-loading-model
+	$scope.$watch('countries',function (newVal,oldVal,$scope){
+	      if(newVal){
+	    	  setTimeout(function(){
+	    	  $scope.place="Spain";
+	          $scope.place2="France";
+	    	  })
+	      }
+	    },true);
+	$scope.setPlace=function(){
+	 $scope.place="Chad";
+    $scope.place2="XYZ";
+	};
 	}]);
 
 //------------------------------------------

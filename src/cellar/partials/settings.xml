@@ -7,7 +7,7 @@
 			view: {{view}}
 			<ul class="nav nav-list bs-docs-sidenav">
 				<li ng-repeat="page in pages">
-					<a ng-class="" href="#/settings/{{page.name}}">
+					<a ng-class="clsActive()" href="#/settings/{{page.name}}">
 						{{page.name}}
 						<i class="icon-chevron-right"></i>
 					</a>

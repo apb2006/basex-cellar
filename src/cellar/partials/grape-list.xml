@@ -15,7 +15,6 @@
 						{{ grape.name }}
 					</a>
 				</h4>
-				<div> {{ grape.description }}</div>
 			</div>
 		</li>
 	</ul>

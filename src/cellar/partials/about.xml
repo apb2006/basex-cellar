@@ -1,4 +1,5 @@
 <div>
+ <div class="hero-unit">
 	<h1>Welcome to CellarXQ!</h1>
 
 	<p>This is a sample application demonstrating how to build a CRUD
@@ -6,7 +7,7 @@
 		and an XQuery back-end. The data in this application is for illustration
 		only, it is NOT accurate.
 	</p>
-
+   </div>
 	<p>
 		Select a wine in the
 		<a href="#/wines">Thumbnails</a>
