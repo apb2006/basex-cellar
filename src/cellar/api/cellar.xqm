@@ -107,19 +107,46 @@ declare
 function search(
   $q as xs:string)
 {
-let $res:=for $wine in $cellar:wines/wine 
-          let score $s:= $wine/description contains text ({$q} weight{1}) using fuzzy 
-				or  $wine/name contains text ({$q} weight{4}) using fuzzy
-			   where $s gt 0           
-			   order by $s descending
-			   return  <hit>
-			           <id>{$wine/@id/fn:string()}</id>
-			           {$wine/name}
-			            <score>{fn:round(20 * $s)}</score>      
-                  </hit>							
+
+let $res:=for $hit in (search-wines($q),search-grapes($q))
+	      order by $hit/score descending
+		  return  $hit				
 return <json arrays="json" objects="hit">{$res}</json>
 };
 
+(:~
+: search wines
+:)
+declare  function search-wines($q){
+    for $wine in $cellar:wines/wine 
+    let score $s:= $wine/description contains text ({$q} weight{1}) using fuzzy 
+                or $wine/name contains text ({$q} weight{4}) using fuzzy
+    where $s gt 0           
+    return  <hit  >
+              <type>wine</type>
+              <url>wines/{$wine/@id/fn:string()}</url>
+              <score>{$s}</score>
+              {$wine/name}
+               <extract>no extract yet</extract>
+            </hit>
+};
+
+(:~
+: search grapes
+:)
+declare  function search-grapes($q){
+    for $grape in $cellar:grapes/grape 
+    let score $s:= $grape/description contains text ({$q} weight{1}) using fuzzy 
+               or  $grape/name contains text ({$q} weight{4}) using fuzzy
+    where $s gt 0           
+    return  <hit >
+               <type>grape</type>
+               <url>grapes/{$grape/@id/fn:string()}</url>
+               <score>{$s}</score>
+               {$grape/name}
+               <extract>no extract yet</extract>
+            </hit>
+};
 (:~
 : update details for wine with id
 : @modified timestamp used to detect lost update errors

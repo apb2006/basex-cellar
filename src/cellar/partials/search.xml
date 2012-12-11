@@ -9,7 +9,7 @@
 Found:{{results.length}}
 <ul>
 <li data-ng-repeat="result in results">
-<a href="#/wines/{{ result.id }}"> {{result.name}}</a>, (score: {{result.score}})
+<a href="#/{{ result.url }}"> {{result.name}}</a>, (score: {{100*result.score}})
 </li>
 </ul>
 <hr/>
