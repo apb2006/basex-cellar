@@ -8,7 +8,7 @@
 				<hr/>
 Found:{{results.length}}
 <ul>
-<li data-ng-repeat="result in results">
+<li data-ng-repeat="result in results">{{result.type}}
 <a href="#/{{ result.url }}"> {{result.name}}</a>, (score: {{100*result.score}})
 </li>
 </ul>

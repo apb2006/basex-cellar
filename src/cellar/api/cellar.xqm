@@ -125,7 +125,7 @@ declare  function search-wines($q){
     return  <hit  >
               <type>wine</type>
               <url>wines/{$wine/@id/fn:string()}</url>
-              <score>{$s}</score>
+              <score>{fn:round(20 * $s)}</score>
               {$wine/name}
                <extract>no extract yet</extract>
             </hit>
@@ -142,11 +142,12 @@ declare  function search-grapes($q){
     return  <hit >
                <type>grape</type>
                <url>grapes/{$grape/@id/fn:string()}</url>
-               <score>{$s}</score>
+               <score>{fn:round(20 * $s)}</score>
                {$grape/name}
                <extract>no extract yet</extract>
             </hit>
 };
+
 (:~
 : update details for wine with id
 : @modified timestamp used to detect lost update errors

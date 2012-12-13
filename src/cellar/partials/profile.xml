@@ -1,29 +1,44 @@
-<div>
+<div  xmlns:ng="http://angularjs.org"  ng:controller="AuthController">
+    <form  ng:submit="profile()" class="well form-horizontal span6">
 
-Profile
+        <fieldset>
+            <legend>Profile:</legend>
+            <div class="control-group">
+                <label class="control-label" for="oldpassword">Avatar:</label>
+                <div class="controls">
+                    <input id="avatar" ng:model="newpass.password" name="avatar" type="input"
+                        required="required"  autofocus="autofocus"
+                        class="input" placeholder="Avatar" />
+                   
+                </div>
+            </div>
+            <div class="control-group">
+                <label class="control-label" for="password">New password:</label>
+                <div class="controls">
+                    <input id="newpassword" ng:model="newpass.newpassword" name="input" type="input"
+                        required="required"
+                        class="input" placeholder="New Password" />
+                </div>
+            </div>
+            <div class="control-group">
+                <label class="control-label" for="name">Name:</label>
+                <div class="controls">
+                    <input id="name" name="name" type="input" class="input"
+                        placeholder="Name" required="required" />
+                    
+                </div>
+            </div>
+            <div class="control-group">
+                <label class="control-label" for="bio">Bio:</label>
+                <div class="controls">
+                    <input id="bio" name="bio" type="input" class="input"
+                        placeholder="Name" required="required" />
+                    
+                </div>
+            </div>
+        </fieldset>
+        
 
-This information appears on your public profile, search results, and beyond.
-Photo
-
-This photo is your identity on Twitter and appears with your Tweets.
-Header
-
-Recommended dimensions of 1252×626
-Maximum file size of 5MB
-
-Need help? Learn more.
-Name
-
-Enter your real name, so people you know can recognize you.
-Location
-
-Where in the world are you?
-Website
-
-Have a homepage or a blog? Put the address here.
-
-You can also add Twitter to your site here.
-Bio
-
-About yourself in 160 characters or less. 
+        <button type="submit" class="btn btn-primary">Update profile</button>
+    </form>
 </div>
