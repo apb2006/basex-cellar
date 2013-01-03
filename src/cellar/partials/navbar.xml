@@ -135,4 +135,7 @@
         <ng-include src="'partials/usermenu.xml'"></ng-include>
 		</div>
 	</div>
+     
+    
+ 
 </div>

@@ -97,7 +97,14 @@ Labs.controller("Select2Ctrl",["$scope","Country",function ($scope,Country){
 
 //------------------------------------------
 Labs.controller("AceCtrl",["$scope",function ($scope){
-	$scope.bitchin="three";
+	$scope.bitchin="module namespace users = 'apb.users.app'\n" 
+                   +"declare default function namespace 'apb.users.app';\n"
+                   +"declare function find-name(\n"
+                   +" $userDb,\n"
+                   +"$username as xs:string)  as element(user)?\n"
+                  +"{\n" 
+                   +"$userDb/users/user[name=$username]\n"
+                  +"};\n"
 	}]);
 //------------------------------------------
 Labs.controller("SortCtrl",["$scope","Country",function ($scope,Country){

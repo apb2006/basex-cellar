@@ -1,19 +1,22 @@
+<div>
 <div id="features" class="row" style="padding-left:20px;"
 	data-ng-init="setWindowTitle('Wines')">
 
 	<ul class="breadcrumb ">
-		<li class="active">Wines ({{wines.length}})</li>
-		<span class="divider">/</span>
+		<li class="active">Wines ({{wines.length}})
+		<span class="divider">/</span></li>
+        <li>
 		<a href="#/wines/add">
 			<i class="icon-plus-sign"></i>
 			Add New...
 		</a>
-	</ul>
-
-			<ul class="breadcrumb " title="Click to sort" style="margin-top:4px">
-			Filter:
+        </li> 
+        <ul class="nav nav-pills pull-right" title="Click to sort" style="position:relative;top:-6px">
+			    <li>
+                Filter:
                 <input type="text" class="span2" data-ng-model="query" />
                 Sort:
+                </li>
 				<li data-ng-class="sortutils.activeCls(th.column,sort)" data-ng-repeat="th in head">
 					<a data-ng-click="sortutils.changeSorting(th.column,sort)" style="padding: 6px 4px;">
 						{{th.head}}
@@ -21,7 +24,11 @@
 					</a>
 				</li>
 			</ul>
-
+       
+	</ul>
+</div>
+<div>
+			
 
 	<ul class=" thumbnails winelist">
 		<li class="span3"
@@ -39,7 +46,7 @@
 			</a>
 		</li>
 	</ul>
-
+</div>
 	<!--/span -->
 	<span title="Wrong when filtered!">{{filteredWines.length}} of {{wines.length}}</span>
 </div>
