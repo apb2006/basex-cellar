@@ -1,12 +1,39 @@
-<div>
+<div  xmlns:ng="http://angularjs.org"  ng:controller="AuthController">
+    <form  ng:submit="account()" class="well form-horizontal span6">
 
-Account
+        <fieldset>
+            <legend>Account
+            <div>
+            <small class="pull-right" style="line-height:20px;">Change your basic account settings.</small>
+            </div>
+            </legend>
+            
+            
+            <div class="control-group">
+                <label class="control-label" for="name">User name:</label>
+                <div class="controls">
+                    <input id="name" name="name" type="text" class="input"
+                        placeholder="Name" required="required" ng:model="name"/>
+                    
+                </div>
+            </div>
+             <div class="control-group">
+                <label class="control-label" for="name">Email:</label>
+                <div class="controls">
+                    <input id="email" name="email" type="email" class="input"
+                        placeholder="Email"  ng:model="email" />
+                     <span class="help-block">Your email is not shown publicly. 
+                    </span>
+                </div>
+            </div>
+           
+          
+        </fieldset>
+        
 
-Change your basic account, language, Tweet privacy, and location settings.
-Username
-
-https://twitter.com/apb1704
-Email
-
-Email will not be publicly displayed. Learn more.
+        <button type="submit" class="btn btn-primary">Update Account</button>
+    </form>
 </div>
+
+
+

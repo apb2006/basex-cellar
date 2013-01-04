@@ -1,6 +1,6 @@
 <div class=" pull-right" style="margin-top: 0px">
 	<div ng-show="!auth.isAuthenticated()" class="btn-group">
-	
+	    <a href="#/auth/register" class="btn btn-success btn-small">Register</a>
 		<a href="#/auth/login" class="btn btn-small">Sign in</a>
 		<button class="btn  btn-small dropdown-toggle" data-toggle="dropdown">
             <span class="caret"></span>
@@ -15,7 +15,7 @@
                 <i class="icon-github"></i> sign in with Github</a>
            </li>
         </ul>
-		<a href="#/auth/register" class="btn btn-success btn-small">Register</a>
+		
 	</div>
 	<div ng-show="auth.isAuthenticated()" class="btn-group">
 	
@@ -26,11 +26,11 @@
 			</a>
 			<ul class="dropdown-menu">
 				<li>
-					<a href="#/settings/account">Profile</a>
+					<a href="#/settings/profile">Profile</a>
 				</li>
 				<li class="divider"></li>
 				<li>
-				<a  ng-controller="AuthController" ng-click="logout()"><i class="icon-off"></i> Sign out</a>
+				<a  href="#" ng-controller="AuthController" ng-click="logout()"><i class="icon-off"></i> Sign out</a>
 				</li>
 
 			</ul>

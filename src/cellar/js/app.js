@@ -27,7 +27,7 @@ config(
             }).when('/wines/:wineId', {
                 templateUrl : 'partials/wine-view.xml',controller : "WineDetailCtrl"
             }).when('/wines/:wineId/edit', {
-                templateUrl : 'partials/wine-edit.xml',controller : "WineDetailCtrl"	
+                templateUrl : 'partials/wine-edit.xml',controller : "WineDetailCtrl",permission:".*"	
             }).when('/grapes', {
                 templateUrl : 'partials/grape-list.xml',controller : "GrapeListCtrl"
             }).when('/grapes/:grapeId', {

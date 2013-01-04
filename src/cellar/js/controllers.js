@@ -33,7 +33,7 @@ Cellar.controller("WineListCtrl",["SortUtils","Flash","Wine", "$location", "$fil
 		$scope.wines = Wine.api.query({q:$scope.view.q},
 				function(){},
 		        function(res){
-		            Flash.add("error","Item not found: ");
+		            Flash.add("error","Item <b>NOT</b> found: ");
 		            $location.path("/wines");
                  });
 		console.log("search");
@@ -52,7 +52,7 @@ Cellar.controller("WineDetailCtrl",['Wine', 'Flash','$routeParams', '$location',
 	
     $scope.wine = Wine.api.get({wineId: $routeParams.wineId},function(){},
     		           function(res){
-    	                 Flash.add("error","Item not found: "+$routeParams.wineId);
+    	                 Flash.add("error","Item <b>NOT</b> found: "+$routeParams.wineId);
     	                 $location.path("/wines");
     	                 });
    
@@ -63,7 +63,7 @@ Cellar.controller("WineDetailCtrl",['Wine', 'Flash','$routeParams', '$location',
     	else if ($scope.wine.id )
         {
             Wine.api.update({wineId:$scope.wine.id}, $scope.wine, function (res) {
-                Flash.add("success",'Wine ' + $scope.wine.name + ' updated');
+                Flash.add("success",'Wine <a href="#/wines/' + res.id +'">'+res.name + '</a> updated.'); 
                 Wine.broadcastChange();
                 $location.path("/wines");
                 },
@@ -77,7 +77,7 @@ Cellar.controller("WineDetailCtrl",['Wine', 'Flash','$routeParams', '$location',
         else
         {      
             Wine.api.save({}, $scope.wine, function (res) {
-            	Flash.add("success",'Wine ' + $scope.wine.name + ' created'); 
+            	Flash.add("success",'Wine <a href="#/wines/' + res.id +'">'+res.name + '</a> created.'); 
                 Wine.broadcastChange();
                 $location.path("/wines");
                 },

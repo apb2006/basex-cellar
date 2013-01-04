@@ -28,7 +28,7 @@ angular.module('cellar.auth', [])
 	  if(!Auth.isAuthenticated()){
 		msg="You must be logged in to access this part of the application."
 	  }else if(!Auth.hasRole(next.$route.permission)){
-		msg="You do not have the necessary access permissions.  Do you want to sign in as someone else?"
+		msg="You do not have the permission to view that page.  Do you want to sign in as someone else?"
 	  }
 	  if(msg){
 		  Auth.setReturn($location.$$url);
@@ -65,6 +65,7 @@ angular.module('cellar.auth', [])
 	});  
   return {
     isAuthenticated: function() {
+      console.log("isAuthenticated",_this.authenticated);
       return _this.authenticated;
     },
     getName: function() {
@@ -135,6 +136,7 @@ angular.module('cellar.auth', [])
   console.log("AuthController created")	
   $scope.auth={username:"",password:""};
   $scope.newpass={newpassword:"",password:""};
+  $scope.register={username:"",password:"",email:""};
   $scope.login = function() {
      // alert("hh");
     return Auth.login($scope.auth, function(result) {
@@ -150,7 +152,7 @@ angular.module('cellar.auth', [])
   };
     $scope.register = function() {
      // alert("hh");
-    return Auth.register($scope.auth, function(result) {
+    return Auth.register($scope.register, function(result) {
       if (!result) {
         return window.alert('Authentication failed!');
       } else {
@@ -181,4 +183,7 @@ angular.module('cellar.auth', [])
 		 }
 	 	})
   };
+   $scope.lostpassword = function(){
+   alert("not yet")
+   };
 }]);

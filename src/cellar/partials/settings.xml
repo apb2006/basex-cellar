@@ -16,8 +16,6 @@
 			</ul>
 		</div>
 		<div class="span9">
-			Profile TBD...
-			{{auth.getName()}}
 			<ng-include src="src()"></ng-include>
 		</div>
 	</div>

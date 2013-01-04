@@ -2,13 +2,31 @@
 	<form  ng:submit="register()" class="well form-horizontal span6"
 	 oninput="up2.setCustomValidity(up2.value != password.value ? 'Passwords do not match.' : '')">
 		<fieldset>
-			<legend>Register</legend>
+			<legend>Register
+            <small class="pull-right" style="line-height:20px;text-align:right" >Got an account? <a href="#/auth/login">Sign in</a>
+                <br/>or use your <a    href="../restxq/cellar/auth/twitter">
+                 <i class="icon-twitter"></i> Twitter</a>
+                 or
+                  <a   href="../restxq/cellar/auth/github">
+                <i class="icon-github"></i> Github</a>
+                account.
+				</small>
+            </legend>
 			<div class="control-group">
 				<label class="control-label" for="username">Choose a user name:</label>
 				<div class="controls">
 					<input id="username" ng:model="auth.username" type="text" class="input" 
 					required="required"  autofocus="autofocus" pattern="[A-Za-z_][A-Za-z_0-9]*"
 						placeholder="Username" />
+				</div>
+			</div>
+            <div class="control-group">
+				<label class="control-label" for="email">Your email:</label>
+				<div class="controls">
+					<input id="email" ng:model="auth.email" type="email" class="input" 
+					required="required"   
+						placeholder="Email address" />
+                    <span class="help-block">Your email will not be shown publicly.</span>
 				</div>
 			</div>
 			<div class="control-group">
@@ -28,17 +46,8 @@
 		</fieldset>
 		<div class="form-actions">
 			<button  type="submit"  class="btn btn-primary">Register</button>
-			Or
-			<a href="#/auth/login">Sign in</a>
+			
 		</div>
-		 <div >
-             <label class="control-label">Or use your </label>          
-                <a  class="btn" href="../restxq/cellar/auth/twitter">
-                 <i class="icon-twitter"></i> Twitter</a>
-                 or
-                  <a class="btn" href="../restxq/cellar/auth/github">
-                <i class="icon-github"></i> Github</a>
-                account.
-                 </div>
+		
 	</form>
 </div>

@@ -34,7 +34,7 @@
       <div ng:repeat="alert in alerts">
           <div class="alert alert-{{alert.type}}"  >
          <button type="button" class="close" data-dismiss="alert">×</button>
-             {{alert.msg}}
+            <span ng-bind-html-unsafe="alert.msg"></span>
          </div>
       </div> 
      </div>
@@ -70,7 +70,7 @@
     <script src="/lib/ace/486a740/src-min-noconflict/ace.js" type="text/javascript" charset="utf-8"></script>
     -->
 	<script src="lib/ft-ace.js"></script>
-    <script src="lib/httpRequestTracker.js"></script>
+    <script src="lib/angular.app/httpRequestTracker.js"></script>
 	<script src="lib/interceptor400.js"></script>
 	<script src="lib/flash.js"></script>
 	<script src="auth/auth.js"></script>

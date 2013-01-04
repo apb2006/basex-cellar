@@ -1,0 +1,23 @@
+<components>
+    <component>
+        <name url="http://twitter.github.com/bootstrap/">Twitter-Bootstrap</name>
+        <use version="2.2.2" src=""/>
+        <role></role>
+    </component>
+    <component>
+        <name url="http://angularjs.org/">AngularJS</name>
+        <use version="" src=""/>
+    </component>
+    <component>
+        <name url="http://twitter.github.com/bootstrap/">Twitter-Bootstrap</name>
+        <use version="" src=""/>
+    </component>
+    <component>
+        <name url="http://ivaynberg.github.com/select2">Select2</name>
+        <use version="" src=""/>
+    </component>
+    <component>
+        <name url="http://basex.org/">BaseX</name>
+        <use version="7.5.1" src=""/>
+    </component>
+</components>

@@ -2,11 +2,18 @@
 	<form ng:submit="login()"  class=" form-horizontal well span6">
 			<fieldset>
 				<legend>Sign in 
-				<small class="pull-right">First time here? <a href="#/auth/register">Register</a>
+				<small class="pull-right" style="line-height:20px;text-align:right" >First time here? <a href="#/auth/register">Register</a>
+                <br/>or use your <a    href="../restxq/cellar/auth/twitter">
+                 <i class="icon-twitter"></i> Twitter</a>
+                 or
+                  <a   href="../restxq/cellar/auth/github">
+                <i class="icon-github"></i> Github</a>
+                account.
 				</small>
+                 
 				</legend>
 				<div class="control-group">
-					<label class="control-label" for="username">User name:</label>
+					<label class="control-label" for="username">User name or Email:</label>
 					<div class="controls">
 						<input id="username" ng:model="auth.username" type="text"
 							class="input" required="required" autofocus="autofocus"
@@ -24,27 +31,17 @@
 					</div>
 				</div>
 
-				<label class="checkbox pull-right">
-					<input name="rememberme" type="checkbox" />
-					Remember me (not implemented yet)
-				</label>
+				
 
 			</fieldset>
 			<div class="form-actions">
 				<button type="submit"  class="btn btn-primary">Sign in</button>
-			
+			<label class="checkbox pull-right">
+					<input name="rememberme" type="checkbox" title="Not implemented yet" disabled="disabled"/>
+					Remember me
+				</label>
 			</div>
-			 <div >
-			 <label class="control-label">Or use your </label>
-			 
-                
-                <a  class="btn" href="../restxq/cellar/auth/twitter">
-                 <i class="icon-twitter"></i> Twitter</a>
-                 or
-                  <a class="btn" href="../restxq/cellar/auth/github">
-                <i class="icon-github"></i> Github</a>
-                account.
-                 </div>
+		
 
 	</form>
 	

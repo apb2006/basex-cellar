@@ -2,38 +2,37 @@
     <form  ng:submit="profile()" class="well form-horizontal span6">
 
         <fieldset>
-            <legend>Profile:</legend>
-            <div class="control-group">
-                <label class="control-label" for="oldpassword">Avatar:</label>
-                <div class="controls">
-                    <input id="avatar" ng:model="newpass.password" name="avatar" type="input"
-                        required="required"  autofocus="autofocus"
-                        class="input" placeholder="Avatar" />
-                   
-                </div>
+            <legend>Profile
+            <div>
+            <small class="pull-right" style="line-height:20px;">This information appears on your public profile, search results, and beyond.</small>
             </div>
+            </legend>
+            
+            
             <div class="control-group">
-                <label class="control-label" for="password">New password:</label>
+                <label class="control-label" for="name">Full name:</label>
                 <div class="controls">
-                    <input id="newpassword" ng:model="newpass.newpassword" name="input" type="input"
-                        required="required"
-                        class="input" placeholder="New Password" />
-                </div>
-            </div>
-            <div class="control-group">
-                <label class="control-label" for="name">Name:</label>
-                <div class="controls">
-                    <input id="name" name="name" type="input" class="input"
-                        placeholder="Name" required="required" />
+                    <input id="name" name="fullname" type="text" class="input"
+                        placeholder="Full Name" required="required" ng:model="fullname"/>
                     
                 </div>
             </div>
+            
             <div class="control-group">
                 <label class="control-label" for="bio">Bio:</label>
                 <div class="controls">
-                    <input id="bio" name="bio" type="input" class="input"
-                        placeholder="Name" required="required" />
-                    
+                    <textarea id="bio" name="bio" ng:model="bio" rows="4"
+                        placeholder="Bio"   />
+                    <span class="help-block">About yourself in 160 characters or less.</span> 
+                </div>
+            </div>
+            <div class="control-group">
+                <label class="control-label" for="oldpassword">Avatar:</label>
+                <div class="controls">
+                    <input id="avatar" ng:model="avatar" name="avatar" type="text"
+                           autofocus="autofocus"
+                        class="input" placeholder="Avatar" />
+                   
                 </div>
             </div>
         </fieldset>

@@ -72,6 +72,7 @@ updating function register-post(
     let $json:=$body/json
     let $username as xs:string:=  $json/username/fn:string()
 	let $password as xs:string:=  $json/password/fn:string()
+    let $email as xs:string:=  $json/email/fn:string()
     return if(users:find-name($auth:userdb,$username))
     then 
         let $t:= "The name '" || $username || "' is already registered, please choose different name."
@@ -80,7 +81,9 @@ updating function register-post(
                          <json objects="json"><msg>{$t}</msg></json>
                          ))
     else
-        let $u:=users:generate($auth:userdb,$username,"local",$password)
+        let $u:=copy $ub:=users:generate($auth:userdb,$username,"local",$password)
+                modify insert node <email>{$email}</email> into $ub
+                return $ub
         return (
             users:create($auth:userdb,$u),
             events:log2("register","local",$u), 
