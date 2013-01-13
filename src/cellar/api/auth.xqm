@@ -80,7 +80,14 @@ updating function register-post(
         return db:output((web:status(409,"Duplicate"),
                          <json objects="json"><msg>{$t}</msg></json>
                          ))
-    else
+    else if(users:find-email($auth:userdb,$email))
+    then 
+        let $t:= "The email '" || $email || "' is already registered, please choose different address."
+       
+        return db:output((web:status(409,"Duplicate"),
+                         <json objects="json"><msg>{$t}</msg></json>
+                         ))
+    else                     
         let $u:=copy $ub:=users:generate($auth:userdb,$username,"local",$password)
                 modify insert node <email>{$email}</email> into $ub
                 return $ub

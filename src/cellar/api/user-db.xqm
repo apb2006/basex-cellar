@@ -5,6 +5,7 @@
 :       <role>admin</role>
 :       <avatar>usr1.jpg</avatar>
 :		<status>active</status>
+:       <email>.</email>
 :		<auth type="local">oa2xJp0I39IG1DBdfa4Nzg==</auth>
 :       <auth type="github">apb2006</auth>
 :		<stats created="2012-08-06T22:29:37.643+01:00" last="2012-08-06T22:29:37.643+01:00" logins="0" />
@@ -19,6 +20,9 @@
 module namespace users = 'apb.users.app';
 declare default function namespace 'apb.users.app';
 
+(:~
+: return user with name 
+:)
 declare function find-name(
     $userDb,
     $username as xs:string)  as element(user)?
@@ -26,11 +30,24 @@ declare function find-name(
     $userDb/users/user[name=$username]
 };
 
+(:~
+: return user with id
+:)
 declare function find-id(
    $userDb,
    $id as xs:string?) as element(user)?
 {
     if($id) then $userDb/users/user[@id=$id] else ()
+};
+
+(:~
+: return user with email or empty
+:)
+declare function find-email(
+   $userDb,
+   $email as xs:string?) as element(user)?
+{
+    if($email) then $userDb/users/user[@id=$email] else ()
 };
 
 (:~

@@ -12,6 +12,7 @@ var Cellar=angular.module('cellar', [
         'services.httpRequestTracker',
         "ui.directives",
         'cellar.auth',
+        'cellar.settings',
         'flasher'
         ]).
 config(
@@ -49,10 +50,7 @@ config(
             }).when('/about', {
                 templateUrl : 'partials/about.xml'			
             }).when('/resources', {
-                templateUrl : 'partials/resources.xml' 
-            		
-            }).when('/settings/:view', {
-                    templateUrl : 'partials/settings.xml',permission:".*",controller: "SettingsCtrl"					
+                templateUrl : 'partials/resources.xml'   		
             }).when('/404', {
                 templateUrl : 'partials/404.xml'
             }).when('/error', {
