@@ -24,7 +24,7 @@ declare namespace rest = 'http://exquery.org/ns/restxq';
 
 declare variable $auth:userdb:=db:open('users',"users.xml");							
 declare variable $auth:gitdb:=db:open('users',"github.xml"); 
-                           
+
 (:~
 : login 
 : @return fail
@@ -69,7 +69,7 @@ declare
 updating function register-post(
 	$body)
 {
-    let $json:=$body/json
+    let $json:=fn:trace($body/json,"-->json: ")
     let $username as xs:string:=  $json/username/fn:string()
 	let $password as xs:string:=  $json/password/fn:string()
     let $email as xs:string:=  $json/email/fn:string()

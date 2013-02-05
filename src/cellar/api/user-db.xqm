@@ -19,6 +19,7 @@
 
 module namespace users = 'apb.users.app';
 declare default function namespace 'apb.users.app';
+import module namespace crypto="http://expath.org/ns/crypto";
 
 (:~
 : return user with name 
@@ -79,7 +80,7 @@ declare function password-check(
     $user as element(user)?,
     $password as xs:string)  as element(user)?
 {
-    $user[auth[@type='local']=hash:md5($password) ]
+    $user[auth[@type='local']=hash($password) ]
 };
 
 (:~
@@ -89,7 +90,7 @@ declare updating function password-change(
     $user as element(user)?,
     $newpassword as xs:string)   
 {
-    replace value of node $user/auth[@type='local'] with hash:md5($newpassword) 
+    replace value of node $user/auth[@type='local'] with hash($newpassword) 
 };
 
 (:~
@@ -121,7 +122,7 @@ declare function generate(
        <name>{$name}</name>
        <role>user</role>
 	   {if($authtype="local") 
-	    then  <auth type="local" >{hash:md5($authdata)}</auth>	
+	    then  <auth type="local" >{hash($authdata)}</auth>	
 	    else  <auth type="{$authtype}" >{$authdata}</auth>	 
 	   }        
 	   <stats created="{fn:current-dateTime()}" last="{fn:current-dateTime()}" logins="1" />
@@ -172,4 +173,13 @@ declare updating function update-stats(
     let $d:= $userDb/users/user[@id=$uid]
     return  (replace value of node $d/stats/@last with fn:current-dateTime(),
              replace value of node $d/stats/@logins with 1+$d/stats/@logins)
+};
+
+(:~
+: hash password
+:)
+declare %private function hash($password as xs:string) as xs:string
+{
+   let $salt:="XML is a versatile markup language, capable of labeling the information content of diverse data sources including structured and semi-structured documents, relational databases, and object repositories. "                            
+   return  crypto:hmac($password,$salt,'md5','base64')
 };

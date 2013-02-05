@@ -150,7 +150,7 @@ angular.module('cellar.auth', [])
       }
     });
   };
-    $scope.register = function() {
+    $scope.doRegister = function() {
      // alert("hh");
     return Auth.register($scope.register, function(result) {
       if (!result) {
