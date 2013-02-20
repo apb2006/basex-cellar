@@ -21,7 +21,7 @@ var Labs=angular.module('cellar.labs', [])
 		}]
 );
 //------------------------------------------
-Labs.controller("MapCtrl",["$scope",function ($scope){
+Labs.controller("MapCtrl",["$scope","Userdata",function ($scope){
 	$scope.myMarkers = [];
 
 	$scope.mapOptions = {
@@ -36,7 +36,10 @@ Labs.controller("MapCtrl",["$scope",function ($scope){
 			position: $event.latLng
 		}));
 	};
-
+    $scope.clearMarkers = function() {
+        $scope.myMarkers.forEach(function(m){m.setMap(null)});
+        $scope.myMarkers=[];
+	};
 	$scope.setZoomMessage = function(zoom) {
 		$scope.zoomMessage = 'You just zoomed to '+zoom+'!';
 		console.log(zoom,'zoomed');
@@ -44,6 +47,7 @@ Labs.controller("MapCtrl",["$scope",function ($scope){
 
 	$scope.openMarkerInfo = function(marker) {
 		$scope.currentMarker = marker;
+        $scope.currentMarkerIndex =$scope.myMarkers.indexOf(marker);
 		$scope.currentMarkerLat = marker.getPosition().lat();
 		$scope.currentMarkerLng = marker.getPosition().lng();
 		$scope.myInfoWindow.open($scope.myMap, marker);
@@ -52,7 +56,39 @@ Labs.controller("MapCtrl",["$scope",function ($scope){
 	$scope.setMarkerPosition = function(marker, lat, lng) {
 		marker.setPosition(new google.maps.LatLng(lat, lng));
 	};
- console.log("MapCtrl");
+    $scope.dumpMarkers = function() {
+		console.log(JSON.stringify(markerAsLatLng($scope.myMarkers)));
+	};
+    $scope.loadMarkers = function() {
+        $scope.clearMarkers();
+		$scope.myMarkers=latLngAsMarker(JSON.parse(saved),$scope.myMap);
+		/*
+		$scope.myMarkers= Userdata.api.get({field: "markers"},function(){},
+		           function(res){
+            Flash.add("error","Item <b>NOT</b> found: markers");
+            $location.path("/wines");
+            });
+            */
+	};
+    $scope.deleteMarker = function(index) {
+        $scope.myMarkers[index].setMap(null);
+        $scope.myMarkers.splice(index,1)
+	};
+	$scope.saveMarkers=function(){
+		alert("not yet")
+	};
+    function markerAsLatLng(markers){
+     var f=function(marker){return {lat:marker.getPosition().lat(),lng:marker.getPosition().lng()}};    
+     return markers.map(f)
+    };
+    function latLngAsMarker(latlngs,map){
+     var f=function(latlng){
+            return new google.maps.Marker({map: map, position: new google.maps.LatLng(latlng.lat, latlng.lng)})
+     };
+     return latlngs.map(f)
+    };
+    var saved='[{"lat":46.927758623434435,"lng":5.20751953125},{"lat":46.92025531537451,"lng":6.448974609375},{"lat":46.6795944656402,"lng":5.0537109375}]';
+    console.log("MapCtrl");
 }]);
 
 //------------------------------------------
@@ -121,3 +157,24 @@ Labs.controller("Sort2Ctrl",["$scope","Country",function ($scope,Country){
  
   
 	}]);
+/*
+angular.module('cellar.labs', [ 'ngResource' ]).
+//The factory returns objects / functions that can be used by the controllers
+factory('Userdata',
+     ['$resource','$http','$rootScope',
+             function($resource, $http, $rootScope) {
+                 return {
+                     // the resource provider interacting with the BaseX
+                     // backend
+                     api : $resource('../restxq/cellar/api/user/:field',
+                             {}, {
+                                 update : {method : 'PUT'}
+                             }),
+                   
+                     broadcastChange : function() {
+                         $rootScope.$broadcast('userdata:change');
+                     }
+                 }
+             } ]);
+             */
+             

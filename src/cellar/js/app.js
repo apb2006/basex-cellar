@@ -13,6 +13,7 @@ var Cellar=angular.module('cellar', [
         "ui.directives",
         'cellar.auth',
         'cellar.settings',
+        'cellar.labs',
         'flasher'
         ]).
 config(
