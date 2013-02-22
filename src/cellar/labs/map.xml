@@ -6,7 +6,7 @@
 					<a class="btn" ng-click="dumpMarkers()">
 						Dump
 					</a>
-					<a class="btn" ng-click="loadMarkers()">
+					<a class="btn" ng-click="testMarkers()">
 						Load
 					</a>
 					<a class="btn" ng-click="clearMarkers()">
@@ -15,6 +15,9 @@
 					
 				</div>
 				<div ng-show="auth.isAuthenticated()" class="btn-group">
+                 <a class="btn" ng-click="loadMarkers()">
+                        Load
+                    </a>
 				   <a class="btn" ng-click="saveMarkers()">
                         Save
                     </a>

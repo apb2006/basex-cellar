@@ -65,3 +65,32 @@ function get-user(
       else 
            web:status(404,"Not found: " || $id)    
 }; 
+
+(:~
+: full private for user with id as json
+:)
+declare
+%rest:GET %rest:path("cellar/api/users/{$id}/data/{$field}")  
+%output:method("json")
+function get-user-data(
+  $id,$field)
+{
+ let $u:=$auth:userdb/user[@id=$id]
+ let $v:= users:get-data($auth:userdb, $id ,"markers")
+
+ return  if($v) then $v
+         else  <json objects="json"/> 
+                 
+};
+
+(: TODO PERMISSIONS :)
+declare updating
+%rest:PUT("{$body}") %rest:path("cellar/api/users/{$id}/data/{$field}")  
+%output:method("json")
+function put-user-data(
+  $id,$field,$body)
+{
+ let $u:=$auth:userdb/user[@id=$id]
+ let $body:=fn:trace($body,"body")
+ return  users:put-data($auth:userdb, $id ,"markers",$body)
+};

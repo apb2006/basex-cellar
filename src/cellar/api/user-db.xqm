@@ -164,6 +164,31 @@ declare updating function delete(
 };
 
 (:~
+: get data user
+:)
+declare function get-data(
+  $userDb,
+  $id as xs:string,$field as xs:string)
+{     
+   $userDb/user[@id=$id]/data/*[fn:name(.)=$field]/* 
+};
+
+(:~
+: put data user
+:)
+declare updating function put-data(
+  $userDb,
+  $id as xs:string,$field as xs:string,$value)
+{  
+   let $root:= $userDb/user[@id=$id]/data 
+   let $field:=fn:trace($field,"----") 
+   let $target:=$root/*[fn:name(.)=$field] 
+   return if($target) 
+          then replace node $target with $value
+          else insert node (element {$field} {$value}) into $root
+};
+
+(:~
 : update login stats
 :)
 declare updating function update-stats(

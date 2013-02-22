@@ -21,7 +21,7 @@ var Labs=angular.module('cellar.labs', [])
 		}]
 );
 //------------------------------------------
-Labs.controller("MapCtrl",["$scope","Userdata",function ($scope){
+Labs.controller("MapCtrl",["$scope","Userdata","Auth",function ($scope,Userdata,Auth){
 	$scope.myMarkers = [];
 
 	$scope.mapOptions = {
@@ -59,28 +59,40 @@ Labs.controller("MapCtrl",["$scope","Userdata",function ($scope){
     $scope.dumpMarkers = function() {
 		console.log(JSON.stringify(markerAsLatLng($scope.myMarkers)));
 	};
-    $scope.loadMarkers = function() {
+    $scope.testMarkers = function() {
         $scope.clearMarkers();
 		$scope.myMarkers=latLngAsMarker(JSON.parse(saved),$scope.myMap);
-		/*
-		$scope.myMarkers= Userdata.api.get({field: "markers"},function(){},
-		           function(res){
-            Flash.add("error","Item <b>NOT</b> found: markers");
-            $location.path("/wines");
-            });
-            */
 	};
+    $scope.loadMarkers = function() {
+        $scope.clearMarkers();
+		var m=Userdata.api.get({field: "markers",userid:Auth.getId()},function(){},
+    		           function(res){   	                
+    	                 console.log(res);
+    	                 alert(res);
+    	                 });
+		
+	};
+    
     $scope.deleteMarker = function(index) {
         $scope.myMarkers[index].setMap(null);
         $scope.myMarkers.splice(index,1)
 	};
+    
 	$scope.saveMarkers=function(){
-		alert("not yet")
+		var m={markers:markerAsLatLng($scope.myMarkers)};
+        Userdata.api.update(
+        		    {field: "markers",userid:Auth.getId()},
+        		    m,function(){},
+    		           function(res){
+    	                 alert(res)
+    	                 });
 	};
+    
     function markerAsLatLng(markers){
      var f=function(marker){return {lat:marker.getPosition().lat(),lng:marker.getPosition().lng()}};    
      return markers.map(f)
     };
+    
     function latLngAsMarker(latlngs,map){
      var f=function(latlng){
             return new google.maps.Marker({map: map, position: new google.maps.LatLng(latlng.lat, latlng.lng)})
@@ -157,16 +169,16 @@ Labs.controller("Sort2Ctrl",["$scope","Country",function ($scope,Country){
  
   
 	}]);
-/*
-angular.module('cellar.labs', [ 'ngResource' ]).
+
+
 //The factory returns objects / functions that can be used by the controllers
-factory('Userdata',
-     ['$resource','$http','$rootScope',
+Labs.factory('Userdata',
+     ['$resource','$http','$rootScope',"Auth",
              function($resource, $http, $rootScope) {
                  return {
                      // the resource provider interacting with the BaseX
                      // backend
-                     api : $resource('../restxq/cellar/api/user/:field',
+                     api : $resource('../restxq/cellar/api/users/:userid/data/:field',
                              {}, {
                                  update : {method : 'PUT'}
                              }),
@@ -176,5 +188,5 @@ factory('Userdata',
                      }
                  }
              } ]);
-             */
+      
              

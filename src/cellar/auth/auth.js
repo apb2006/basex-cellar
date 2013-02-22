@@ -43,10 +43,12 @@ angular.module('cellar.auth', [])
   var _this = this;
   this.authenticated = false;
   this.name = null;
+  this.id=null;
   this.role = null;
   this.returnURL="/";
   this.set=function(data){
     _this.name = data.name;
+    _this.id = data.id;
 	_this.role = data.role;
 	_this.avatar = data.avatar;
     _this.authenticated = true;
@@ -65,12 +67,15 @@ angular.module('cellar.auth', [])
 	});  
   return {
     isAuthenticated: function() {
-      console.log("isAuthenticated",_this.authenticated);
+     //console.log("isAuthenticated",_this.authenticated);
       return _this.authenticated;
     },
     getName: function() {
       return _this.name;
     },
+    getId: function() {
+        return _this.id;
+      },
     getAvatar: function() {
         return _this.avatar;
       },
