@@ -64,8 +64,12 @@ Labs.controller("MapCtrl",["$scope","Userdata","Auth",function ($scope,Userdata,
 		$scope.myMarkers=latLngAsMarker(JSON.parse(saved),$scope.myMap);
 	};
     $scope.loadMarkers = function() {
-        $scope.clearMarkers();
-		var m=Userdata.api.get({field: "markers",userid:Auth.getId()},function(){},
+		var m=Userdata.api.get({field: "markers",userid:Auth.getId()},
+				    function(res){
+			             var m=res.markers;
+			             $scope.clearMarkers();
+			     		 $scope.myMarkers=latLngAsMarker(m,$scope.myMap);
+					},
     		           function(res){   	                
     	                 console.log(res);
     	                 alert(res);
@@ -82,7 +86,7 @@ Labs.controller("MapCtrl",["$scope","Userdata","Auth",function ($scope,Userdata,
 		var m={markers:markerAsLatLng($scope.myMarkers)};
         Userdata.api.update(
         		    {field: "markers",userid:Auth.getId()},
-        		    m,function(){},
+        		    m,function(){alert("Saved")},
     		           function(res){
     	                 alert(res)
     	                 });

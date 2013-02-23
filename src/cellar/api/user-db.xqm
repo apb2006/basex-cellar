@@ -168,9 +168,9 @@ declare updating function delete(
 :)
 declare function get-data(
   $userDb,
-  $id as xs:string,$field as xs:string)
+  $id as xs:string,$key as xs:string)
 {     
-   $userDb/user[@id=$id]/data/*[fn:name(.)=$field]/* 
+   $userDb/user[@id=$id]/data/item[@key=$key]/* 
 };
 
 (:~
@@ -178,14 +178,14 @@ declare function get-data(
 :)
 declare updating function put-data(
   $userDb,
-  $id as xs:string,$field as xs:string,$value)
+  $id as xs:string,$key as xs:string,$value)
 {  
    let $root:= $userDb/user[@id=$id]/data 
-   let $field:=fn:trace($field,"----") 
-   let $target:=$root/*[fn:name(.)=$field] 
+   let $target:=$root/item[@key=$key]
+   let $new:=<item key="{$key}">{$value}</item> 
    return if($target) 
-          then replace node $target with $value
-          else insert node (element {$field} {$value}) into $root
+          then replace node $target with $new
+          else insert node $new into $root
 };
 
 (:~
